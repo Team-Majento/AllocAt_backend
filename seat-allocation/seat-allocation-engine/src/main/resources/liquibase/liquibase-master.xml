@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+	<!-- include file="src/main/resources/liquibase/file-name.xml"/ -->
+	<!-- include file="classpath:liquibase/user/schema/file-name.xml" relativeToChangelogFile="true"/-->
+	
+<!--	<include file="company/schema/company-v1.0.0.xml" relativeToChangelogFile="true"/>-->
+	<include file="resource/schema/resource-v1.0.0.xml" relativeToChangelogFile="true"/>
+      <include file="user/schema/user-v1.0.0.xml" relativeToChangelogFile="true"/>
+
+<include file="resourceAllocation/schema/resource_allocation-v1.0.0.xml" relativeToChangelogFile="true"/>
+<include file="company/schema/company-v1.0.0.xml" relativeToChangelogFile="true"/>
+<include file="bookingRequest/schema/resource_booking_request-v1.0.0.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

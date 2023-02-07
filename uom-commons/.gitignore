@@ -1,0 +1,9 @@
+**/.classpath
+**/.project
+**/.factorypath
+*.log
+**/target
+**/.settings
+**/.springBeans
+**/.idea/
+*.iml

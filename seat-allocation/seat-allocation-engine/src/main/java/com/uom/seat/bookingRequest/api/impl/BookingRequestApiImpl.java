@@ -1,0 +1,53 @@
+package com.uom.seat.bookingRequest.api.impl;
+
+import com.uom.seat.api.BookingRequestApi;
+import com.uom.seat.bookingRequest.dto.BookingRequestRequest;
+import com.uom.seat.bookingRequest.dto.BookingRequestResponse;
+import com.uom.seat.bookingRequest.logic.BookingRequestCreationLogic;
+import com.uom.seat.bookingRequest.logic.BookingRequestRetrievalLogic;
+import com.uom.seat.bookingRequest.logic.BookingRequestUpdateLogic;
+import com.uom.seat.bookingRequest.logic.GetAllBookingRequestsLogic;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+
+@Service
+@Transactional(isolation = Isolation.REPEATABLE_READ)
+public class BookingRequestApiImpl implements BookingRequestApi {
+    @Autowired
+    private BookingRequestCreationLogic bookingRequestCreationLogic;
+
+    @Autowired
+    private BookingRequestRetrievalLogic bookingRequestRetrievalLogic;
+
+    @Autowired
+    private BookingRequestUpdateLogic bookingRequestUpdateLogic;
+
+    @Autowired
+    private GetAllBookingRequestsLogic getAllBookingRequestsLogic;
+    @Override
+    public Integer createBookingRequest(String bearerToken, BookingRequestRequest bookingRequest) {
+        return bookingRequestCreationLogic.createBookingRequest(bearerToken, bookingRequest);
+
+    }
+
+    @Override
+    public BookingRequestResponse getBookingRequest(String bearerToken, Integer bookingRequestId) {
+        return bookingRequestRetrievalLogic.getBookingRequest(bearerToken, bookingRequestId);
+    }
+
+    @Override
+    public BookingRequestResponse updateBookingRequest(Integer bookingRequestId, BookingRequestRequest bookingRequest) {
+        return bookingRequestUpdateLogic.updateBookingRequest(bookingRequestId,bookingRequest);
+    }
+
+    @Override
+    public List<BookingRequestResponse> getAllBookingRequests(String bearerToken) {
+        return getAllBookingRequestsLogic.getAllBookingRequests(bearerToken);
+
+    }
+}
