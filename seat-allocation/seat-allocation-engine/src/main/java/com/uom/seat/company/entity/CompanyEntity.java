@@ -1,13 +1,12 @@
 package com.uom.seat.company.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.uom.seat.resource.entity.ResourceEntity;
 import org.hibernate.annotations.NaturalId;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "company")
@@ -46,6 +45,9 @@ public class CompanyEntity {
 	// optional
 	@Column(name = "fax", nullable = true)
 	private String fax;
+
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "company")
+	private List<ResourceEntity> resources= new ArrayList<>();
 
 	/**
 	 * @return the id
@@ -159,4 +161,11 @@ public class CompanyEntity {
 		this.fax = fax;
 	}
 
+	public List<ResourceEntity> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<ResourceEntity> resources) {
+		this.resources = resources;
+	}
 }

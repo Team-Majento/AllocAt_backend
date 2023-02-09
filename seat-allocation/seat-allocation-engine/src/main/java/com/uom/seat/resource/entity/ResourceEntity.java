@@ -1,6 +1,7 @@
 package com.uom.seat.resource.entity;
 
 
+import com.uom.seat.company.entity.CompanyEntity;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 
@@ -14,6 +15,20 @@ public class ResourceEntity {
     @NaturalId
     @Column(name = "xid", nullable = false, unique = true)
     private String xid;
+
+
+    @ManyToOne(targetEntity = CompanyEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false)
+    private CompanyEntity company;
+
+    public CompanyEntity getCompany() {
+        return company;
+    }
+
+    public void setCompany(CompanyEntity company) {
+        this.company = company;
+    }
+
     @Column(name = "resource_type_id", nullable = false)
     private Integer resourceType;
 
@@ -39,6 +54,12 @@ public class ResourceEntity {
 
     @Column(name = "img_Url", nullable = true)
     private String imgUrl;
+
+
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name ="company_id",referencedColumnName = "id",foreignKey =@ForeignKey(name = "fk_resource_to_company") )
+//    private CompanyEntity company;
+
 
     public Integer getId() {
         return id;

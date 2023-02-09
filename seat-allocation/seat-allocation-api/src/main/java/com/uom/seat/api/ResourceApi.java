@@ -14,7 +14,7 @@ public interface ResourceApi {
      * @param resource
      * @return the resource id
      */
-    public Integer createResource(String accessToken, ResourceRequest resource);
+    public Integer createResource(String accessToken, ResourceRequest resource,Integer companyId);
 
     ResourceResponse getResource(String accessToken, Integer id);
 

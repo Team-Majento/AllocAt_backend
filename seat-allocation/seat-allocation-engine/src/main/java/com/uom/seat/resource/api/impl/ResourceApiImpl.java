@@ -31,10 +31,15 @@ public class ResourceApiImpl implements ResourceApi {
     @Autowired
     private ResourceDeletionLogic resourceDeletionLogic;
 
-    @Override
-    public Integer createResource(String accessToken, ResourceRequest resource) {
+//    @Override
+//    public Integer createResource(String accessToken, ResourceRequest resource) {
+//
+//        return resourceCreationLogic.createResource(accessToken,resource);
+//    }
 
-        return resourceCreationLogic.createResource(accessToken,resource);
+    @Override
+    public Integer createResource(String accessToken, ResourceRequest resource, Integer companyId) {
+        return resourceCreationLogic.createResource(accessToken,resource,companyId);
     }
 
     @Override

@@ -41,10 +41,15 @@
             <dropTable tableName="company"/>
         </rollback>
     </changeSet>
-    
+
+
     <changeSet id="company_master_data" author="denuwan">
         <sqlFile encoding="utf8" path="../master-data/company.sql" relativeToChangelogFile="true"
                  splitStatements="true" stripComments="true"/>
     </changeSet>
-   
+
+
+
+
+
 </databaseChangeLog>

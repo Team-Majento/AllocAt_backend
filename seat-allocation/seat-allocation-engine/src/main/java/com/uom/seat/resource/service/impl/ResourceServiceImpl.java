@@ -1,5 +1,7 @@
 package com.uom.seat.resource.service.impl;
 
+import com.uom.seat.company.entity.CompanyEntity;
+import com.uom.seat.company.repository.CompanyRepository;
 import com.uom.seat.resource.dto.ResourceRequest;
 import com.uom.seat.resource.dto.ResourceResponse;
 import com.uom.seat.resource.entity.ResourceEntity;
@@ -19,6 +21,11 @@ import java.util.UUID;
 @Service
 public class ResourceServiceImpl implements ResourceService {
 
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -26,9 +33,9 @@ public class ResourceServiceImpl implements ResourceService {
     private ResourceRepository resourceRepository;
 
     @Override
-    public Integer createResource(ResourceRequest resource) {
+    public Integer createResource(ResourceRequest resource,Integer companyId) {
         System.out.println("**");
-        return resourceRepository.save(convertToResourceEntity(resource)).getId() ;
+        return resourceRepository.save(convertToResourceEntity(resource,companyId)).getId() ;
     }
 
     @Override
@@ -84,10 +91,14 @@ public class ResourceServiceImpl implements ResourceService {
         return entity;
     }
 
-    private ResourceEntity convertToResourceEntity(ResourceRequest resource) {
+    private ResourceEntity convertToResourceEntity(ResourceRequest resource,Integer companyId) {
+
+       CompanyEntity companyEntity= companyRepository.findById(companyId).get();
+
 
         ResourceEntity entity = null;
         entity = modelMapper.map(resource, ResourceEntity.class);
+        entity.setCompany(companyEntity);
         entity.setXid(UUID.randomUUID().toString());
 
         return entity;

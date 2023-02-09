@@ -19,7 +19,7 @@ private ResourceValidator resourceValidator;
 @Autowired
 private ResourceService resourceService;
 
-    public Integer createResource(String accessToken, ResourceRequest resource) {
+    public Integer createResource(String accessToken, ResourceRequest resource, Integer companyId) {
 
         // 1. validate company request
         // 2. create company
@@ -27,7 +27,7 @@ private ResourceService resourceService;
         resourceValidator.validateResource(resource);
         logger.info("The company is validated.");
 
-        Integer id = resourceService.createResource(resource);
+        Integer id = resourceService.createResource(resource,companyId);
         logger.info("The organization is created.");
 
         return id;

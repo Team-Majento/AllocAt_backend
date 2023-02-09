@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/resources")
+@RequestMapping("/companies")
 @Api(description = "The resource API for resource management tasks")
 public class ResourceController {
 
@@ -33,10 +33,11 @@ public class ResourceController {
             @ApiResponse(code = 400, message = "Invalid API argument.")
             // @formatter:on
     })
-    @PostMapping()
+    @PostMapping("{companyId}/resource")
     public ResponseEntity<Integer> registerResource(
             //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
             @ApiParam(value = "JSON format of the resource request.", required = true) @RequestBody final ResourceRequest resource,
+            @PathVariable("companyId") final Integer companyId,
             UriComponentsBuilder builder) {
 
         ResponseEntity<Integer> responseEntity = null;
@@ -44,7 +45,7 @@ public class ResourceController {
         logger.debug("Register company request" + resource.toString());
 
         Integer resourceId = resourceApi.createResource(AccessTokenUtil.getBearerToken("authorization"),
-                resource);
+                resource,companyId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("resources/{resourceId}").buildAndExpand(resourceId).toUri());
