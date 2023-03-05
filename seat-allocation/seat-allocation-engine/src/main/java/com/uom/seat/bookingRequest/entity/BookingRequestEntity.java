@@ -1,6 +1,8 @@
 package com.uom.seat.bookingRequest.entity;
 
 
+import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -39,6 +41,16 @@ public class BookingRequestEntity {
     @Column(name = "status", nullable = false)
     private String status ;
 
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "bookingRequestEntity")
+    private ResourceAllocationEntity resourceAllocationEntity;
+
+    public ResourceAllocationEntity getResourceAllocationEntity() {
+        return resourceAllocationEntity;
+    }
+
+    public void setResourceAllocationEntity(ResourceAllocationEntity resourceAllocationEntity) {
+        this.resourceAllocationEntity = resourceAllocationEntity;
+    }
 
     public Integer getId() {
         return id;

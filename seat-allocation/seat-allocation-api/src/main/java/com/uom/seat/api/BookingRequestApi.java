@@ -2,6 +2,7 @@ package com.uom.seat.api;
 
 import com.uom.seat.bookingRequest.dto.BookingRequestRequest;
 import com.uom.seat.bookingRequest.dto.BookingRequestResponse;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface BookingRequestApi {
     BookingRequestResponse updateBookingRequest(Integer bookingRequestId, BookingRequestRequest bookingRequest);
 
     List<BookingRequestResponse> getAllBookingRequests(String bearerToken);
+
+    Page<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId);
 
 }

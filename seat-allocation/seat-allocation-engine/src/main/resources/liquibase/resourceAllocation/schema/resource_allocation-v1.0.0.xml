@@ -11,6 +11,15 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
+            <column name="condition_id_FK" type="BIGINT" >
+                <constraints nullable="true" />
+            </column>
+
+            <column name="booking_request_id_FK" type="BIGINT" >
+                <constraints nullable="true" />
+            </column>
+
+
             <column name="resource_id" type="BIGINT" >
                 <constraints nullable="false" />
             </column>
@@ -42,7 +51,7 @@
             </column>
 
             <column name="actual_end_time" type="TIME" >
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">

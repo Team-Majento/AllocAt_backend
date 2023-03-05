@@ -9,4 +9,5 @@ public interface CompanyService {
 	public CompanyResponse getCompany(Integer id);
 	public CompanyResponse updateCompany(Integer id, CompanyRequest company);
 
+    Boolean deleteCompany(Integer companyId);
 }

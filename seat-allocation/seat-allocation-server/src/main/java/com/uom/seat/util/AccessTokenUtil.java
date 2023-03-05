@@ -1,9 +1,5 @@
 package com.uom.seat.util;
 
-/**
- * @author rangalal
- *
- */
 public final class AccessTokenUtil {
 
 	private AccessTokenUtil() {

@@ -1,6 +1,7 @@
 package com.uom.seat.user.service.impl;
 
 
+import com.uom.seat.resource.entity.ResourceEntity;
 import com.uom.seat.user.dto.UserRequest;
 import com.uom.seat.user.dto.UserResponse;
 import com.uom.seat.user.entity.UserEntity;
@@ -8,8 +9,13 @@ import com.uom.seat.user.repository.UserRepository;
 import com.uom.seat.user.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -74,4 +80,40 @@ public class UserServiceImpl implements UserService {
 
         return entity;
     }
+    @Override
+    public Page<UserResponse> getAllUsers(Integer page, Integer size) {
+        PageRequest pageable= PageRequest.of(page,size);
+        Page<UserEntity> pageEntities=userRepository.findAll(pageable);
+
+        List<UserEntity> entityList= pageEntities.getContent();
+        List<UserResponse> dtoList = new ArrayList<>();
+
+        entityList.forEach(entity -> dtoList.add(convertToUserResponse(entity)));
+
+        return new PageImpl<UserResponse>(dtoList,pageable,pageEntities.getTotalElements());
+    }
+
+
+    @Override
+    public Boolean deleteUser(Integer userId) {
+        UserEntity entity = userRepository.saveAndFlush(deleteUser(userRepository.findById(userId).get()));
+        return  !entity.getActiveStatus();
+    }
+
+    @Override
+    public Boolean userLogin(String userName, String password) {
+        UserEntity entity = userRepository.findByUserName(userName);
+        if(password.equals(entity.getPassword())){
+            return true;
+        }
+        return false;
+    }
+
+    private UserEntity deleteUser(UserEntity userEntity) {
+        userEntity.setActiveStatus(false);
+        return  userEntity;
+    }
+
+
+
 }

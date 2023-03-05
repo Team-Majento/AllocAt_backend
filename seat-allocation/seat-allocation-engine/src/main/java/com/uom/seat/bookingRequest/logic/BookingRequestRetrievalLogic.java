@@ -3,6 +3,7 @@ package com.uom.seat.bookingRequest.logic;
 import com.uom.seat.bookingRequest.dto.BookingRequestResponse;
 import com.uom.seat.bookingRequest.service.BookingRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 
@@ -21,6 +22,10 @@ public class BookingRequestRetrievalLogic {
     private void validateServiceParam(Integer id) {
         //TODO
         //ValidationUtil.validateNotEmpty(id, "The id is mandatory");
+    }
+    public Page<BookingRequestResponse> getAllResourceBookingRequestsByRequesterUserId(Integer requesterUserId, Integer page, Integer size) {
+        return service.getALlResourceBookingRequestsByRequstersUserId(requesterUserId,page,size);
+
     }
 
 

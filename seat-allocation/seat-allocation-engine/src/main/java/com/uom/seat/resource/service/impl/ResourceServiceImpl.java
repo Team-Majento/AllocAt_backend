@@ -21,27 +21,22 @@ import java.util.UUID;
 @Service
 public class ResourceServiceImpl implements ResourceService {
 
-
-    @Autowired
-    private CompanyRepository companyRepository;
-
-
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
     private ResourceRepository resourceRepository;
 
+    @Autowired
+    private CompanyRepository companyRepository;
+
     @Override
     public Integer createResource(ResourceRequest resource,Integer companyId) {
-        System.out.println("**");
         return resourceRepository.save(convertToResourceEntity(resource,companyId)).getId() ;
     }
 
     @Override
     public ResourceResponse getResource(Integer id) {
-
-        System.out.println("***");
         return convertToResourceResponse(resourceRepository.findById(id).get()) ;
 
     }
@@ -93,8 +88,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     private ResourceEntity convertToResourceEntity(ResourceRequest resource,Integer companyId) {
 
-       CompanyEntity companyEntity= companyRepository.findById(companyId).get();
-
+        CompanyEntity companyEntity= companyRepository.findById(companyId).get();
 
         ResourceEntity entity = null;
         entity = modelMapper.map(resource, ResourceEntity.class);
@@ -106,7 +100,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 
     private ResourceResponse convertToResourceResponse(ResourceEntity entity) {
-        System.out.println("kk--kk");
         ResourceResponse dto = null;
         dto = modelMapper.map(entity, ResourceResponse.class);
 

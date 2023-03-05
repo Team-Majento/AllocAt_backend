@@ -56,6 +56,10 @@ public class UserEntity {
     @Column(name = "managers_eid", nullable = true)
     private Integer managersEID ;
 
+    @Column(name = "is_active", nullable = false)
+    private Boolean activeStatus;
+
+
     public Integer getId() {
         return id;
     }
@@ -174,5 +178,13 @@ public class UserEntity {
 
     public void setManagersEID(Integer managersEID) {
         this.managersEID = managersEID;
+    }
+
+    public Boolean getActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(Boolean activeStatus) {
+        this.activeStatus = activeStatus;
     }
 }

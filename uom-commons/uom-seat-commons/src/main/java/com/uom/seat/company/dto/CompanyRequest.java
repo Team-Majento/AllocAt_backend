@@ -22,6 +22,16 @@ public class CompanyRequest implements Serializable {
 	// optional
 	private String fax;
 
+	private Boolean activeStatus;
+
+	public Boolean getActiveStatus() {
+		return activeStatus;
+	}
+
+	public void setActiveStatus(Boolean activeStatus) {
+		this.activeStatus = activeStatus;
+	}
+
 	/**
 	 * @return the name
 	 */
@@ -108,8 +118,14 @@ public class CompanyRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Company [name=" + name + ", address=" + address + ", contactNumber=" + contactNumber + ", email="
-				+ email + ", mobile=" + mobile + ", fax=" + fax + "]";
+		return "CompanyRequest{" +
+				"name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", contactNumber='" + contactNumber + '\'' +
+				", email='" + email + '\'' +
+				", mobile='" + mobile + '\'' +
+				", fax='" + fax + '\'' +
+				", activeStatus=" + activeStatus +
+				'}';
 	}
-
 }

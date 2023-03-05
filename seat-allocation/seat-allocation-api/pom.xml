@@ -29,9 +29,15 @@
 			<groupId>com.uom</groupId>
 			<artifactId>uom-seat-commons</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.20.0</version>
+            <scope>compile</scope>
+        </dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 
 </project>

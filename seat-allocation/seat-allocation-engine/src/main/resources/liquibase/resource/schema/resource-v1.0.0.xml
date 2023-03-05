@@ -9,9 +9,11 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
+
             <column name="xid" type="UUID">
                 <constraints nullable="false" unique="true" uniqueConstraintName="idx_unique_xid"/>
             </column>
+
 
             <column name="resource_type_id" type="BIGINT" >
                 <constraints nullable="false" />
@@ -45,48 +47,31 @@
                 <constraints nullable="true"/>
             </column>
 
+            <column name="company_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="img_Url" type="VARCHAR(125)">
                 <constraints nullable="true"/>
             </column>
 
-            <column name="company_id" type="BIGINT">
-                <constraints nullable="true"/>
-
-            </column>
-
-
             <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+
+
             <column name="modified_date" type="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="true"/>
             </column>
-
-
-
         </createTable>
         <rollback>
             <dropTable tableName="resource"/>
         </rollback>
     </changeSet>
 
-<!--    <changeSet author="thiunuwan" id="fk_resource_to_company">-->
-
-<!--        <addForeignKeyConstraint-->
-<!--                baseTableName="resource"-->
-<!--                baseColumnNames="company_id"-->
-<!--                constraintName="fk_resource_to_company"-->
-<!--                referencedTableName="company"-->
-<!--                referencedColumnNames="id" />-->
-
-<!--    </changeSet>-->
-
-
     <changeSet id="resource_master_data" author="ravindu">
         <sqlFile encoding="utf8" path="../master-data/resource.sql" relativeToChangelogFile="true"
                  splitStatements="true" stripComments="true"/>
     </changeSet>
-
-
 
 </databaseChangeLog>

@@ -48,6 +48,6 @@ public interface CompanyApi {
 	
 	public CompanyResponse updateCompany(Integer id, CompanyRequest company);
 
-	
 
+    Boolean deleteCompany(String authorization, Integer companyId);
 }

@@ -19,7 +19,7 @@ private ResourceValidator resourceValidator;
 @Autowired
 private ResourceService resourceService;
 
-    public Integer createResource(String accessToken, ResourceRequest resource, Integer companyId) {
+    public Integer createResource(String accessToken, ResourceRequest resource,Integer companyId) {
 
         // 1. validate company request
         // 2. create company

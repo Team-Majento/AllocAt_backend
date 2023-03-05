@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.uom.seat.company.dto.CompanyResponse;
 import com.uom.seat.company.service.CompanyService;
-
 @Component
 public class CompanyRetrivalLogic {
 	
@@ -17,7 +16,6 @@ public class CompanyRetrivalLogic {
 	}
 	
 	private void validateServiceParam(Integer id) {
-		//TODO
 		//ValidationUtil.validateNotEmpty(id, "The id is mandatory");
 	}
 

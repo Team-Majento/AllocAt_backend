@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create_table_review" author="thiunuwan">
+        <createTable tableName="review_rating">
+
+            <column name="review_id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="rating" type="FLOAT" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="review_text" type="VARCHAR(250)" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="review_rating"/>
+        </rollback>
+    </changeSet>
+
+<!--    <changeSet id="resource_booking_request_master_data" author="thiunuwan">-->
+<!--        <sqlFile encoding="utf8" path="../master-data/resource_booking_request.sql" relativeToChangelogFile="true"-->
+<!--                 splitStatements="true" stripComments="true"/>-->
+<!--    </changeSet>-->
+
+</databaseChangeLog>

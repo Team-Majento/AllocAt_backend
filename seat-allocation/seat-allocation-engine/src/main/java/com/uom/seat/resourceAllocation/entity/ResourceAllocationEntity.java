@@ -1,6 +1,10 @@
 package com.uom.seat.resourceAllocation.entity;
 
 
+import com.uom.seat.bookingRequest.entity.BookingRequestEntity;
+import com.uom.seat.condition.entity.ConditionEntity;
+import com.uom.seat.resourceAllocatedCost.entity.ResourceAllocatedCostEntity;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,8 +39,45 @@ public class ResourceAllocationEntity {
     @Column(name = "end_time", nullable = false)
     private LocalTime endTime;
 
-    @Column(name = "actual_end_time", nullable = false)
+
+    @Column(name = "actual_end_time", nullable = true)
     private LocalTime actualEndTime;
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "resourceAllocationEntity")
+    private ResourceAllocatedCostEntity resourceAllocatedCostEntity;
+
+    @ManyToOne(cascade = CascadeType.ALL,targetEntity = ConditionEntity.class,fetch = FetchType.LAZY)
+    @JoinColumn(name = "condition_id_FK",referencedColumnName = "id")
+    private ConditionEntity conditionEntity;
+
+
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = BookingRequestEntity.class,fetch = FetchType.LAZY)
+    @JoinColumn(name = "booking_request_id_FK",referencedColumnName = "id")
+    private BookingRequestEntity bookingRequestEntity;
+
+    public BookingRequestEntity getBookingRequestEntity() {
+        return bookingRequestEntity;
+    }
+
+    public void setBookingRequestEntity(BookingRequestEntity bookingRequestEntity) {
+        this.bookingRequestEntity = bookingRequestEntity;
+    }
+
+    public ResourceAllocatedCostEntity getResourceAllocatedCostEntity() {
+        return resourceAllocatedCostEntity;
+    }
+
+    public void setResourceAllocatedCostEntity(ResourceAllocatedCostEntity resourceAllocatedCostEntity) {
+        this.resourceAllocatedCostEntity = resourceAllocatedCostEntity;
+    }
+
+    public ConditionEntity getConditionEntity() {
+        return conditionEntity;
+    }
+
+    public void setConditionEntity(ConditionEntity conditionEntity) {
+        this.conditionEntity = conditionEntity;
+    }
 
     public Integer getId() {
         return id;

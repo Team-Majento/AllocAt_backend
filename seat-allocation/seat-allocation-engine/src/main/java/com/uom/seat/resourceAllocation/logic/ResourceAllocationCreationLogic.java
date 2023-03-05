@@ -34,5 +34,13 @@ public class ResourceAllocationCreationLogic {
 
     }
 
+    public Integer createReleventResourceAllocation(String authorization, Integer bookingRequestID) {
+
+        Integer id = resourceAllocationService.createReleventResourceAllocation(bookingRequestID);
+        logger.info("The resourceAllocation is created.");
+
+        return id;
+    }
+
 
 }

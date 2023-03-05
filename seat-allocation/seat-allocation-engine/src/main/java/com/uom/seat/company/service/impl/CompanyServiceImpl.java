@@ -2,6 +2,7 @@ package com.uom.seat.company.service.impl;
 
 import java.util.UUID;
 
+import com.uom.seat.resource.entity.ResourceEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public Integer createCompany(CompanyRequest company) {
+
+		if (companyRepository.existsByName(company.getName()) ) {
+			System.out.println("company already exist");
+			return -1;
+		}
 		return companyRepository.save(convertToCompanyEntity(company)).getId();
 	}
 
@@ -36,6 +42,18 @@ public class CompanyServiceImpl implements CompanyService {
 		CompanyEntity entity = companyRepository.saveAndFlush(updateCompanyEntity(companyRepository.findById(id).get(), company));
 		return convertToCompanyResponse(entity);
 	}
+
+	@Override
+	public Boolean deleteCompany(Integer companyId) {
+		CompanyEntity entity = companyRepository.saveAndFlush(deleteCompany(companyRepository.findById(companyId).get()));
+		return  !entity.getActiveStatus();
+	}
+
+	private CompanyEntity deleteCompany(CompanyEntity companyEntity) {
+		companyEntity.setActiveStatus(false);
+		return  companyEntity;
+	}
+
 
 	private CompanyEntity convertToCompanyEntity(CompanyRequest company) {
 

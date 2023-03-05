@@ -30,6 +30,9 @@
             <column name="fax" type="VARCHAR(25)">
                 <constraints nullable="true"/>
             </column>
+            <column name="is_active" type="TINYINT">
+                <constraints nullable="false"/>
+            </column>
             <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
@@ -41,15 +44,10 @@
             <dropTable tableName="company"/>
         </rollback>
     </changeSet>
-
-
+    
     <changeSet id="company_master_data" author="denuwan">
         <sqlFile encoding="utf8" path="../master-data/company.sql" relativeToChangelogFile="true"
                  splitStatements="true" stripComments="true"/>
     </changeSet>
-
-
-
-
-
+   
 </databaseChangeLog>

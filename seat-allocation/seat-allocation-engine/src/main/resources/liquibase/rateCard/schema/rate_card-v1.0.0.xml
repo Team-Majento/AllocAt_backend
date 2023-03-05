@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create_table_rate card details" author="ravindu">
+        <createTable tableName="rate_card_details">
+            <column name="rate_card_id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="resource_id_fk" type="BIGINT" >
+                <constraints nullable="true" primaryKey="true" />
+            </column>
+
+            <column name="unit" type="FLOAT" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="hour_rate" type="FLOAT" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="extra_hour_rate" type="FLOAT" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="rate_card_details"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="rate_card_master_data1" author="ravindu">
+        <sqlFile encoding="utf8" path="../master-data/rate_card_details.sql" relativeToChangelogFile="true"
+                 splitStatements="true" stripComments="true"/>
+    </changeSet>
+
+</databaseChangeLog>
+
+
+
+
+
+
+
+
+

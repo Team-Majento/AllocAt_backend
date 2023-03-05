@@ -17,7 +17,6 @@ public class ResourceRequest implements Serializable {
     private String description;
     private String imgUrl;
 
-
     public Integer getResourceType() {
         return resourceType;
     }
@@ -89,9 +88,6 @@ public class ResourceRequest implements Serializable {
     public void setActiveStatus(Boolean activeStatus) {
         this.activeStatus = activeStatus;
     }
-
-
-
 
     @Override
     public String toString() {

@@ -8,6 +8,7 @@ import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -99,7 +100,21 @@ public class BookingRequestController {
         return responseEntity;
     }
 
-
+    @ApiOperation(value="Get all resource booking requests by requesterUserId ",response = BookingRequestResponse.class,produces = "application/json")
+    @GetMapping("resource-booking-request-page/{requesterUserId}")
+    public ResponseEntity<Page<BookingRequestResponse>> getAllResourceBookingRequestsByRequesterId(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size,
+            @PathVariable("requesterUserId") final Integer requesterUserId
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<Page<BookingRequestResponse>> responseEntity = null;
+        Page<BookingRequestResponse> pageDtos = bookingRequestApi.getAllResourceBookingRequestsByRequestersId( AccessTokenUtil.getBearerToken("authorization"),page,size,requesterUserId);
+        responseEntity=new ResponseEntity<Page<BookingRequestResponse>>(pageDtos,HttpStatus.OK);
+        return responseEntity;
+    }
 
 
 }

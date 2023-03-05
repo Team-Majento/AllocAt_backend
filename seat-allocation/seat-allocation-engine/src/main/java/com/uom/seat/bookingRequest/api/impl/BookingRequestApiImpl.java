@@ -8,6 +8,7 @@ import com.uom.seat.bookingRequest.logic.BookingRequestRetrievalLogic;
 import com.uom.seat.bookingRequest.logic.BookingRequestUpdateLogic;
 import com.uom.seat.bookingRequest.logic.GetAllBookingRequestsLogic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +49,11 @@ public class BookingRequestApiImpl implements BookingRequestApi {
     @Override
     public List<BookingRequestResponse> getAllBookingRequests(String bearerToken) {
         return getAllBookingRequestsLogic.getAllBookingRequests(bearerToken);
+
+    }
+    @Override
+    public Page<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId) {
+        return bookingRequestRetrievalLogic.getAllResourceBookingRequestsByRequesterUserId(requesterUserId,page,size);
 
     }
 }

@@ -5,6 +5,8 @@ import com.uom.seat.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 
 @Repository
 public interface UserRepository  extends JpaRepository<UserEntity,Integer> {
@@ -15,4 +17,5 @@ public interface UserRepository  extends JpaRepository<UserEntity,Integer> {
 
     public UserEntity findByUserId(Integer userId);
 
+    public UserEntity findByUserName(String userName);
 }

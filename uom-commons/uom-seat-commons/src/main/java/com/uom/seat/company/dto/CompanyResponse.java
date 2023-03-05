@@ -16,6 +16,8 @@ public class CompanyResponse implements Serializable {
 	private String mobile;
 	private String fax;
 
+	private Boolean activeStatus;
+
 	/**
 	 * @return the id
 	 */
@@ -114,10 +116,25 @@ public class CompanyResponse implements Serializable {
 		this.fax = fax;
 	}
 
-	@Override
-	public String toString() {
-		return "CompanyResponse [id=" + id + ", name=" + name + ", address=" + address + ", contactNumber="
-				+ contactNumber + ", email=" + email + ", mobile=" + mobile + ", fax=" + fax + "]";
+	public Boolean getActiveStatus() {
+		return activeStatus;
 	}
 
+	public void setActiveStatus(Boolean activeStatus) {
+		this.activeStatus = activeStatus;
+	}
+
+	@Override
+	public String toString() {
+		return "CompanyResponse{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", contactNumber='" + contactNumber + '\'' +
+				", email='" + email + '\'' +
+				", mobile='" + mobile + '\'' +
+				", fax='" + fax + '\'' +
+				", activeStatus=" + activeStatus +
+				'}';
+	}
 }

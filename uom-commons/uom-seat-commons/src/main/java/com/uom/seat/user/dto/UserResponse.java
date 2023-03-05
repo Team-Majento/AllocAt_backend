@@ -22,6 +22,8 @@ public class UserResponse implements Serializable {
     private Integer userType;
     private Integer managersEID ;
 
+    private Boolean activeStatus;
+
     public Integer getId() {
         return id;
     }
@@ -134,6 +136,14 @@ public class UserResponse implements Serializable {
         this.managersEID = managersEID;
     }
 
+    public Boolean getActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(Boolean activeStatus) {
+        this.activeStatus = activeStatus;
+    }
+
     @Override
     public String toString() {
         return "UserResponse{" +
@@ -151,6 +161,7 @@ public class UserResponse implements Serializable {
                 ", imageURL='" + imageURL + '\'' +
                 ", userType=" + userType +
                 ", managersEID=" + managersEID +
+                ", activeStatus=" + activeStatus +
                 '}';
     }
 }

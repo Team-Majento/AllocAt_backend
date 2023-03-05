@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create_table_resource_allocated_cost" author="nishath">
+        <createTable tableName="resource_allocated_cost">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="resource_allocation_FK" type="BIGINT" >
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="calculated_cost" type="DOUBLE" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="final_cost" type="DOUBLE" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="discount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="discount_rate" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+
+
+            <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="resource_allocated_cost"/>
+        </rollback>
+    </changeSet>
+
+   <!-- <changeSet id="resource_allocated_cost_master_data" author="nishath">
+        <sqlFile encoding="utf8" path="../master-data/resourceAllocatedCost.sql" relativeToChangelogFile="true"
+                 splitStatements="true" stripComments="true"/>
+    </changeSet>
+-->
+</databaseChangeLog>

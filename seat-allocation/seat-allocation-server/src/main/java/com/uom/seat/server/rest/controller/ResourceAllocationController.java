@@ -8,6 +8,7 @@ import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,32 +56,56 @@ public class ResourceAllocationController {
         return responseEntity;
     }
 
+
+    @PostMapping("accept/{bookingRequestID}")
+    public ResponseEntity<Integer> acceptResourceAllocation(
+            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
+            @PathVariable("bookingRequestID") Integer bookingRequestID, UriComponentsBuilder builder) {
+
+        ResponseEntity<Integer> responseEntity = null;
+        /*logger.info("Create resourceAllocation request is received.");
+        logger.debug("Create resourceAllocation request" + resourceAllocation.toString());*/
+
+        Integer resourceAllocationId = resourceAllocationApi.createReleventResourceAllocation(AccessTokenUtil.getBearerToken("authorization"),
+                bookingRequestID);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(builder.path("resourceAllocation/{resourceAllocationId}").buildAndExpand(resourceAllocationId).toUri());
+
+        responseEntity = new ResponseEntity<Integer>(resourceAllocationId, headers, HttpStatus.CREATED);
+        return responseEntity;
+    }
+
     @ApiOperation(value = "get all the resource allocations ", response = ResourceAllocationResponse.class, produces = "application/json")
     @GetMapping()
-    public ResponseEntity<List<ResourceAllocationResponse>> getAllResourceAllocations(
-            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/) {
+    public ResponseEntity<Page<ResourceAllocationResponse>> getAllResourceAllocations(
+            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+            @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size) {
 
-        ResponseEntity<List<ResourceAllocationResponse>> responseEntity = null;
+        ResponseEntity<Page<ResourceAllocationResponse>> responseEntity = null;
         logger.info("get all the resource allocations request is received.");
-        List<ResourceAllocationResponse> listOfResourceAllocations = resourceAllocationApi.getAllResourceAllocations(AccessTokenUtil.getBearerToken("authorization"));
+        Page<ResourceAllocationResponse> listOfResourceAllocations = resourceAllocationApi.getAllResourceAllocations(AccessTokenUtil.getBearerToken("authorization"),page,size);
 
-        responseEntity = new ResponseEntity<List<ResourceAllocationResponse>>(listOfResourceAllocations, HttpStatus.OK);
+        responseEntity = new ResponseEntity<Page<ResourceAllocationResponse>>(listOfResourceAllocations, HttpStatus.OK);
         return responseEntity;
     }
 
 
-    @ApiOperation(value = "get resource allocation by requesterUserId.", response = ResourceAllocationResponse.class, produces = "application/json")
-    @GetMapping("{requesterUserId}")
-    public ResponseEntity<ResourceAllocationResponse> getResourceAllocationByRequesterUserId(
-          //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
-            @PathVariable("requesterUserId") final Integer requesterUserId) {
-
-        ResponseEntity<ResourceAllocationResponse> responseEntity = null;
-        logger.info("Get ResourceAllocation by requesterUserId request is received.");
-        ResourceAllocationResponse resourceAllocation = resourceAllocationApi
-                .getResourceAllocationByRequesterUserId(AccessTokenUtil.getBearerToken("authorization"), requesterUserId);
-
-        responseEntity = new ResponseEntity<ResourceAllocationResponse>(resourceAllocation, HttpStatus.OK);
+    @ApiOperation(value="Get all resource allocation by requesterUserId ",response = ResourceAllocationResponse.class,produces = "application/json")
+    @GetMapping("resource-allocation-page/{requesterUserId}")
+    public ResponseEntity<Page<ResourceAllocationResponse>> getAllResourceAllocationsByRequesterId(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size,
+            @PathVariable("requesterUserId") final Integer requesterUserId
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<Page<ResourceAllocationResponse>> responseEntity = null;
+        Page<ResourceAllocationResponse> pageDtos = resourceAllocationApi.getAllResourceAllocationsByRequestersId( AccessTokenUtil.getBearerToken("authorization"),page,size,requesterUserId);
+        responseEntity=new ResponseEntity<Page<ResourceAllocationResponse>>(pageDtos,HttpStatus.OK);
         return responseEntity;
     }
 

@@ -20,6 +20,8 @@ public class UserRequest implements Serializable {
 	private Integer userType;
 	private Integer managersEID ;
 
+	private Boolean activeStatus;
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -124,6 +126,14 @@ public class UserRequest implements Serializable {
 		this.managersEID = managersEID;
 	}
 
+	public Boolean getActiveStatus() {
+		return activeStatus;
+	}
+
+	public void setActiveStatus(Boolean activeStatus) {
+		this.activeStatus = activeStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "UserRequest{" +
@@ -140,6 +150,7 @@ public class UserRequest implements Serializable {
 				", imageURL='" + imageURL + '\'' +
 				", userType=" + userType +
 				", managersEID=" + managersEID +
+				", activeStatus=" + activeStatus +
 				'}';
 	}
 }

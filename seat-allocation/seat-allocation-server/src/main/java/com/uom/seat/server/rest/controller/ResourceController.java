@@ -55,7 +55,7 @@ public class ResourceController {
     }
 
     @ApiOperation(value="Get Resource by ID",response = ResourceResponse.class,produces = "application/json")
-    @GetMapping("{resourceId}")
+    @GetMapping("resource/{resourceId}")
     public ResponseEntity<ResourceResponse> getResource(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("resourceId") final Integer resourceId) {

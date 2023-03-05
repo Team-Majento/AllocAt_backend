@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create_table_condition" author="nishath">
+        <createTable tableName="condition_tbl">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="condition_name" type="VARCHAR(50)" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="discount_rate" type="DOUBLE" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="condition_tbl"/>
+        </rollback>
+    </changeSet>
+
+<!--
+    <changeSet id="condition_master_data" author="nishath">
+        <sqlFile encoding="utf8" path="../master-data/condition.sql" relativeToChangelogFile="true"
+                 splitStatements="true" stripComments="true"/>
+    </changeSet>
+-->
+
+</databaseChangeLog>

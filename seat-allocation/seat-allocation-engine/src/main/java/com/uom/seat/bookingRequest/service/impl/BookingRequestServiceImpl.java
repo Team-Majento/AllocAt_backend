@@ -7,6 +7,9 @@ import com.uom.seat.bookingRequest.repository.BookingRequestRepository;
 import com.uom.seat.bookingRequest.service.BookingRequestService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -78,5 +81,17 @@ public class BookingRequestServiceImpl implements BookingRequestService {
             val++;
         }
         return dtoList;
+    }
+    @Override
+    public Page<BookingRequestResponse> getALlResourceBookingRequestsByRequstersUserId(Integer requesterUserId, Integer page, Integer size) {
+        PageRequest pageable= PageRequest.of(page,size);
+        Page<BookingRequestEntity> pageEntities=bookingRequestRepository.findAllByRequesterUserId(requesterUserId,pageable);
+
+        List<BookingRequestEntity> entityList= pageEntities.getContent();
+        List<BookingRequestResponse> dtoList = new ArrayList<BookingRequestResponse>();
+
+        entityList.forEach(entity -> dtoList.add(convertToBookingRequestResponse(entity)));
+
+        return new PageImpl<BookingRequestResponse>(dtoList,pageable,pageEntities.getTotalElements());
     }
 }

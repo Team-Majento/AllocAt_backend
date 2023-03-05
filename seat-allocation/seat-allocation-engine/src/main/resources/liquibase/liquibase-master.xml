@@ -15,4 +15,13 @@
 <include file="company/schema/company-v1.0.0.xml" relativeToChangelogFile="true"/>
 <include file="bookingRequest/schema/resource_booking_request-v1.0.0.xml" relativeToChangelogFile="true"/>
 
+	<include file="rateCard/schema/rate_card-v1.0.0.xml" relativeToChangelogFile="true"/>
+	<include file="review/schema/review-v1.0.0.xml" relativeToChangelogFile="true"/>
+	<include file="condition/schema/condition-v1.0.0.xml" relativeToChangelogFile="true"/>
+	<include file="resourceAllocatedCost/schema/resourceAllocatedCost-v1.0.0.xml" relativeToChangelogFile="true"/>
+
+	<include file="report/schema/companyWiseReportSchema-v1.0.0.xml" relativeToChangelogFile="true"/>
+
+
+
 </databaseChangeLog>

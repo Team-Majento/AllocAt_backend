@@ -1,4 +1,4 @@
-INSERT INTO resource_allocation(
+/*INSERT INTO resource_allocation(
     resource_id,
     requester_user_id,
     requester_manager_user_id,
@@ -18,4 +18,4 @@ VALUES (
            '15:45',
            '16:50'
 
-       );
+       );*/
