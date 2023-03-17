@@ -69,7 +69,7 @@ public class ResourceController {
     }
 
     @ApiOperation(value = "Update resource by id.", response = ResourceResponse.class, produces = "application/json")
-    @PutMapping("{resourceId}")
+    @PutMapping("/resources/{resourceId}")
     public ResponseEntity<ResourceResponse> getResource(   // ***  update??
                                                            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
                                                            @PathVariable("resourceId") final Integer resourceId, @RequestBody final ResourceRequest resource) {

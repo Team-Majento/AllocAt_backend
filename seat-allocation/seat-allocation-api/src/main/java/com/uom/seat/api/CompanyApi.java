@@ -3,6 +3,8 @@ package com.uom.seat.api;
 import com.uom.seat.company.dto.CompanyRequest;
 import com.uom.seat.company.dto.CompanyResponse;
 
+import java.util.List;
+
 /**
  * The company API will provide methods to manage company.
  * 
@@ -24,7 +26,6 @@ public interface CompanyApi {
 	 * Get company detail without tenant data.
 	 * 
 	 * @param accessToken the access token
-	 * @param xid         the company/tenant xid
 	 * @return the company details @see CompanyResponse
 	 */
 	public CompanyResponse getCompany(String accessToken, Integer id);
@@ -50,4 +51,7 @@ public interface CompanyApi {
 
 
     Boolean deleteCompany(String authorization, Integer companyId);
+
+	public List<CompanyResponse> getAllCompanis(String accessToken);
+
 }

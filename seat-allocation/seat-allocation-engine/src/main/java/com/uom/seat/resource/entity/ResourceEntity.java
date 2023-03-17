@@ -5,7 +5,8 @@ import com.uom.seat.company.entity.CompanyEntity;
 import com.uom.seat.rateCard.entity.RateCardEntity;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
-
+//test
+//test3
 @Entity
 @Table(name = "resource")
 public class ResourceEntity {
@@ -153,3 +154,5 @@ public class ResourceEntity {
         this.company = company;
     }
 }
+
+//test

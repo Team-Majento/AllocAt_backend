@@ -1,5 +1,7 @@
 package com.uom.seat.company.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.uom.seat.resource.entity.ResourceEntity;
@@ -84,4 +86,14 @@ public class CompanyServiceImpl implements CompanyService {
 		return entity;
 	}
 
+	@Override
+	public List<CompanyResponse> getAllCompanies() {
+		List<CompanyResponse> companyResponseList=new ArrayList<>();
+
+		for (int i=0;i<companyRepository.findAll().size();i++){
+			CompanyResponse companyResponse=convertToCompanyResponse(companyRepository.findById(i+1).orElse(null));
+			companyResponseList.add(companyResponse);
+		}
+		return companyResponseList;
+	}
 }

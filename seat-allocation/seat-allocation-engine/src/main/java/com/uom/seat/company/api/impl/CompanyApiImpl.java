@@ -13,6 +13,8 @@ import com.uom.seat.company.logic.CompanyCreationLogic;
 import com.uom.seat.company.logic.CompanyRetrivalLogic;
 import com.uom.seat.company.logic.CompanyUpdateLogic;
 
+import java.util.List;
+
 @Service
 @Transactional(isolation = Isolation.REPEATABLE_READ)
 public class CompanyApiImpl implements CompanyApi {
@@ -67,4 +69,8 @@ public class CompanyApiImpl implements CompanyApi {
 		return companyDeletionLogic.deleteCompany(authorization,companyId);
 	}
 
+	@Override
+	public List<CompanyResponse> getAllCompanis(String accessToken) {
+		return companyRetrivalLogic.getAllCompanies(accessToken);
+	}
 }

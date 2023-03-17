@@ -103,10 +103,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean userLogin(String userName, String password) {
         UserEntity entity = userRepository.findByUserName(userName);
-        if(password.equals(entity.getPassword())){
+        if(entity==null){return false;}
+        else if(password.equals(entity.getPassword())){
             return true;
         }
-        return false;
+        else return false;
     }
 
     private UserEntity deleteUser(UserEntity userEntity) {

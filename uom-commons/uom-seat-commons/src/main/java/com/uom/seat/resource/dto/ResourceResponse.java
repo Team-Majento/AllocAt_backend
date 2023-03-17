@@ -18,6 +18,16 @@ public class ResourceResponse  implements Serializable {
     private String description;
     private String imgUrl;
 
+    private String company;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -111,6 +121,7 @@ public class ResourceResponse  implements Serializable {
                 ", maximumCapacity=" + maximumCapacity +
                 ", description='" + description + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
+                ", company='" + company + '\'' +
                 '}';
     }
 }

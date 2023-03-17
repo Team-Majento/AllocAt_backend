@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users")
 @Api(description = "The user API for user management tasks")
 
@@ -118,7 +119,7 @@ public class UserController {
 
 
     @ApiOperation(value = "user logging.", response = UserResponse.class, produces = "application/json")
-    @GetMapping("{userName}/{password}")
+    @PostMapping("{userName}/{password}")
     public ResponseEntity<Boolean> userLogin(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userName") final String userName,@PathVariable("password") final String password) {
@@ -126,8 +127,11 @@ public class UserController {
         logger.info("Get user by id request is received.");
        Boolean status = userApi
                 .userLogin(userName,password);
-
+       if(status)
         responseEntity = new ResponseEntity<Boolean>(status, HttpStatus.OK);
+       else
+           responseEntity = new ResponseEntity<Boolean>(status, HttpStatus.BAD_REQUEST);
+
         return responseEntity;
     }
 

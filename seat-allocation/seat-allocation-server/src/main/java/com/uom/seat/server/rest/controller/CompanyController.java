@@ -20,8 +20,10 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import java.util.List;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/companies")
 @Api(description = "The company API for company management tasks")
 public class CompanyController {
@@ -39,7 +41,7 @@ public class CompanyController {
 			// @formatter:on
 	})
 	@PostMapping()
-	public ResponseEntity<Integer> registerOrganization(
+	public ResponseEntity<String> registerOrganization(
 //			@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
 			@ApiParam(value = "JSON format of the company request.", required = true) @RequestBody final CompanyRequest company,
 			UriComponentsBuilder builder) {
@@ -54,8 +56,11 @@ public class CompanyController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(builder.path("companies/{companyId}").buildAndExpand(organizationId).toUri());
 
-		responseEntity = new ResponseEntity<Integer>(organizationId, headers, HttpStatus.CREATED);
-		return responseEntity;
+		responseEntity = new ResponseEntity<Integer>(organizationId,HttpStatus.CREATED);
+		if(organizationId==-1){
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("failed");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(organizationId.toString());
 	}
 	
 	@ApiOperation(value = "Get organization by id.", response = CompanyResponse.class, produces = "application/json")
@@ -97,6 +102,21 @@ public class CompanyController {
 		logger.info("Delete company by id request is received.");
 		Boolean result = companyApi.deleteCompany(AccessTokenUtil.getBearerToken("authorization"), companyId);
 		responseEntity = new ResponseEntity<Boolean>(result, HttpStatus.OK);
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "Get all companies", response = CompanyResponse.class, produces = "application/json")
+	@GetMapping()
+	public ResponseEntity<List<CompanyResponse>> getAllCompanies(
+			//	@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+			) {
+
+		ResponseEntity<List<CompanyResponse>> responseEntity = null;
+		logger.info("Get all companies");
+		List<CompanyResponse> company = companyApi
+				.getAllCompanis(AccessTokenUtil.getBearerToken("authorization"));
+
+		responseEntity = new ResponseEntity<List<CompanyResponse>>(company, HttpStatus.OK);
 		return responseEntity;
 	}
 

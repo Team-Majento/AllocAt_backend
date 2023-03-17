@@ -102,6 +102,7 @@ public class ResourceServiceImpl implements ResourceService {
     private ResourceResponse convertToResourceResponse(ResourceEntity entity) {
         ResourceResponse dto = null;
         dto = modelMapper.map(entity, ResourceResponse.class);
+        dto.setCompany(entity.getCompany().getName());
 
         return dto;
     }
