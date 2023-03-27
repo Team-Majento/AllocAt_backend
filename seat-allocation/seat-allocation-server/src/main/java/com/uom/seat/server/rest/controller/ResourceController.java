@@ -4,6 +4,7 @@ package com.uom.seat.server.rest.controller;
 import com.uom.seat.api.ResourceApi;
 import com.uom.seat.resource.dto.ResourceRequest;
 import com.uom.seat.resource.dto.ResourceResponse;
+import com.uom.seat.review.dto.ReviewResponse;
 import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
@@ -14,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/companies")
@@ -67,6 +70,21 @@ public class ResourceController {
         responseEntity = new ResponseEntity<ResourceResponse>(resource, HttpStatus.OK);
         return responseEntity;
     }
+
+    @ApiOperation(value="Get review by ResourceID",response = ResourceResponse.class,produces = "application/json")
+    @GetMapping("resource/{resourceId}/reviews")
+    public ResponseEntity<List<ReviewResponse>> getReviews(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            @PathVariable("resourceId") final Integer resourceId) {
+
+        ResponseEntity<List<ReviewResponse>> responseEntity = null;
+        logger.info("Get reviews by resourceId request is received.");
+        List<ReviewResponse> reviewList = resourceApi.getReviews(AccessTokenUtil.getBearerToken("authorization"), resourceId);
+
+        responseEntity = new ResponseEntity<List<ReviewResponse>>(reviewList, HttpStatus.OK);
+        return responseEntity;
+    }
+
 
     @ApiOperation(value = "Update resource by id.", response = ResourceResponse.class, produces = "application/json")
     @PutMapping("/resources/{resourceId}")

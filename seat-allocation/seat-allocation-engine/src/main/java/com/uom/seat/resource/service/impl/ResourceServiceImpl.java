@@ -7,6 +7,9 @@ import com.uom.seat.resource.dto.ResourceResponse;
 import com.uom.seat.resource.entity.ResourceEntity;
 import com.uom.seat.resource.repository.ResourceRepository;
 import com.uom.seat.resource.service.ResourceService;
+import com.uom.seat.review.dto.ReviewResponse;
+import com.uom.seat.review.entity.ReviewEntity;
+import com.uom.seat.review.service.ReviewService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +32,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Autowired
     private CompanyRepository companyRepository;
+
 
     @Override
     public Integer createResource(ResourceRequest resource,Integer companyId) {
@@ -65,6 +69,18 @@ public class ResourceServiceImpl implements ResourceService {
     public Boolean deleteResource(Integer resourceId) {
         ResourceEntity entity = resourceRepository.saveAndFlush(deleteResource(resourceRepository.findById(resourceId).get()));
         return  !entity.getActiveStatus();
+    }
+
+    @Override
+    public List<ReviewResponse> getAllReviews(Integer resourceId) {
+        ResourceEntity resource=resourceRepository.findById(resourceId).get();
+        List<ReviewResponse> list1 =new ArrayList<>();
+
+
+        for (int i = 0; i <resource.getReviews().size() ; i++) {
+            list1.add(convertToReviewResponse(resource.getReviews().get(i)));
+        }
+        return list1;
     }
 
     private ResourceEntity deleteResource(ResourceEntity resourceEntity) {
@@ -104,6 +120,13 @@ public class ResourceServiceImpl implements ResourceService {
         dto = modelMapper.map(entity, ResourceResponse.class);
         dto.setCompany(entity.getCompany().getName());
 
+        return dto;
+    }
+
+
+    private ReviewResponse convertToReviewResponse(ReviewEntity reviewEntity) {
+        ReviewResponse dto = null;
+        dto = modelMapper.map(reviewEntity, ReviewResponse.class);
         return dto;
     }
 

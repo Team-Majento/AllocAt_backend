@@ -3,8 +3,12 @@ package com.uom.seat.resource.entity;
 
 import com.uom.seat.company.entity.CompanyEntity;
 import com.uom.seat.rateCard.entity.RateCardEntity;
+import com.uom.seat.review.entity.ReviewEntity;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 //test
 //test3
 @Entity
@@ -20,7 +24,10 @@ public class ResourceEntity {
     @Column(name = "resource_type_id", nullable = false)
     private Integer resourceType;
 
-    @Column(name = "rate_card_id", nullable = false)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "resourceEntity")
+    private List<ReviewEntity> reviews = new ArrayList<>();
+
+    @Column(name = "rate_card_id", nullable = true)
     private Integer rateCardId;
 
     @Column(name = "building_id", nullable = false)
@@ -153,6 +160,26 @@ public class ResourceEntity {
     public void setCompany(CompanyEntity company) {
         this.company = company;
     }
+
+
+    public List<ReviewEntity> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewEntity> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
+    }
+
+
+
 }
 
 //test

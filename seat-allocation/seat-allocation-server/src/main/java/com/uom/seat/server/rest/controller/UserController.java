@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users")
 @Api(description = "The user API for user management tasks")
 
@@ -58,7 +58,8 @@ public class UserController {
 
 
     @ApiOperation(value = "get user by id.", response = UserResponse.class, produces = "application/json")
-    @GetMapping("{userId}")
+    @CrossOrigin
+    @GetMapping("/get/{userId}")
     public ResponseEntity<UserResponse> getCompany(
            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userId") final Integer userId) {
@@ -73,7 +74,8 @@ public class UserController {
     }
 
     @ApiOperation(value = "Update user by userId.", response = UserResponse.class, produces = "application/json")
-    @PutMapping("{userId}")
+    @CrossOrigin
+    @PutMapping("/update/{userId}")
     public ResponseEntity<UserResponse> getCompany(
             //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userId") final Integer userId, @RequestBody final UserRequest userRequest) {
@@ -134,6 +136,26 @@ public class UserController {
 
         return responseEntity;
     }
+
+    @ApiOperation(value = "get user by UserName.", response = UserResponse.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getuser/{username}")
+    public ResponseEntity<UserResponse> getUserByUserName(
+            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            @PathVariable("username") final String username) {
+
+        ResponseEntity<UserResponse> responseEntity = null;
+        logger.info("Get user by username request is received.");
+        UserResponse user = userApi
+                .getUserByUserName(AccessTokenUtil.getBearerToken("authorization"), username);
+
+        responseEntity = new ResponseEntity<UserResponse>(user, HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
+
 
 
 

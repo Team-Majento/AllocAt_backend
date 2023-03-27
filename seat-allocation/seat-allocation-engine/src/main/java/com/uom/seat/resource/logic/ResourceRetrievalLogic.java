@@ -2,9 +2,12 @@ package com.uom.seat.resource.logic;
 
 import com.uom.seat.resource.dto.ResourceResponse;
 import com.uom.seat.resource.service.ResourceService;
+import com.uom.seat.review.dto.ReviewResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 @Component
@@ -24,5 +27,9 @@ public class ResourceRetrievalLogic {
 
     public Page<ResourceResponse> getAllResources(Integer page, Integer size) {
         return service.getAllResources(page,size);
+    }
+
+    public List<ReviewResponse> getALlReviews(String authorization, Integer resourceId) {
+        return  service.getAllReviews(resourceId);
     }
 }

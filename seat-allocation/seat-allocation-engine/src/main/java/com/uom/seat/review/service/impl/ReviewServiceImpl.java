@@ -1,4 +1,7 @@
 package com.uom.seat.review.service.impl;
+import com.uom.seat.company.entity.CompanyEntity;
+import com.uom.seat.resource.entity.ResourceEntity;
+import com.uom.seat.resource.repository.ResourceRepository;
 import com.uom.seat.review.dto.ReviewRequest;
 import com.uom.seat.review.dto.ReviewResponse;
 import com.uom.seat.review.entity.ReviewEntity;
@@ -15,13 +18,16 @@ public class ReviewServiceImpl implements ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private ResourceRepository resourceRepository;
+
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
-    public Integer createReview(ReviewRequest review) {
-        return reviewRepository.save(convertToReviewEntity(review)).getReviewId();
+    public Integer createReview(ReviewRequest review, Integer resourceId) {
+        return reviewRepository.save(convertToReviewEntity(review,resourceId)).getReviewId();
     }
 
     @Override
@@ -53,9 +59,11 @@ public class ReviewServiceImpl implements ReviewService {
         return dto;
     }
 
-    private ReviewEntity convertToReviewEntity(ReviewRequest review) {
+    private ReviewEntity convertToReviewEntity(ReviewRequest review, Integer resourceId) {
+        ResourceEntity resourceEntity= resourceRepository.findById(resourceId).get();
        ReviewEntity entity= null;
         entity = modelMapper.map(review, ReviewEntity.class);
+        entity.setResourceEntity(resourceEntity);
         return entity;
     }
 }

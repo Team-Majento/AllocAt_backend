@@ -1,6 +1,8 @@
 package com.uom.seat.review.entity;
 
 
+import com.uom.seat.resource.entity.ResourceEntity;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,11 @@ public class ReviewEntity {
     @Column(name = "review_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewId;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "resource_id_fk")
+    private ResourceEntity resourceEntity;
+
 
     @Column(name = "rating", nullable = false)
     private Double rating;
@@ -40,4 +47,13 @@ public class ReviewEntity {
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
     }
+
+    public ResourceEntity getResourceEntity() {
+        return resourceEntity;
+    }
+
+    public void setResourceEntity(ResourceEntity resourceEntity) {
+        this.resourceEntity = resourceEntity;
+    }
+
 }

@@ -62,4 +62,10 @@ public class UserApiImpl implements UserApi {
     public Boolean userLogin(String userName, String password) {
         return userRetrievalLogic.userLogin(userName,password);
     }
+
+    @Override
+    public UserResponse getUserByUserName(String authorization, String username) {
+        return userRetrievalLogic.getUserByUserName(username);
+
+    }
 }

@@ -31,4 +31,8 @@ public class UserRetrievalLogic {
     public Boolean userLogin(String userName, String password) {
 		return  service.userLogin(userName,password);
     }
+
+    public UserResponse getUserByUserName(String username) {
+		return  service.getUserByUserName(username);
+    }
 }

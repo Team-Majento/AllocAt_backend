@@ -2,7 +2,10 @@ package com.uom.seat.api;
 
 import com.uom.seat.resource.dto.ResourceRequest;
 import com.uom.seat.resource.dto.ResourceResponse;
+import com.uom.seat.review.dto.ReviewResponse;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 
 public interface ResourceApi {
@@ -24,4 +27,6 @@ public interface ResourceApi {
     Page<ResourceResponse> getAllResources(String authorization, Integer page, Integer size);
 
     Boolean deleteResource(String authorization, Integer resourceId);
+
+    List<ReviewResponse> getReviews(String authorization, Integer resourceId);
 }

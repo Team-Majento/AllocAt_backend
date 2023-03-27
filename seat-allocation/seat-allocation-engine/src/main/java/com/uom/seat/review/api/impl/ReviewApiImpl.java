@@ -30,8 +30,8 @@ public class ReviewApiImpl implements ReviewApi {
 
 
     @Override
-    public Integer createReview(String authorization, ReviewRequest review) {
-        return reviewCreationLogic.createReview(authorization,review);
+    public Integer createReview(String authorization, ReviewRequest review, Integer resourceId) {
+        return reviewCreationLogic.createReview(authorization,review,resourceId);
     }
 
     @Override

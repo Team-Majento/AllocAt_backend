@@ -20,7 +20,7 @@
             </column>
 
             <column name="rate_card_id" type="BIGINT" >
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="building_id" type="VARCHAR(25)">

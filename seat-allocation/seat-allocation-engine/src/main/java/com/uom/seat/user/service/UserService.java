@@ -16,4 +16,6 @@ public interface UserService {
     Boolean deleteUser(Integer userId);
 
     Boolean userLogin(String userName, String password);
+
+    UserResponse getUserByUserName(String username);
 }

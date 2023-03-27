@@ -4,7 +4,7 @@ import com.uom.seat.review.dto.ReviewRequest;
 import com.uom.seat.review.dto.ReviewResponse;
 
 public interface ReviewApi {
-    Integer createReview(String authorization, ReviewRequest review);
+    Integer createReview(String authorization, ReviewRequest review, Integer resourceId);
 
     ReviewResponse getReview(String authorization, Integer reviewId);
 

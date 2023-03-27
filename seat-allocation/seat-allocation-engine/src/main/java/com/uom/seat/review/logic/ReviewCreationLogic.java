@@ -1,9 +1,5 @@
 package com.uom.seat.review.logic;
 
-import com.uom.seat.resource.dto.ResourceRequest;
-import com.uom.seat.resource.logic.ResourceCreationLogic;
-import com.uom.seat.resource.service.ResourceService;
-import com.uom.seat.resource.validator.ResourceValidator;
 import com.uom.seat.review.dto.ReviewRequest;
 import com.uom.seat.review.service.ReviewService;
 import com.uom.seat.review.validator.ReviewValidator;
@@ -21,7 +17,7 @@ public class ReviewCreationLogic {
     @Autowired
     private ReviewService reviewService;
 
-    public Integer createReview(String authorization, ReviewRequest review) {
+    public Integer createReview(String authorization, ReviewRequest review, Integer resourceId) {
 
             // 1. validate company request
             // 2. create company
@@ -29,7 +25,7 @@ public class ReviewCreationLogic {
             reviewValidator.validateReview(review);
             logger.info("The review is validated.");
 
-            Integer id = reviewService.createReview(review);
+            Integer id = reviewService.createReview(review,resourceId);
             logger.info("The review is created.");
 
             return id;

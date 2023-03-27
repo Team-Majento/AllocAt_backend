@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUser(Integer userId) {
-        return convertToUserResponse(userRepository.findById(userId).get());
+        return convertToUserResponse(userRepository.findByUserId(userId));
     }
 
     private UserResponse convertToUserResponse(UserEntity userEntity) {
@@ -115,6 +115,8 @@ public class UserServiceImpl implements UserService {
         return  userEntity;
     }
 
-
-
+    @Override
+    public UserResponse getUserByUserName(String username) {
+        return convertToUserResponse(userRepository.findByUserName(username));
+    }
 }

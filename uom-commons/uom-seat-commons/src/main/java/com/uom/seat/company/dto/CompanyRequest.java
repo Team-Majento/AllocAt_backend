@@ -15,6 +15,10 @@ public class CompanyRequest implements Serializable {
 	private String address;
 	// mandatory
 	private String contactNumber;
+
+	private String imgUrl;
+
+	private String description;
 	// mandatory
 	private String email;
 	// optional
@@ -116,16 +120,37 @@ public class CompanyRequest implements Serializable {
 		this.fax = fax;
 	}
 
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "CompanyRequest{" +
 				"name='" + name + '\'' +
 				", address='" + address + '\'' +
 				", contactNumber='" + contactNumber + '\'' +
+				", imgUrl='" + imgUrl + '\'' +
+				", description='" + description + '\'' +
 				", email='" + email + '\'' +
 				", mobile='" + mobile + '\'' +
 				", fax='" + fax + '\'' +
 				", activeStatus=" + activeStatus +
 				'}';
 	}
+
 }

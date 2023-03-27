@@ -26,6 +26,8 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.InetAddress;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -141,7 +143,10 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
         units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
         allocated_cost = (rateCardEntity.getHourRate() / rateCardEntity.getUnit()) * units;
 
-        resourceAllocatedCostEntity.setCalculated_cost(allocated_cost);
+
+//      resourceAllocatedCostEntity.setCalculated_cost(allocated_cost);
+        resourceAllocatedCostEntity.setCalculated_cost(Math.round(allocated_cost*100.0)/100.0);
+
 
         if (resourceAllocationEntity.getConditionEntity() != null) {
 
@@ -150,14 +155,15 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
             discount = discount_rate * allocated_cost / 100;
             final_cost = allocated_cost - discount;
 
-            resourceAllocatedCostEntity.setFinal_cost(final_cost);
+            resourceAllocatedCostEntity.setFinal_cost(Math.round(final_cost*100.0)/100.0);
+//          resourceAllocatedCostEntity.setFinal_cost(final_cost);
             resourceAllocatedCostEntity.setDiscount(discount);
             resourceAllocatedCostEntity.setDiscount_rate(discount_rate);
 
         } else {
 
-
-            resourceAllocatedCostEntity.setFinal_cost(allocated_cost);
+            resourceAllocatedCostEntity.setFinal_cost(Math.round(allocated_cost*100.0)/100.0);
+//          resourceAllocatedCostEntity.setFinal_cost(allocated_cost);
             resourceAllocatedCostEntity.setDiscount(0.0);
             resourceAllocatedCostEntity.setDiscount_rate(0.0);
 
@@ -323,7 +329,7 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
 
 
             if (old_company_name != current_company_name) {
-                GeneralReportSubReport generalReportSubReport = new GeneralReportSubReport(resourceAllocationEntities.get(i).getCompanyId(), current_company_name, total_cost_per_company);
+                GeneralReportSubReport generalReportSubReport = new GeneralReportSubReport(resourceAllocationEntities.get(i-1).getCompanyId(), old_company_name, total_cost_per_company);
                 generalReportSubReportList.add(generalReportSubReport);
                 total_cost_per_company = 0.0;
             }
@@ -381,15 +387,16 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
 
     public String exportReport() throws FileNotFoundException, JRException {
         List<CompanyWiseReport> reportEntities = companyWiseReportRepository.findAll();
-        File file = ResourceUtils.getFile("classpath:company_wise_report3.jrxml");
+        File file = ResourceUtils.getFile("classpath:company_wise_report1.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Techie");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        String computerUserName="";
+        computerUserName=System.getProperty("user.name");
 
-
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\report" + "\\report4.pdf");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\"+computerUserName+"\\Downloads\\company_wise_report.pdf");
 
         return "Report Generated";
     }
@@ -409,8 +416,10 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
 
+        String computerUserName="";
+        computerUserName=System.getProperty("user.name");
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\report" + "\\report6.pdf");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\"+computerUserName+"\\Downloads\\general_report.pdf");
 
         return "Report Generated";
     }

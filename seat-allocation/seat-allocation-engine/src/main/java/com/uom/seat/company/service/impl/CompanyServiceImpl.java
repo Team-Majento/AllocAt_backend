@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.uom.seat.resource.entity.ResourceEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +81,8 @@ public class CompanyServiceImpl implements CompanyService {
 		entity.setEmail(company.getEmail());
 		entity.setMobile(company.getMobile());
 		entity.setFax(company.getFax());
+		entity.setImgUrl(company.getImgUrl());
+		entity.setDescription(company.getDescription());
 		
 		return entity;
 	}

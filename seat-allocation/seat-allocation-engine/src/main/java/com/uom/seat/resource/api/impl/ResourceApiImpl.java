@@ -7,11 +7,14 @@ import com.uom.seat.resource.logic.ResourceCreationLogic;
 import com.uom.seat.resource.logic.ResourceDeletionLogic;
 import com.uom.seat.resource.logic.ResourceRetrievalLogic;
 import com.uom.seat.resource.logic.ResourceUpdateLogic;
+import com.uom.seat.review.dto.ReviewResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -58,5 +61,10 @@ public class ResourceApiImpl implements ResourceApi {
     @Override
     public Boolean deleteResource(String accessToken, Integer resourceId) {
         return resourceDeletionLogic.deleteResource(accessToken,resourceId);
+    }
+
+    @Override
+    public List<ReviewResponse> getReviews(String authorization, Integer resourceId) {
+        return resourceRetrievalLogic.getALlReviews(authorization,resourceId);
     }
 }

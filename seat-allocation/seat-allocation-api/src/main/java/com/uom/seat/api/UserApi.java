@@ -16,4 +16,6 @@ public interface UserApi {
     Boolean deleteUser(String authorization, Integer userId);
 
     Boolean userLogin(String userName, String password);
+
+    UserResponse getUserByUserName(String authorization, String username);
 }

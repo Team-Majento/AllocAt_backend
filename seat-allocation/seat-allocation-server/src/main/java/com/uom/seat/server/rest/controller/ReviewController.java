@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/reviews")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/resources")
 @Api(description = "The review API for review management tasks")
 public class ReviewController {
 
@@ -34,18 +35,21 @@ public class ReviewController {
             @ApiResponse(code = 400, message = "Invalid API argument.")
             // @formatter:on
     })
-    @PostMapping()
+    @PostMapping("{resourceId}/review")
     public ResponseEntity<Integer> registerReview(
             //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
             @ApiParam(value = "JSON format of the review request.", required = true) @RequestBody final ReviewRequest review,
+            @PathVariable("resourceId") final Integer resourceId,
             UriComponentsBuilder builder) {
 
         ResponseEntity<Integer> responseEntity = null;
         logger.info("Register review request is received.");
         logger.debug("Register review request" + review.toString());
 
+        System.out.println(resourceId);
+
         Integer reviewId = reviewApi.createReview(AccessTokenUtil.getBearerToken("authorization"),
-                review);
+                review,resourceId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("reviews/{reviewId}").buildAndExpand(reviewId).toUri());

@@ -16,6 +16,10 @@ public class CompanyResponse implements Serializable {
 	private String mobile;
 	private String fax;
 
+	private String imgUrl;
+
+	private String description;
+
 	private Boolean activeStatus;
 
 	/**
@@ -124,6 +128,23 @@ public class CompanyResponse implements Serializable {
 		this.activeStatus = activeStatus;
 	}
 
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CompanyResponse{" +
@@ -134,6 +155,8 @@ public class CompanyResponse implements Serializable {
 				", email='" + email + '\'' +
 				", mobile='" + mobile + '\'' +
 				", fax='" + fax + '\'' +
+				", imgUrl='" + imgUrl + '\'' +
+				", description='" + description + '\'' +
 				", activeStatus=" + activeStatus +
 				'}';
 	}

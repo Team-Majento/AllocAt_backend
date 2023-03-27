@@ -27,6 +27,12 @@ public class CompanyEntity {
 	@Column(name = "name", nullable = false)
 	private String name;
 
+
+	@Column(name = "description", nullable = false)
+	private String description;
+
+	@Column(name = "img_url", nullable = false)
+	private String imgUrl;
 	// mandatory
 	@Column(name = "address", nullable = false)
 	private String address;
@@ -167,5 +173,21 @@ public class CompanyEntity {
 
 	public void setActiveStatus(Boolean activeStatus) {
 		this.activeStatus = activeStatus;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }

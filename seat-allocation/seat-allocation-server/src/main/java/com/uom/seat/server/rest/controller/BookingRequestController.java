@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/bookingRequests")
 @Api(description = "The bookingRequest API for bookingRequest management tasks")
 public class BookingRequestController {

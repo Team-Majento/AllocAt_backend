@@ -57,6 +57,8 @@ public class ResourceAllocationController {
     }
 
 
+
+    @CrossOrigin
     @PostMapping("accept/{bookingRequestID}")
     public ResponseEntity<Integer> acceptResourceAllocation(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
