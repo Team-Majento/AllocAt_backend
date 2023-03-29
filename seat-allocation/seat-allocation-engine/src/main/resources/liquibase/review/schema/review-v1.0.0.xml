@@ -36,9 +36,8 @@
         </rollback>
     </changeSet>
 
-<!--    <changeSet id="resource_booking_request_master_data" author="thiunuwan">-->
-<!--        <sqlFile encoding="utf8" path="../master-data/resource_booking_request.sql" relativeToChangelogFile="true"-->
-<!--                 splitStatements="true" stripComments="true"/>-->
-<!--    </changeSet>-->
-
+    <changeSet id="review_master_data" author="ravindu">
+        <sqlFile encoding="utf8" path="../master-data/review.sql" relativeToChangelogFile="true"
+                 splitStatements="true" stripComments="true"/>
+    </changeSet>
 </databaseChangeLog>

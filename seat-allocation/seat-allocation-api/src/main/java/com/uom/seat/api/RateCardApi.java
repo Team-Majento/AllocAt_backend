@@ -4,7 +4,7 @@ import com.uom.seat.rateCard.dto.RateCardRequest;
 import com.uom.seat.rateCard.dto.RateCardResponse;
 
 public interface RateCardApi {
-    Integer createRateCard(String authorization, RateCardRequest rateCard);
+    Integer createRateCard(String authorization, RateCardRequest rateCard, Integer resourceId);
 
     RateCardResponse getRateCard(String authorization, Integer rateCardId);
 

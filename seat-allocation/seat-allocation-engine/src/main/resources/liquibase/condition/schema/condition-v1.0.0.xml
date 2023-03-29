@@ -30,11 +30,11 @@
         </rollback>
     </changeSet>
 
-<!--
+
     <changeSet id="condition_master_data" author="nishath">
         <sqlFile encoding="utf8" path="../master-data/condition.sql" relativeToChangelogFile="true"
                  splitStatements="true" stripComments="true"/>
     </changeSet>
--->
+
 
 </databaseChangeLog>

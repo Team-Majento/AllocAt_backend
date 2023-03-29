@@ -37,6 +37,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/resourceAllocatedCost")
 @Api(description = "The resourceAllocatedCost API for resourceAllocatedCost management tasks")
 public class RsourceAllocatedCostController {

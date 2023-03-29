@@ -19,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/companies")
 @Api(description = "The resource API for resource management tasks")
 public class ResourceController {

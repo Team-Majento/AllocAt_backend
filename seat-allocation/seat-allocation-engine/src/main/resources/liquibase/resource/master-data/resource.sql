@@ -1,14 +1,10 @@
-/*INSERT INTO resource (xid,
-                      resource_type_id,
-                      rate_card_id,
-                      building_id,
-                      floor,
-                      is_available,
-                      is_active,
-                      maximum_capacity, description, img_Url)*/
-/*VALUES (UUID(),
-        1,
-        8417,
-        '847N',
-        1, 1, 1,
-        25, 'sample descriptionA', 'imgUrl_A');*/
+INSERT INTO resource (xid, resource_type_id,building_id, floor, is_available, is_active, maximum_capacity, description, img_Url, company_id)
+VALUES
+    (UUID(), 2, '1547A-snapTags', 2, true, true, 7, 'A meeting room for 7 people is a small to medium-sized room designed for conducting meetings and presentations. It may include a conference table, chairs, a whiteboard, and audiovisual equipment. These rooms are available for use by employees, clients, and stakeholders to facilitate productive discussions.', 'https://dms.uom.lk/s/oF8giam7mFLBDXS/preview',6),
+    (UUID(), 2, '1574R-flipTune', 1, true, true, 10, 'A meeting room for 10 people is a slightly larger space compared to one for 7 people. It can accommodate up to 10 people comfortably and typically comes equipped with a conference table, chairs, a whiteboard, and audiovisual equipment. These rooms may also have access to Wi-Fi and teleconferencing equipment to facilitate remote collaboration. They are commonly used for team meetings, brainstorming sessions, and presentations.', 'https://dms.uom.lk/s/CKXpXHJDpnzCCKq/preview', 4),
+    (UUID(), 2,  '1578A-abc14', 4, true, true, 5, 'A meeting room for 5 people with a TV and whiteboard is a small but effective space for collaborative work. The TV can be used to display presentations or multimedia content, while the whiteboard can be used for brainstorming or taking notes. The room typically includes a conference table, chairs, and audiovisual equipment, in addition to the TV and whiteboard. This type of room is suitable for small team meetings, brainstorming sessions, and interviews.', 'https://dms.uom.lk/s/ijStmFq3BEGwQoy/preview', 6),
+    (UUID(), 2,  '1578A-abc14', 4, true, true, 5, 'A meeting room for 5 people with a TV and whiteboard is a small but effective space for collaborative work. The TV can be used to display presentations or multimedia content, while the whiteboard can be used for brainstorming or taking notes. The room typically includes a conference table, chairs, and audiovisual equipment, in addition to the TV and whiteboard. This type of room is suitable for small team meetings, brainstorming sessions, and interviews.', 'https://dms.uom.lk/s/ijStmFq3BEGwQoy/preview', 1),
+    (UUID(), 2,  '1555A-abc', 2, true, true, 5, 'A meeting room for 5 people is a small space designed for small group discussions or meetings. It typically includes a table, chairs, and may have basic audiovisual equipment available. These rooms are ideal for small team meetings, brainstorming sessions, and interviews. The rooms may also be used for one-on-one meetings or consultations. The space is designed to provide a comfortable and professional environment for small groups to discuss and collaborate effectively.', 'https://dms.uom.lk/s/4r4KDni3rH4C8p7/preview', 1),
+    (UUID(), 1, '155-abc', 2, true, true, 1, 'A cubicle, also known as a workspace or workstation, is a semi-private area within an office that is typically surrounded by partitions or walls. Cubicles are designed to provide individual employees with a designated workspace that is separated from their colleagues but still within the same open office environment. They are usually equipped with a desk, chair, and storage space for personal items.', 'https://dms.uom.lk/s/rTiEnYqt2kSYbZn/preview', 4),
+    (UUID(), 1,  '15785T-thoughbeat', 3, true, true, 1, 'A small cubicle with a PC is a designated workspace within an office that is designed for individual use.', 'https://dms.uom.lk/s/YoQXsHT47cdKqB4/preview', 2),
+    (UUID(), 2,  '15775M-Youopia', 1, true, true, 4, 'A meeting room for 4 people is a small space designed for intimate meetings or discussions. It typically includes a small table and chairs, and may have basic audiovisual equipment available. These rooms are ideal for small team meetings, one-on-one consultations, or interviews.', 'https://dms.uom.lk/s/No7soE3mLCL7PtZ/preview', 5)

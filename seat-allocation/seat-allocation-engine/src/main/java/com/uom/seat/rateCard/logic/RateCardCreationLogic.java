@@ -19,7 +19,7 @@ public class RateCardCreationLogic {
     @Autowired
     private RateCardService rateCardService;
 
-    public Integer createRateCard(String accessToken, RateCardRequest rateCard) {
+    public Integer createRateCard(String accessToken, RateCardRequest rateCard, Integer resourceId) {
 
         // 1. validate company request
         // 2. create company
@@ -27,7 +27,7 @@ public class RateCardCreationLogic {
         rateCardValidator.validateRateCard(rateCard);
         logger.info("The rate card is validated.");
 
-        Integer id = rateCardService.createRateCard(rateCard);
+        Integer id = rateCardService.createRateCard(rateCard,resourceId);
         logger.info("The rate card is created.");
 
         return id;

@@ -7,7 +7,7 @@ public class ResourceRequest implements Serializable {
     private static final long serialVersionUID = 6820972664993084704L;
 
     private Integer resourceType;
-    private Integer rateCardId;
+//    private Integer rateCardId;
     private String buildingId;
     private Integer floor;
     private Boolean isAvailable;
@@ -25,13 +25,13 @@ public class ResourceRequest implements Serializable {
         this.resourceType = resourceType;
     }
 
-    public Integer getRateCardId() {
-        return rateCardId;
-    }
-
-    public void setRateCardId(Integer rateCardId) {
-        this.rateCardId = rateCardId;
-    }
+//    public Integer getRateCardId() {
+//        return rateCardId;
+//    }
+//
+//    public void setRateCardId(Integer rateCardId) {
+//        this.rateCardId = rateCardId;
+//    }
 
     public String getBuildingId() {
         return buildingId;
@@ -93,7 +93,6 @@ public class ResourceRequest implements Serializable {
     public String toString() {
         return "ResourceRequest{" +
                 "resourceType=" + resourceType +
-                ", rateCardId=" + rateCardId +
                 ", buildingId='" + buildingId + '\'' +
                 ", floor=" + floor +
                 ", isAvailable=" + isAvailable +

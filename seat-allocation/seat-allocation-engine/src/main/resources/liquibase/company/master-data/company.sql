@@ -1,19 +1,8 @@
-INSERT INTO company (xid,
-                     name,
-                     address,
-                     contact_number,
-                     email,
-                     mobile,
-                     fax,
-                     is_active,
-                     description,
-                     img_url)
-VALUES (UUID(),
-        'ABC Pvt Ltd.',
-        'No 6521, Embilipitiya Road, Sooriyawewa',
-        '94472288088',
-        'abc@gmail.com',
-        '0772386260', '', 1,
-        "sample description about Abc Company.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imgurl_ABC"
-          );
+INSERT INTO company (xid, name, address, contact_number, email, mobile, fax, is_active, description, img_url)
+VALUES
+    (UUID(), 'ABC Pvt Ltd.', 'No 6521, Embilipitiya Road, Sooriyawewa', '94472288088', 'abc@gmail.com', '0772386260', '', 1, 'ABC Pvt Ltd. is a business located in Sooriyawewa that provides products or services to its clients. They can be contacted by phone, email, or mobile, and their fax number is available upon request.', 'https://dms.uom.lk/s/EyQaJp4LZTERirD/preview'),
+    (UUID(), 'Thoughtbeat', '1990 Rockefeller Pass,Colombo 03', '0112564344', 'Thoughtbeat@gmail.com', '0765490923', '555-123-4509', 1, 'Thoughtbeat is a company based in Colombo 03 that specializes in providing innovative solutions to its customers. They have a reliable phone and fax number, and their email address is always open for inquiries.', 'https://dms.uom.lk/s/SLEJc8gEDgiXFMk/preview'),
+    (UUID(), 'Photobug', '633 Del Sol Alley,Moratuwa', '0112564777', 'Photobug@gmail.com', '0765487823', '555-123-4567', 1, 'Photobug is a business situated in Moratuwa that specializes in photography and video services. They are always available to answer phone and email inquiries and are happy to provide clients with high-quality images.', 'https://dms.uom.lk/s/dQksrMpLtML2JmH/preview'),
+    (UUID(), 'Fliptune', '79 Northridge Drive,Katunayaka', '0112564711', 'Fliptune@gmail.com', '0765489323', '555-190-4567', 1, 'Photobug is a business situated in Moratuwa that specializes in photography and video services. They are always available to answer phone and email inquiries and are happy to provide clients with high-quality images.', 'https://dms.uom.lk/s/cjGbs8pSH9Acbf3/preview'),
+    (UUID(), 'Youopia', '7 Thierer Parkway,Rathmalana', '0112564123', 'Youpia@gmail.com', '0765477323', '555-123-4560', 1, 'Fliptune is a company located in Katunayaka that provides a variety of services to its clients. They have a reliable phone number, and their fax is always available for any urgent inquiries. Their email address is open 24/7 for inquiries.', 'https://dms.uom.lk/s/PZzfBgHZmJneccL/preview'),
+    (UUID(), 'Snaptags', '120 Sachs Place,Malabe', '0112565409', 'Snaptags@gmail.com', '0713454323', '555-123-4500', 1, 'Youopia is a company located in Rathmalana that provides innovative and creative solutions to its customers. They have a reliable phone number, and their fax is always available for any urgent inquiries. Their email address is open 24/7 for inquiries.', 'https://dms.uom.lk/s/boMo4yt3ZQKHJ4G/preview');

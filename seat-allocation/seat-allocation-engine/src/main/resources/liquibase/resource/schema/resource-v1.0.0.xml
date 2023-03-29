@@ -19,9 +19,9 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="rate_card_id" type="BIGINT" >
-                <constraints nullable="true" />
-            </column>
+<!--            <column name="rate_card_id" type="BIGINT" >-->
+<!--                <constraints nullable="true" />-->
+<!--            </column>-->
 
             <column name="building_id" type="VARCHAR(25)">
                 <constraints nullable="false"/>

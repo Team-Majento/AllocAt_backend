@@ -30,8 +30,8 @@ public class RateCardApiImpl implements RateCardApi {
     private RateCardDeletionLogic rateCardDeletionLogic;
 
     @Override
-    public Integer createRateCard(String authorization, RateCardRequest rateCard) {
-        return rateCardCreationLogic.createRateCard(authorization,rateCard);
+    public Integer createRateCard(String authorization, RateCardRequest rateCard, Integer resourceId) {
+        return rateCardCreationLogic.createRateCard(authorization,rateCard,resourceId);
 
     }
 

@@ -136,7 +136,8 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
         Double final_cost;
         Double discount_rate;
         resourceEntity = resourceRepository.findById(resource_id).get();
-        RateCardEntity rateCardEntity = rateCardRepository.findById(resourceEntity.getRateCardId()).get();
+//        RateCardEntity rateCardEntity = rateCardRepository.findById(resourceEntity.getRateCardId()).get();
+        RateCardEntity rateCardEntity=resourceEntity.getRateCardEntity();
         usage_in_minutes = Math.toIntExact(resourceAllocationEntity.getStartTime().until(resourceAllocationEntity.getEndTime(), ChronoUnit.MINUTES));
 
 
@@ -215,7 +216,8 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
             allocated_cost = resourceAllocatedCostEntity.getCalculated_cost();
             final_cost = resourceAllocatedCostEntity.getFinal_cost();
 
-            RateCardEntity rateCardEntity = rateCardRepository.findById(resourceEntity.getRateCardId()).get();
+            //RateCardEntity rateCardEntity = rateCardRepository.findById(resourceEntity.getRateCardId()).get();
+            RateCardEntity rateCardEntity=resourceEntity.getRateCardEntity();
             units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
 
             total_cost_per_company += final_cost;
@@ -352,7 +354,8 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
             allocated_cost = resourceAllocatedCostEntity.getCalculated_cost();
             final_cost = resourceAllocatedCostEntity.getFinal_cost();
 
-            RateCardEntity rateCardEntity = rateCardRepository.findById(resourceEntity.getRateCardId()).get();
+//            RateCardEntity rateCardEntity = rateCardRepository.findById(resourceEntity.getRateCardId()).get();
+            RateCardEntity rateCardEntity=resourceEntity.getRateCardEntity();
             units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
 
             total_cost_per_company += final_cost;

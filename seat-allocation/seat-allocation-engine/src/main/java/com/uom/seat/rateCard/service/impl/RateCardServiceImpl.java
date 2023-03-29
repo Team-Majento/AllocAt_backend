@@ -1,12 +1,12 @@
 package com.uom.seat.rateCard.service.impl;
 
-import com.uom.seat.company.dto.CompanyResponse;
-import com.uom.seat.company.entity.CompanyEntity;
 import com.uom.seat.rateCard.dto.RateCardRequest;
 import com.uom.seat.rateCard.dto.RateCardResponse;
 import com.uom.seat.rateCard.entity.RateCardEntity;
 import com.uom.seat.rateCard.repository.RateCardRepository;
 import com.uom.seat.rateCard.service.RateCardService;
+import com.uom.seat.resource.entity.ResourceEntity;
+import com.uom.seat.resource.repository.ResourceRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +21,12 @@ public class RateCardServiceImpl implements RateCardService {
     @Autowired
     private RateCardRepository rateCardRepository;
 
+    @Autowired
+    private ResourceRepository resourceRepository;
+
     @Override
-    public Integer createRateCard(RateCardRequest rateCard) {
-        return rateCardRepository.save(convertToRateCardEntity(rateCard)).getId() ;
+    public Integer createRateCard(RateCardRequest rateCard, Integer resourceId) {
+        return rateCardRepository.save(convertToRateCardEntity(rateCard,resourceId)).getId() ;
     }
 
     @Override
@@ -56,10 +59,12 @@ public class RateCardServiceImpl implements RateCardService {
         return dto;
     }
 
-    private RateCardEntity convertToRateCardEntity(RateCardRequest rateCard) {
+    private RateCardEntity convertToRateCardEntity(RateCardRequest rateCard, Integer resourceId) {
 
+        ResourceEntity resource=resourceRepository.findById(resourceId).get();
         RateCardEntity entity = null;
         entity = modelMapper.map(rateCard, RateCardEntity.class);
+        entity.setResourceEntity(resource);
         return entity;
 
     }

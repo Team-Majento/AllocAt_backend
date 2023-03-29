@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
-@RequestMapping("/rateCards")
+@RequestMapping("Companies/resources")
 @Api(description = "The rateCard API for rate card management tasks")
 public class RateCardController {
 
@@ -30,10 +30,11 @@ public class RateCardController {
                 @ApiResponse(code = 400, message = "Invalid API argument.")
                 // @formatter:on
         })
-        @PostMapping()
+        @PostMapping("{resourceId}/rateCard")
         public ResponseEntity<Integer> registerRateCard(
                 //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
                 @ApiParam(value = "JSON format of the rate card request.", required = true) @RequestBody final RateCardRequest rateCard,
+                @PathVariable("resourceId") final Integer resourceId,
                 UriComponentsBuilder builder) {
 
             ResponseEntity<Integer> responseEntity = null;
@@ -41,7 +42,7 @@ public class RateCardController {
             logger.debug("Register rate card request" + rateCard.toString());
 
             Integer rateCardId =rateCardApi.createRateCard(AccessTokenUtil.getBearerToken("authorization"),
-                    rateCard);
+                    rateCard,resourceId);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(builder.path("rateCards/{rateCardId}").buildAndExpand(rateCardId).toUri());

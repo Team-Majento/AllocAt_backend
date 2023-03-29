@@ -76,12 +76,12 @@ public class UserController {
     @ApiOperation(value = "Update user by userId.", response = UserResponse.class, produces = "application/json")
     @CrossOrigin
     @PutMapping("/update/{userId}")
-    public ResponseEntity<UserResponse> getCompany(
+    public ResponseEntity<UserResponse> getUser(
             //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userId") final Integer userId, @RequestBody final UserRequest userRequest) {
 
         ResponseEntity<UserResponse> responseEntity = null;
-        logger.info("Get company by id request is received.");
+        logger.info("Get user by id request is received.");
 
         UserResponse response = userApi.updateUser(userId, userRequest);
         responseEntity = new ResponseEntity<UserResponse>(response, HttpStatus.OK);
@@ -108,7 +108,7 @@ public class UserController {
 
     @ApiOperation(value="Delete user by ID",response = ResourceResponse.class,produces = "application/json")
     @DeleteMapping("{userId}")
-    public ResponseEntity<Boolean> deleteResource(
+    public ResponseEntity<Boolean> deleteUser(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userId") final Integer userId) {
 

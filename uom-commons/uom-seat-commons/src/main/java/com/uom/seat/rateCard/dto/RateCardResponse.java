@@ -2,7 +2,7 @@ package com.uom.seat.rateCard.dto;
 
 public class RateCardResponse {
 
-Integer rateCardId;
+    Integer rateCardId;
     Double unit;
     Double hourRate;
     Double extraHourRate;

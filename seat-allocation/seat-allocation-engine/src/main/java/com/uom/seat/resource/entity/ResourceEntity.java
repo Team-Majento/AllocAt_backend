@@ -27,8 +27,8 @@ public class ResourceEntity {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "resourceEntity")
     private List<ReviewEntity> reviews = new ArrayList<>();
 
-    @Column(name = "rate_card_id", nullable = true)
-    private Integer rateCardId;
+//    @Column(name = "rate_card_id", nullable = true)
+//    private Integer rateCardId;
 
     @Column(name = "building_id", nullable = false)
     private String buildingId;
@@ -89,13 +89,13 @@ public class ResourceEntity {
         this.resourceType = resourceType;
     }
 
-    public Integer getRateCardId() {
-        return rateCardId;
-    }
-
-    public void setRateCardId(Integer rateCardId) {
-        this.rateCardId = rateCardId;
-    }
+//    public Integer getRateCardId() {
+//        return rateCardId;
+//    }
+//
+//    public void setRateCardId(Integer rateCardId) {
+//        this.rateCardId = rateCardId;
+//    }
 
     public String getBuildingId() {
         return buildingId;

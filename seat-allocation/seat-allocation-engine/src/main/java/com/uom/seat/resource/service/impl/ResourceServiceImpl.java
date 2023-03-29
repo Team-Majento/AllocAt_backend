@@ -9,7 +9,6 @@ import com.uom.seat.resource.repository.ResourceRepository;
 import com.uom.seat.resource.service.ResourceService;
 import com.uom.seat.review.dto.ReviewResponse;
 import com.uom.seat.review.entity.ReviewEntity;
-import com.uom.seat.review.service.ReviewService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -97,7 +96,7 @@ public class ResourceServiceImpl implements ResourceService {
         entity.setFloor(resource.getFloor());
         entity.setImgUrl(resource.getImgUrl());
         entity.setMaximumCapacity(resource.getMaximumCapacity());
-        entity.setRateCardId(resource.getRateCardId());
+//        entity.setRateCardId(resource.getRateCardId());
         entity.setActiveStatus(resource.getActiveStatus());
         return entity;
     }
@@ -119,7 +118,9 @@ public class ResourceServiceImpl implements ResourceService {
         ResourceResponse dto = null;
         dto = modelMapper.map(entity, ResourceResponse.class);
         dto.setCompany(entity.getCompany().getName());
-
+        if(entity.getRateCardEntity()!=null){
+            dto.setRateCardId(entity.getRateCardEntity().getRateCardId());
+        }
         return dto;
     }
 

@@ -1,6 +1,10 @@
-/*INSERT INTO rate_card_details(
-    rate_card_id,unit,hour_rate,extra_hour_rate
-)
-VALUES (
-           847,15,25.50,27.75
-       );*/
+INSERT INTO rate_card_details(rate_card_id, unit, hour_rate, extra_hour_rate, resource_id_fk)
+VALUES (1, 30, 25.50, 27.75, 1),
+ ( 2, 30, 35.50, 37.75, 2),
+ ( 3, 30, 45.50, 47.75, 3),
+ ( 4, 30, 55.50, 57.75, 4),
+ ( 5, 30, 65.50, 57.75, 5),
+ ( 6, 30, 15.50, 17.75, 6),
+ ( 7, 30, 06.50, 13.75, 7),
+ ( 8, 30, 12.50, 14.75, 8),
+ ( 9, 30, 18.50, 23.75, 9)
