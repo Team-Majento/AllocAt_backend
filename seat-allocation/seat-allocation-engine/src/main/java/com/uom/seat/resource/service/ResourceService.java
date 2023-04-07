@@ -19,4 +19,6 @@ public interface ResourceService {
     Boolean deleteResource(Integer resourceId);
 
     List<ReviewResponse> getAllReviews(Integer resourceId);
+
+    Page<ResourceResponse> getAllFilteredResources(Integer page, Integer size, Integer companyId);
 }

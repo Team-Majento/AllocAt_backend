@@ -27,7 +27,6 @@ public class ReviewController {
     private ReviewApi reviewApi;
 
 
-
     @ApiOperation(value = "Register review.", response = Integer.class, consumes = "application/json")
     @ApiResponses(value = {
             // @formatter:off
@@ -49,7 +48,7 @@ public class ReviewController {
         System.out.println(resourceId);
 
         Integer reviewId = reviewApi.createReview(AccessTokenUtil.getBearerToken("authorization"),
-                review,resourceId);
+                review, resourceId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("reviews/{reviewId}").buildAndExpand(reviewId).toUri());
@@ -58,7 +57,7 @@ public class ReviewController {
         return responseEntity;
     }
 
-    @ApiOperation(value="Get Review by ID",response = ReviewResponse.class,produces = "application/json")
+    @ApiOperation(value = "Get Review by ID", response = ReviewResponse.class, produces = "application/json")
     @GetMapping("{reviewId}")
     public ResponseEntity<ReviewResponse> getReview(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
@@ -77,18 +76,18 @@ public class ReviewController {
     @PutMapping("{reviewId}")
     public ResponseEntity<ReviewResponse> updateReview(
             //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
-            @PathVariable("reviewId") final Integer  reviewId, @RequestBody final ReviewRequest review) {
+            @PathVariable("reviewId") final Integer reviewId, @RequestBody final ReviewRequest review) {
 
         ResponseEntity<ReviewResponse> responseEntity = null;
         logger.info("update review by id request is received.");
-        ReviewResponse response = reviewApi.updateReview(reviewId,review);
+        ReviewResponse response = reviewApi.updateReview(reviewId, review);
 
         responseEntity = new ResponseEntity<ReviewResponse>(response, HttpStatus.OK);
         return responseEntity;
     }
 
 
-    @ApiOperation(value="Delete Review by ID",response = ResourceResponse.class,produces = "application/json")
+    @ApiOperation(value = "Delete Review by ID", response = ResourceResponse.class, produces = "application/json")
     @DeleteMapping("{reviewId}")
     public ResponseEntity<Boolean> deleteReview(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
@@ -100,13 +99,6 @@ public class ReviewController {
         responseEntity = new ResponseEntity<Boolean>(result, HttpStatus.OK);
         return responseEntity;
     }
-
-
-
-
-
-
-
 
 
 }

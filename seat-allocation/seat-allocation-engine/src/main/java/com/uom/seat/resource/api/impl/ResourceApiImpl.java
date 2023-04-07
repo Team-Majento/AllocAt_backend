@@ -67,4 +67,9 @@ public class ResourceApiImpl implements ResourceApi {
     public List<ReviewResponse> getReviews(String authorization, Integer resourceId) {
         return resourceRetrievalLogic.getALlReviews(authorization,resourceId);
     }
+
+    @Override
+    public Page<ResourceResponse> getAllFilteredResources(String authorization, Integer page, Integer size, Integer companyId) {
+        return resourceRetrievalLogic.getAllFilteredResources(page,size,companyId);
+    }
 }

@@ -32,4 +32,8 @@ public class ResourceRetrievalLogic {
     public List<ReviewResponse> getALlReviews(String authorization, Integer resourceId) {
         return  service.getAllReviews(resourceId);
     }
+
+    public Page<ResourceResponse> getAllFilteredResources(Integer page, Integer size,Integer companyId) {
+        return service.getAllFilteredResources(page,size,companyId);
+    }
 }

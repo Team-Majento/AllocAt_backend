@@ -49,7 +49,7 @@ public class ResourceController {
         logger.debug("Register company request" + resource.toString());
 
         Integer resourceId = resourceApi.createResource(AccessTokenUtil.getBearerToken("authorization"),
-                resource,companyId);
+                resource, companyId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("resources/{resourceId}").buildAndExpand(resourceId).toUri());
@@ -58,7 +58,7 @@ public class ResourceController {
         return responseEntity;
     }
 
-    @ApiOperation(value="Get Resource by ID",response = ResourceResponse.class,produces = "application/json")
+    @ApiOperation(value = "Get Resource by ID", response = ResourceResponse.class, produces = "application/json")
     @GetMapping("resource/{resourceId}")
     public ResponseEntity<ResourceResponse> getResource(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
@@ -72,7 +72,7 @@ public class ResourceController {
         return responseEntity;
     }
 
-    @ApiOperation(value="Get review by ResourceID",response = ResourceResponse.class,produces = "application/json")
+    @ApiOperation(value = "Get review by ResourceID", response = ResourceResponse.class, produces = "application/json")
     @GetMapping("resource/{resourceId}/reviews")
     public ResponseEntity<List<ReviewResponse>> getReviews(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
@@ -102,24 +102,24 @@ public class ResourceController {
     }
 
 
-    @ApiOperation(value="Get all Resources",response = ResourceResponse.class,produces = "application/json")
+    @ApiOperation(value = "Get all Resources", response = ResourceResponse.class, produces = "application/json")
     @GetMapping("resources-page")
     public ResponseEntity<Page<ResourceResponse>> getAllResources(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
-            @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
-            @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+            @RequestParam(name = "page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) Integer size
             //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
             // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
-    ){
+    ) {
 
         ResponseEntity<Page<ResourceResponse>> responseEntity = null;
 
-        Page<ResourceResponse> pageDtos = resourceApi.getAllResources( AccessTokenUtil.getBearerToken("authorization"), page,size);
-        responseEntity=new ResponseEntity<Page<ResourceResponse>>(pageDtos,HttpStatus.OK);
+        Page<ResourceResponse> pageDtos = resourceApi.getAllResources(AccessTokenUtil.getBearerToken("authorization"), page, size);
+        responseEntity = new ResponseEntity<Page<ResourceResponse>>(pageDtos, HttpStatus.OK);
         return responseEntity;
     }
 
-    @ApiOperation(value="Delete Resource by ID",response = ResourceResponse.class,produces = "application/json")
+    @ApiOperation(value = "Delete Resource by ID", response = ResourceResponse.class, produces = "application/json")
     @DeleteMapping("{resourceId}")
     public ResponseEntity<Boolean> deleteResource(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
@@ -132,6 +132,26 @@ public class ResourceController {
         return responseEntity;
     }
 
+
+    @ApiOperation(value = "Get all Resources", response = ResourceResponse.class, produces = "application/json")
+    @GetMapping("filtered-resources-page")
+    public ResponseEntity<Page<ResourceResponse>> getAllFilteredResources(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            @RequestParam(name = "page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+            @RequestParam(name = "company") Integer companyId
+
+
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ) {
+
+        ResponseEntity<Page<ResourceResponse>> responseEntity = null;
+
+        Page<ResourceResponse> pageDtos = resourceApi.getAllFilteredResources(AccessTokenUtil.getBearerToken("authorization"), page, size,companyId);
+        responseEntity = new ResponseEntity<Page<ResourceResponse>>(pageDtos, HttpStatus.OK);
+        return responseEntity;
+    }
 
 
 

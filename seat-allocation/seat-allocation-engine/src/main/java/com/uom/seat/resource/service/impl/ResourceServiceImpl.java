@@ -65,6 +65,23 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
+    public Page<ResourceResponse> getAllFilteredResources(Integer page, Integer size, Integer companyId) {
+        PageRequest pageable= PageRequest.of(page,size);
+        CompanyEntity company =companyRepository.findById(companyId).get();
+        Page<ResourceEntity> pageEntities=resourceRepository.findByCompany(companyId,pageable);
+
+        List<ResourceEntity> entityList= pageEntities.getContent();
+        List<ResourceResponse> dtoList = new ArrayList<ResourceResponse>();
+
+        entityList.forEach(entity -> dtoList.add(convertToResourceResponse(entity)));
+
+        return new PageImpl<ResourceResponse>(dtoList,pageable,pageEntities.getTotalElements());
+    }
+
+
+
+
+    @Override
     public Boolean deleteResource(Integer resourceId) {
         ResourceEntity entity = resourceRepository.saveAndFlush(deleteResource(resourceRepository.findById(resourceId).get()));
         return  !entity.getActiveStatus();
@@ -81,6 +98,8 @@ public class ResourceServiceImpl implements ResourceService {
         }
         return list1;
     }
+
+
 
     private ResourceEntity deleteResource(ResourceEntity resourceEntity) {
         resourceEntity.setActiveStatus(false);

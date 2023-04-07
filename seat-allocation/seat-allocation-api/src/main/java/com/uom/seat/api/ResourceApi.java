@@ -29,4 +29,6 @@ public interface ResourceApi {
     Boolean deleteResource(String authorization, Integer resourceId);
 
     List<ReviewResponse> getReviews(String authorization, Integer resourceId);
+
+    Page<ResourceResponse> getAllFilteredResources(String authorization, Integer page, Integer size, Integer companyId);
 }
