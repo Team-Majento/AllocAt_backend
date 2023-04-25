@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //test
-//test3
+//test
 @Entity
 @Table(name = "resource")
 public class ResourceEntity {
