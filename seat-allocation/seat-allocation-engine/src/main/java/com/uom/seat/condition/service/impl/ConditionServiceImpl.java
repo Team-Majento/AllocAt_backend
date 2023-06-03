@@ -61,7 +61,6 @@ public class ConditionServiceImpl implements ConditionService {
         else {
             return  false;
         }
-
     }
 
     ////////////////////////////////////////////////////////////////////////

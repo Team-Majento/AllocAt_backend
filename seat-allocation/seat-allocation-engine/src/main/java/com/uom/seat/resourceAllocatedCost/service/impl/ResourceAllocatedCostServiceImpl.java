@@ -4,8 +4,9 @@ import com.uom.seat.company.repository.CompanyRepository;
 import com.uom.seat.condition.entity.ConditionEntity;
 import com.uom.seat.rateCard.entity.RateCardEntity;
 import com.uom.seat.report.entity.CompanyWiseReport;
-import com.uom.seat.report.entity.GeneralReportSubReport;
+import com.uom.seat.report.entity.GeneralReport;
 import com.uom.seat.report.repository.CompanyWiseReportRepository;
+import com.uom.seat.report.repository.GeneralReportRepository;
 import com.uom.seat.resource.entity.ResourceEntity;
 import com.uom.seat.resource.repository.ResourceRepository;
 import com.uom.seat.resourceAllocatedCost.entity.ResourceAllocatedCostEntity;
@@ -49,6 +50,8 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
     @Autowired
     private CompanyWiseReportRepository companyWiseReportRepository;
 
+    @Autowired
+    private  GeneralReportRepository generalReportRepository;
 
     @Override
     public void createResourceAllocatedCost(ResourceAllocationEntity resourceAllocationEntity, Integer resource_id) {
@@ -68,7 +71,7 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
 
 
         units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
-        allocated_cost = (rateCardEntity.getHourRate() / rateCardEntity.getUnit()) * units;
+        allocated_cost = (rateCardEntity.getHourRate() / 60) * rateCardEntity.getUnit() *  units;
 
 
         resourceAllocatedCostEntity.setCalculated_cost(Math.round(allocated_cost * 100.0) / 100.0);
@@ -132,6 +135,11 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
             required_date = resourceAllocationEntity.getRequiredDate();
             usage_in_hours = Math.toIntExact(resourceAllocationEntity.getStartTime().until(resourceAllocationEntity.getEndTime(), ChronoUnit.HOURS));
             usage_in_minutes = Math.toIntExact(resourceAllocationEntity.getStartTime().until(resourceAllocationEntity.getEndTime(), ChronoUnit.MINUTES));
+
+            RateCardEntity rateCardEntity = resourceEntity.getRateCardEntity();
+            units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
+
+
             usage_in_minutes=usage_in_minutes-usage_in_hours*60;
             usage_in_hours_and_minutes = usage_in_hours + " h " + usage_in_minutes + " min ";
             discount_rate = resourceAllocatedCostEntity.getDiscount_rate();
@@ -139,10 +147,10 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
             allocated_cost = resourceAllocatedCostEntity.getCalculated_cost();
             final_cost = resourceAllocatedCostEntity.getFinal_cost();
 
-            RateCardEntity rateCardEntity = resourceEntity.getRateCardEntity();
-            units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
-
             total_cost_per_company += final_cost;
+
+
+
 
 
             reportEntity.setRequester_id(requester_id);
@@ -169,83 +177,55 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
     @Override
     public Integer generateGeneralReport(LocalDate from_date, LocalDate to_date) throws JRException, FileNotFoundException {
         List<ResourceAllocationEntity> resourceAllocationEntities = resourceAllocationRepository.findAllResourceAllocationsByDatesPlusSortByCompantID(from_date, to_date);
-        companyWiseReportRepository.deleteAll();
+        generalReportRepository.deleteAll();
         Double total_cost_per_company = 0.0;
         String old_company_name = companyRepository.findById(resourceAllocationEntities.get(0).getCompanyId()).get().getName();
 
-        Integer resource_id;
-        Integer requester_id;
-        Double units;
-        Double allocated_cost;
-        Integer usage_in_minutes;
-        Integer usage_in_hours;
-        ResourceEntity resourceEntity;
-        Double discount;
+        GeneralReport reportEntity=null;
         Double final_cost;
-        String usage_in_hours_and_minutes;
-        Double discount_rate;
-        LocalDate required_date;
-        List<GeneralReportSubReport> generalReportSubReportList = new ArrayList<>();
+        Integer no_of_reservations=0;
+
 
         for (int i = 0; i < resourceAllocationEntities.size(); i++) {
             String current_company_name = companyRepository.findById(resourceAllocationEntities.get(i).getCompanyId()).get().getName();
 
 
             if (old_company_name != current_company_name) {
-                GeneralReportSubReport generalReportSubReport = new GeneralReportSubReport(resourceAllocationEntities.get(i - 1).getCompanyId(), old_company_name, total_cost_per_company);
-                generalReportSubReportList.add(generalReportSubReport);
-                total_cost_per_company = 0.0;
+
+                  reportEntity.setTotal_cost_allocation(total_cost_per_company);
+                  reportEntity.setCompany_id(resourceAllocationEntities.get(i - 1).getCompanyId());
+                  reportEntity.setCompany_name(old_company_name);
+                  reportEntity.setFrom_date(from_date);
+                  reportEntity.setTo_date(to_date);
+                  reportEntity.setNo_of_reservations(no_of_reservations);
+                  total_cost_per_company = 0.0;
+                  no_of_reservations=0;
+
+                  generalReportRepository.save(reportEntity);
             }
-            CompanyWiseReport reportEntity = new CompanyWiseReport();
+            reportEntity = new GeneralReport();
 
-
+            no_of_reservations+=1;
             ResourceAllocationEntity resourceAllocationEntity = resourceAllocationEntities.get(i);
-            resource_id = resourceAllocationEntity.getResourceId();
             ResourceAllocatedCostEntity resourceAllocatedCostEntity = resourceAllocationEntity.getResourceAllocatedCostEntity();
-            resourceEntity = resourceRepository.findById(resource_id).get();
-
-
-            requester_id = resourceAllocationEntity.getRequesterUserId();
-            required_date = resourceAllocationEntity.getRequiredDate();
-            usage_in_hours = Math.toIntExact(resourceAllocationEntity.getStartTime().until(resourceAllocationEntity.getEndTime(), ChronoUnit.HOURS));
-            usage_in_minutes = Math.toIntExact(resourceAllocationEntity.getStartTime().until(resourceAllocationEntity.getEndTime(), ChronoUnit.MINUTES));
-            usage_in_minutes=usage_in_minutes-usage_in_hours*60;
-            usage_in_hours_and_minutes = usage_in_hours + " h " + usage_in_minutes + " min ";
-            discount_rate = resourceAllocatedCostEntity.getDiscount_rate();
-            discount = resourceAllocatedCostEntity.getDiscount();
-            allocated_cost = resourceAllocatedCostEntity.getCalculated_cost();
             final_cost = resourceAllocatedCostEntity.getFinal_cost();
-
-            RateCardEntity rateCardEntity = resourceEntity.getRateCardEntity();
-            units = Math.ceil((double) usage_in_minutes / rateCardEntity.getUnit());
-
             total_cost_per_company += final_cost;
-
-
-            reportEntity.setRequester_id(requester_id);
-            reportEntity.setResource_id(resource_id);
-            reportEntity.setRequired_date(required_date);
-            reportEntity.setUsage_in_hours_and_minutes(usage_in_hours_and_minutes);
-            reportEntity.setUnits(units);
-            reportEntity.setAllocated_cost(allocated_cost);
-            reportEntity.setDiscount_rate(discount_rate);
-            reportEntity.setDiscount(discount);
-            reportEntity.setFinal_cost(final_cost);
-            reportEntity.setCompany_name(current_company_name);
-            reportEntity.setTotal_allocated_cost(total_cost_per_company);
-
-            companyWiseReportRepository.save(reportEntity);
-
             old_company_name = current_company_name;
 
         }
 
+        //To store the total allocated cost information of the last company record
         String last_company_name = companyRepository.findById(resourceAllocationEntities.get(resourceAllocationEntities.size() - 1).getCompanyId()).get().getName();
-        GeneralReportSubReport generalReportSubReport = new GeneralReportSubReport(resourceAllocationEntities.get(resourceAllocationEntities.size() - 1).getCompanyId(), last_company_name, total_cost_per_company);
-        generalReportSubReportList.add(generalReportSubReport);
+        reportEntity.setTotal_cost_allocation(total_cost_per_company);
+        reportEntity.setCompany_id(resourceAllocationEntities.get(resourceAllocationEntities.size()- 1).getCompanyId());
+        reportEntity.setCompany_name(last_company_name);
+        reportEntity.setFrom_date(from_date);
+        reportEntity.setTo_date(to_date);
+        reportEntity.setNo_of_reservations(no_of_reservations);
 
+        generalReportRepository.save(reportEntity);
 
-        exportGeneralReport(generalReportSubReportList);
+        exportGeneralReport();
         return 200;
     }
 
@@ -265,21 +245,15 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
         return "Report Generated";
     }
 
-    public String exportGeneralReport(List<GeneralReportSubReport> generalReportSubReportList) throws FileNotFoundException, JRException {
-        List<CompanyWiseReport> reportEntities = companyWiseReportRepository.findAll();
-        File file = ResourceUtils.getFile("classpath:general_report_1.jrxml");
+    public String exportGeneralReport() throws FileNotFoundException, JRException {
+
+        List<GeneralReport> reportEntities = generalReportRepository.findAll();
+        File file = ResourceUtils.getFile("classpath:general_report_2.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-
-        JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(reportEntities);
-        JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(generalReportSubReportList);
-
-
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("resourceAllocationListDataset", dataSource1);
-        parameters.put("companyWiseTotalCostAllocationDataset", dataSource2);
-
+        parameters.put("generalReportDataset",dataSource);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-
         String computerUserName = "";
         computerUserName = System.getProperty("user.name");
 

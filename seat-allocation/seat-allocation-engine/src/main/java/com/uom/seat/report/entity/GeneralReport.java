@@ -1,5 +1,6 @@
 package com.uom.seat.report.entity;
 
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -11,17 +12,25 @@ public class GeneralReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer company_id;
-    private Integer resource_id;
-    private Integer requester_id;
-    private LocalDate required_date;
-    private String usage_in_hours_and_minutes;
-    private Double units;
-    private Double allocated_cost;
-    private Double discount_rate;
-    private Double discount;
-    private Double final_cost;
-    private Double total_allocated_cost;
     private String company_name;
+    private Double total_cost_allocation;
+
+    private LocalDate from_date;
+
+    private LocalDate to_date;
+
+    private Integer no_of_reservations;
+
+    public GeneralReport() {
+
+    }
+
+    public GeneralReport(Integer company_id, String company_name, Double total_cost_allocation) {
+        this.company_id = company_id;
+        this.company_name = company_name;
+        this.total_cost_allocation = total_cost_allocation;
+    }
+
 
     public Integer getId() {
         return id;
@@ -31,92 +40,37 @@ public class GeneralReport {
         this.id = id;
     }
 
+    public LocalDate getFrom_date() {
+        return from_date;
+    }
+
+    public void setFrom_date(LocalDate from_date) {
+        this.from_date = from_date;
+    }
+
+    public LocalDate getTo_date() {
+        return to_date;
+    }
+
+    public void setTo_date(LocalDate to_date) {
+        this.to_date = to_date;
+    }
+
+    public Integer getNo_of_reservations() {
+        return no_of_reservations;
+    }
+
+    public void setNo_of_reservations(Integer no_of_reservations) {
+        this.no_of_reservations = no_of_reservations;
+    }
+
     public Integer getCompany_id() {
         return company_id;
+
     }
 
     public void setCompany_id(Integer company_id) {
         this.company_id = company_id;
-    }
-
-    public Integer getResource_id() {
-        return resource_id;
-    }
-
-    public void setResource_id(Integer resource_id) {
-        this.resource_id = resource_id;
-    }
-
-    public Integer getRequester_id() {
-        return requester_id;
-    }
-
-    public void setRequester_id(Integer requester_id) {
-        this.requester_id = requester_id;
-    }
-
-    public LocalDate getRequired_date() {
-        return required_date;
-    }
-
-    public void setRequired_date(LocalDate required_date) {
-        this.required_date = required_date;
-    }
-
-    public String getUsage_in_hours_and_minutes() {
-        return usage_in_hours_and_minutes;
-    }
-
-    public void setUsage_in_hours_and_minutes(String usage_in_hours_and_minutes) {
-        this.usage_in_hours_and_minutes = usage_in_hours_and_minutes;
-    }
-
-    public Double getUnits() {
-        return units;
-    }
-
-    public void setUnits(Double units) {
-        this.units = units;
-    }
-
-    public Double getAllocated_cost() {
-        return allocated_cost;
-    }
-
-    public void setAllocated_cost(Double allocated_cost) {
-        this.allocated_cost = allocated_cost;
-    }
-
-    public Double getDiscount_rate() {
-        return discount_rate;
-    }
-
-    public void setDiscount_rate(Double discount_rate) {
-        this.discount_rate = discount_rate;
-    }
-
-    public Double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
-
-    public Double getFinal_cost() {
-        return final_cost;
-    }
-
-    public void setFinal_cost(Double final_cost) {
-        this.final_cost = final_cost;
-    }
-
-    public Double getTotal_allocated_cost() {
-        return total_allocated_cost;
-    }
-
-    public void setTotal_allocated_cost(Double total_allocated_cost) {
-        this.total_allocated_cost = total_allocated_cost;
     }
 
     public String getCompany_name() {
@@ -125,5 +79,13 @@ public class GeneralReport {
 
     public void setCompany_name(String company_name) {
         this.company_name = company_name;
+    }
+
+    public Double getTotal_cost_allocation() {
+        return total_cost_allocation;
+    }
+
+    public void setTotal_cost_allocation(Double total_cost_allocation) {
+        this.total_cost_allocation = total_cost_allocation;
     }
 }
