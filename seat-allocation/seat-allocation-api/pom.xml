@@ -35,9 +35,13 @@
             <version>6.20.0</version>
             <scope>compile</scope>
         </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
 
 
-    </dependencies>
+	</dependencies>
 
 
 </project>
