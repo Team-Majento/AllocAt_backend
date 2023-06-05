@@ -5,6 +5,16 @@ public class ReviewRequest {
     private Double rating;
     private String reviewText;
 
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Double getRating() {
         return rating;
     }
@@ -26,6 +36,7 @@ public class ReviewRequest {
         return "ReviewRequest{" +
                 "rating=" + rating +
                 ", reviewText='" + reviewText + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

@@ -6,6 +6,16 @@ public class ReviewResponse {
     private Double rating;
     private String reviewText;
 
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Integer getReviewId() {
         return reviewId;
     }
@@ -36,6 +46,7 @@ public class ReviewResponse {
                 "reviewId=" + reviewId +
                 ", rating=" + rating +
                 ", reviewText='" + reviewText + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

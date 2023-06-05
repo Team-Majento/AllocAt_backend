@@ -18,6 +18,10 @@ public class ReviewEntity {
     private ResourceEntity resourceEntity;
 
 
+    @Column(name = "username", nullable = false)
+    private String username;
+
+
     @Column(name = "rating", nullable = false)
     private Double rating;
 
@@ -56,4 +60,11 @@ public class ReviewEntity {
         this.resourceEntity = resourceEntity;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
