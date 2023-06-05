@@ -14,13 +14,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class ResourceAllocationServiceImpl implements ResourceAllocationService {
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @Autowired
     private BookingRequestRepository bookingRequestRepository;
@@ -112,4 +119,25 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
     }
 
 
+
+
+
+
+    private void createEmail(String to, String subject, String message) {
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setFrom("husen2000nisath@gmail.com");
+        simpleMailMessage.setTo(to);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(message);
+
+        this.javaMailSender.send(simpleMailMessage);
+
+    }
+
+    @Override
+    public void sendEmail() {
+        createEmail("anishath12@gmail.com","Notification","accepted");//email 1
+        createEmail("anishath12@gmail.com","Notification","rejected");//email 2
+
+    }
 }

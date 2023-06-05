@@ -112,6 +112,13 @@ public class ResourceAllocationController {
     }
 
 
+    @GetMapping("/send-email")
+    public void sendEmail(){
+           resourceAllocationApi.sendEmail();
+    }
+
+
+
 
 
 }

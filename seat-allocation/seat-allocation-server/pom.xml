@@ -16,8 +16,10 @@
 
 	<dependencies>
 
+
+
 		<!-- seat dependencies -->
-		
+
 		<dependency>
 			<groupId>com.uom</groupId>
 			<artifactId>seat-allocation-engine</artifactId>

@@ -5,6 +5,7 @@ import com.uom.seat.resourceAllocation.dto.ResourceAllocationRequest;
 import com.uom.seat.resourceAllocation.dto.ResourceAllocationResponse;
 import com.uom.seat.resourceAllocation.logic.ResourceAllocationCreationLogic;
 import com.uom.seat.resourceAllocation.logic.ResourceAllocationRetrievalLogic;
+import com.uom.seat.resourceAllocation.logic.SendEmailNotificationLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(isolation = Isolation.REPEATABLE_READ)
 public class ResourceAllocationApiImpl implements ResourceAllocationApi {
 
+    @Autowired
+    private SendEmailNotificationLogic sendEmailNotificationLogic;
     @Autowired
     private ResourceAllocationCreationLogic resourceAllocationCreationLogic;
 
@@ -44,4 +47,8 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
         return resourceAllocationCreationLogic.createReleventResourceAllocation(authorization,bookingRequestID);
     }
 
+    @Override
+    public void sendEmail() {
+        sendEmailNotificationLogic.sendEmail();
+    }
 }

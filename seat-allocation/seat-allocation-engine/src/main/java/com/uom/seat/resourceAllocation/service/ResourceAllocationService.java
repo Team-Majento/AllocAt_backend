@@ -18,5 +18,7 @@ public interface ResourceAllocationService {
     Page<ResourceAllocationResponse> getALlResourceAllocationsByRequstersUserId(Integer requesterUserId, Integer page, Integer size);
     Page<ResourceAllocationResponse> getALlResourceAllocations(Integer page,Integer size);
 
+    void sendEmail();
+
 
 }
