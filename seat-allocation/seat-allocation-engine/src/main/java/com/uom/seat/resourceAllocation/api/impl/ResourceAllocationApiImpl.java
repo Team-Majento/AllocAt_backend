@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Service
 @Transactional(isolation = Isolation.REPEATABLE_READ)
 public class ResourceAllocationApiImpl implements ResourceAllocationApi {
@@ -47,13 +50,23 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
         return resourceAllocationCreationLogic.createReleventResourceAllocation(authorization,bookingRequestID);
     }
 
-    @Override
-    public void sendEmail() {
-        sendEmailNotificationLogic.sendEmail();
-    }
+//    @Override
+//    public void sendEmail() {
+//        sendEmailNotificationLogic.sendEmail();
+//    }
+//
+//    @Override
+//    public Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status) {
+//        return sendEmailNotificationLogic.sendNotificationEmail(authorization,userId,resourceManagerId,status);
+//    }
+//
+//    @Override
+//    public Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime) {
+//        return sendEmailNotificationLogic.sendNotificationEmail(authorization,userId,resourceManagerId,status,requiredDate,startTime,endTime);
+//    }
 
     @Override
-    public Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status) {
-        return sendEmailNotificationLogic.sendNotificationEmail(authorization,userId,resourceManagerId,status);
+    public Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId) {
+        return sendEmailNotificationLogic.sendNotificationEmail(authorization,userId,resourceManagerId,status,requiredDate,startTime,endTime,resourceId);
     }
 }

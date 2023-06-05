@@ -9,12 +9,15 @@ import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -114,26 +117,50 @@ public class ResourceAllocationController {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @GetMapping("/send-email")
-    public void sendEmail(){
-           resourceAllocationApi.sendEmail();
-    }
-
+//    @GetMapping("/send-email")
+//    public void sendEmail(){
+//           resourceAllocationApi.sendEmail();
+//    }
+//
+//
+//    @ApiOperation(value="Send notification email to employee and relevant manager",response = ResourceAllocationResponse.class,produces = "application/json")
+//    @CrossOrigin
+//    @GetMapping("/send-notification-email/{userId}/{resourceManagerId}/{status}")
+//    public ResponseEntity<Integer> sendNotificationEmails(
+//            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+//            //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
+//            @PathVariable("userId") Integer userId,@PathVariable("resourceManagerId") Integer resourceManagerId,@PathVariable("status") Integer status, UriComponentsBuilder builder) {
+//
+//        ResponseEntity<Integer> responseEntity = null;
+//        /*logger.info("Create resourceAllocation request is received.");
+//        logger.debug("Create resourceAllocation request" + resourceAllocation.toString());*/
+//
+//        Integer resourceAllocationId = resourceAllocationApi.sendNotificationEmails(AccessTokenUtil.getBearerToken("authorization"),
+//                userId,resourceManagerId,status);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(builder.path("resourceAllocation/{resourceAllocationId}").buildAndExpand(resourceAllocationId).toUri());
+//
+//        responseEntity = new ResponseEntity<Integer>(resourceAllocationId, headers, HttpStatus.CREATED);
+//        return responseEntity;
+//    }
 
     @ApiOperation(value="Send notification email to employee and relevant manager",response = ResourceAllocationResponse.class,produces = "application/json")
     @CrossOrigin
-    @GetMapping("/send-notification-email/{userId}/{resourceManagerId}/{status}")
+    @GetMapping("/send-notification-email/{userId}/{resourceManagerId}/{status}/{requiredDate}/{startTime}/{endTime}/{resourceId}")
     public ResponseEntity<Integer> sendNotificationEmails(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
-            @PathVariable("userId") Integer userId,@PathVariable("resourceManagerId") Integer resourceManagerId,@PathVariable("status") Integer status, UriComponentsBuilder builder) {
+            @PathVariable("userId") Integer userId,@PathVariable("resourceManagerId") Integer resourceManagerId,@PathVariable("status") Integer status,
+            @PathVariable("requiredDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate requiredDate,@PathVariable("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+            @PathVariable("endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,@PathVariable("resourceId") Integer resourceId,UriComponentsBuilder builder) {
 
         ResponseEntity<Integer> responseEntity = null;
         /*logger.info("Create resourceAllocation request is received.");
         logger.debug("Create resourceAllocation request" + resourceAllocation.toString());*/
 
         Integer resourceAllocationId = resourceAllocationApi.sendNotificationEmails(AccessTokenUtil.getBearerToken("authorization"),
-                userId,resourceManagerId,status);
+                userId,resourceManagerId,status,requiredDate,startTime,endTime,resourceId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("resourceAllocation/{resourceAllocationId}").buildAndExpand(resourceAllocationId).toUri());
@@ -141,7 +168,6 @@ public class ResourceAllocationController {
         responseEntity = new ResponseEntity<Integer>(resourceAllocationId, headers, HttpStatus.CREATED);
         return responseEntity;
     }
-
 
 
 

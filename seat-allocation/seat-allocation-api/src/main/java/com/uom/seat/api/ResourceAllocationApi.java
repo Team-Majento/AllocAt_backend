@@ -5,6 +5,8 @@ import com.uom.seat.resourceAllocation.dto.ResourceAllocationRequest;
 import com.uom.seat.resourceAllocation.dto.ResourceAllocationResponse;
 import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface ResourceAllocationApi {
@@ -15,10 +17,12 @@ public interface ResourceAllocationApi {
 
 
     //////////////////////////////////
-    void sendEmail();
+//    void sendEmail();
+//
+//    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status);
+//
+//
+//    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime);
 
-    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status);
-
-
-
+    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId);
 }

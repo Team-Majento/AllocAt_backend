@@ -21,6 +21,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,29 +141,114 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
     }
 
 
-    @Override
-    public void sendEmail() {
-        createEmail("anishath12@gmail.com","Notification","accepted");//email 1
-        createEmail("anishath12@gmail.com","Notification","rejected");//email 2
+//    @Override
+//    public void sendEmail() {
+//        createEmail("anishath12@gmail.com","Notification","accepted");//email 1
+//        createEmail("anishath12@gmail.com","Notification","rejected");//email 2
+//
+//    }
+//
+//    @Override
+//    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status) {
+//        String userEmail=userRepository.findEmailByUserId(userId);
+//        String resourceManagerEmail=userRepository.findEmailByUserId(resourceManagerId);
+//
+//        //status==1 means accepted
+//        if(status==1){
+//            createEmail(userEmail,"subject","body");
+//            createEmail(resourceManagerEmail,"subject","body");
+//        }
+//        //status==-1 means rejected
+//        else if(status==-1){
+//            createEmail(userEmail,"subject","body");
+//            createEmail(resourceManagerEmail,"subject","body");
+//        }
+//
+//        return 1;
+//    }
+//
+//    @Override
+//    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime) {
+//        String userEmail=userRepository.findEmailByUserId(userId);
+//        String resourceManagerEmail=userRepository.findEmailByUserId(resourceManagerId);
+//
+//        //status==1 means accepted
+//        if(status==1){
+//            createEmail(userEmail,"subject","body");
+//            createEmail(resourceManagerEmail,"subject","body");
+//        }
+//        //status==-1 means rejected
+//        else if(status==-1){
+//            createEmail(userEmail,"subject","body");
+//            createEmail(resourceManagerEmail,"subject","body");
+//        }
+//
+//        return 1;
+//    }
 
-    }
 
     @Override
-    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status) {
+    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId) {
         String userEmail=userRepository.findEmailByUserId(userId);
         String resourceManagerEmail=userRepository.findEmailByUserId(resourceManagerId);
+        String userName=userRepository.findUserNameByUserId(userId);
+        String resourceManagerName=userRepository.findUserNameByUserId(resourceManagerId);
 
         //status==1 means accepted
         if(status==1){
-            createEmail(userEmail,"subject","body");
-            createEmail(resourceManagerEmail,"subject","body");
+            createEmail(userEmail,"Resource Booking Request Accepted","Dear " +userName +",\n\n" +
+                                                                                     "We are pleased to inform you that your resource booking request has been accepted.\n\n" +
+                                                                                       "Booking Details:\n" +
+                                                                                       "•Resource id: "+resourceId+"\n"+
+                                                                                       "•Required date: "+requiredDate+"\n"+
+                                                                                       "•Time: "+startTime+"-"+endTime+"\n\n"+
+                                                                                       "If you have any questions or need further assistance, please feel free to contact your resource manager.\n\n" +
+                                                                                       "Thank you for using our resource allocation system.\n\n" +
+                                                                                        "Best regards,\n" +
+                                                                                        "Alloc@ Team\n" +
+                                                                                         "\n"
+                                                                                        );
+            createEmail(resourceManagerEmail,"Resource Booking Request Accepted","Dear " +resourceManagerName +",\n\n" +
+                                                                                        "We would like to inform you that the resource booking request made by "+userName+" has been accepted.\n\n" +
+                                                                                        "Booking Details:\n" +
+                                                                                        "•Resource id: "+resourceId+"\n"+
+                                                                                        "•Required date: "+requiredDate+"\n"+
+                                                                                        "•Time: "+startTime+"-"+endTime+"\n\n"+
+                                                                                        "As the relevant resource manager, we kindly request your attention to ensure the availability and proper arrangements for the approved booking. Please coordinate with "+userName+" to address any specific requirements or provide any additional instructions.\n\n" +
+                                                                                        "Thank you for your cooperation.\n\n" +
+                                                                                        "Best regards,\n" +
+                                                                                        "Alloc@ Team\n" +
+                                                                                        "\n"
+                                                                                         );
         }
         //status==-1 means rejected
         else if(status==-1){
+            createEmail(userEmail,"Resource Booking Request Rejected","Dear "+userName+",\n\n" +
+                                                                                    "We regret to inform you that your resource booking request has been rejected.\n\n" +
+                                                                                    "Booking Details:\n" +
+                                                                                    "•Resource id: "+resourceId+"\n"+
+                                                                                    "•Required date: "+requiredDate+"\n"+
+                                                                                    "•Time: "+startTime+"-"+endTime+"\n\n" +
+                                                                                    "Please contact your resource manager for more information or to discuss alternative arrangements.\n\n" +
+                                                                                    "Thank you for your understanding.\n\n" +
+                                                                                    "Best regards,\n" +
+                                                                                    "Alloc@ Team");
 
+            createEmail(resourceManagerEmail,"Resource Booking Request Rejected","Dear " +resourceManagerName +",\n\n" +
+                                                                                                "We regret to inform you that the resource booking request made by "+userName+" has been rejected.\n\n" +
+                                                                                                "Booking Details:\n" +
+                                                                                                "•Resource id: "+resourceId+"\n"+
+                                                                                                "•Required date: "+requiredDate+"\n"+
+                                                                                                "•Time: "+startTime+"-"+endTime+"\n\n" +
+                                                                                                "After careful consideration and evaluation, we have determined that the requested resource is unavailable or not suitable for the given booking parameters.\n\n" +
+                                                                                                "We understand that this may cause inconvenience, and we apologize for any disruption caused. We encourage you to explore alternative options or coordinate with "+userName+" to find a suitable arrangement for the required resource\n\n"+
+                                                                                                "Thank you for your cooperation.\n\n" +
+                                                                                                "Best regards,\n" +
+                                                                                                "Alloc@ Team\n" +
+                                                                                                "\n"
+            );
         }
-        createEmail(userEmail,"subject","body");
-        createEmail(resourceManagerEmail,"subject","body");
+
         return 1;
     }
 }

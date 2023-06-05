@@ -7,6 +7,8 @@ import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
 
 import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface ResourceAllocationService {
@@ -18,8 +20,12 @@ public interface ResourceAllocationService {
     Page<ResourceAllocationResponse> getALlResourceAllocationsByRequstersUserId(Integer requesterUserId, Integer page, Integer size);
     Page<ResourceAllocationResponse> getALlResourceAllocations(Integer page,Integer size);
 
-    void sendEmail();
+//    void sendEmail();
 
 
-    Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status);
+//    Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status);
+//
+//    Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime);
+
+    Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId);
 }
