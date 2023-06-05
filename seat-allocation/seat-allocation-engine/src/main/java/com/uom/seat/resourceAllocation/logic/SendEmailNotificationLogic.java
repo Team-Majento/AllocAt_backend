@@ -11,4 +11,11 @@ public class SendEmailNotificationLogic {
     public void sendEmail() {
         resourceAllocationService.sendEmail();
     }
+
+
+
+    public Integer sendNotificationEmail(String authorization, Integer userId, Integer resourceManagerId, Integer status){
+
+        return resourceAllocationService.sendNotificationEmail(userId,resourceManagerId,status);
+    }
 }

@@ -51,4 +51,9 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
     public void sendEmail() {
         sendEmailNotificationLogic.sendEmail();
     }
+
+    @Override
+    public Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status) {
+        return sendEmailNotificationLogic.sendNotificationEmail(authorization,userId,resourceManagerId,status);
+    }
 }

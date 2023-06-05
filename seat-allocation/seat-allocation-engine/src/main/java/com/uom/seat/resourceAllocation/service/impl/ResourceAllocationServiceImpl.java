@@ -9,11 +9,13 @@ import com.uom.seat.resourceAllocation.dto.ResourceAllocationResponse;
 import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
 import com.uom.seat.resourceAllocation.repository.ResourceAllocationRepository;
 import com.uom.seat.resourceAllocation.service.ResourceAllocationService;
+import com.uom.seat.user.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ import java.util.List;
 @Service
 public class ResourceAllocationServiceImpl implements ResourceAllocationService {
 
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -134,10 +138,30 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 
     }
 
+
     @Override
     public void sendEmail() {
         createEmail("anishath12@gmail.com","Notification","accepted");//email 1
         createEmail("anishath12@gmail.com","Notification","rejected");//email 2
 
+    }
+
+    @Override
+    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status) {
+        String userEmail=userRepository.findEmailByUserId(userId);
+        String resourceManagerEmail=userRepository.findEmailByUserId(resourceManagerId);
+
+        //status==1 means accepted
+        if(status==1){
+            createEmail(userEmail,"subject","body");
+            createEmail(resourceManagerEmail,"subject","body");
+        }
+        //status==-1 means rejected
+        else if(status==-1){
+
+        }
+        createEmail(userEmail,"subject","body");
+        createEmail(resourceManagerEmail,"subject","body");
+        return 1;
     }
 }

@@ -21,4 +21,5 @@ public interface ResourceAllocationService {
     void sendEmail();
 
 
+    Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status);
 }

@@ -13,5 +13,12 @@ public interface ResourceAllocationApi {
     Page<ResourceAllocationResponse> getAllResourceAllocations(String bearerToken, Integer page, Integer size);
     Page<ResourceAllocationResponse> getAllResourceAllocationsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId);
 
+
+    //////////////////////////////////
     void sendEmail();
+
+    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status);
+
+
+
 }
