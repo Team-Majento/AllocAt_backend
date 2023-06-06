@@ -4,6 +4,7 @@ package com.uom.seat.server.rest.controller;
 import com.uom.seat.api.BookingRequestApi;
 import com.uom.seat.bookingRequest.dto.BookingRequestRequest;
 import com.uom.seat.bookingRequest.dto.BookingRequestResponse;
+import com.uom.seat.company.dto.CompanyResponse;
 import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
@@ -116,6 +117,24 @@ public class BookingRequestController {
         responseEntity=new ResponseEntity<Page<BookingRequestResponse>>(pageDtos,HttpStatus.OK);
         return responseEntity;
     }
+
+
+
+
+    @ApiOperation(value="Get all resource booking requests by resourceId ",response = BookingRequestResponse.class,produces = "application/json")
+    @GetMapping("resource-booking-request/{resourceId}")
+    public ResponseEntity<List<BookingRequestResponse>> getAllResourceBookingRequestsByResourceId(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            @PathVariable("resourceId") final Integer resourceId
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<List<BookingRequestResponse>> responseEntity = null;
+        List<BookingRequestResponse> requests = bookingRequestApi.getAllResourceBookingRequestsByResourceId( AccessTokenUtil.getBearerToken("authorization"),resourceId);
+        responseEntity=new ResponseEntity<List<BookingRequestResponse>>(requests,HttpStatus.OK);
+        return responseEntity;
+    }
+
 
 
 }

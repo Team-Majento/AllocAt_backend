@@ -7,6 +7,7 @@ import com.uom.seat.bookingRequest.logic.BookingRequestCreationLogic;
 import com.uom.seat.bookingRequest.logic.BookingRequestRetrievalLogic;
 import com.uom.seat.bookingRequest.logic.BookingRequestUpdateLogic;
 import com.uom.seat.bookingRequest.logic.GetAllBookingRequestsLogic;
+import com.uom.seat.bookingRequest.service.BookingRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ import java.util.List;
 public class BookingRequestApiImpl implements BookingRequestApi {
     @Autowired
     private BookingRequestCreationLogic bookingRequestCreationLogic;
+
+    @Autowired
+    private BookingRequestService bookingRequestService;
 
     @Autowired
     private BookingRequestRetrievalLogic bookingRequestRetrievalLogic;
@@ -54,6 +58,12 @@ public class BookingRequestApiImpl implements BookingRequestApi {
     @Override
     public Page<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId) {
         return bookingRequestRetrievalLogic.getAllResourceBookingRequestsByRequesterUserId(requesterUserId,page,size);
+
+    }
+
+    @Override
+    public List<BookingRequestResponse> getAllResourceBookingRequestsByResourceId(String authorization, Integer resourceId) {
+        return bookingRequestService.getALlBookingRequestsByResourceId(authorization,resourceId);
 
     }
 }

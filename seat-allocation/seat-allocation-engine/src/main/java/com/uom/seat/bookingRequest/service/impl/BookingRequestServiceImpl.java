@@ -5,6 +5,7 @@ import com.uom.seat.bookingRequest.dto.BookingRequestResponse;
 import com.uom.seat.bookingRequest.entity.BookingRequestEntity;
 import com.uom.seat.bookingRequest.repository.BookingRequestRepository;
 import com.uom.seat.bookingRequest.service.BookingRequestService;
+import com.uom.seat.company.dto.CompanyResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -93,5 +94,18 @@ public class BookingRequestServiceImpl implements BookingRequestService {
         entityList.forEach(entity -> dtoList.add(convertToBookingRequestResponse(entity)));
 
         return new PageImpl<BookingRequestResponse>(dtoList,pageable,pageEntities.getTotalElements());
+    }
+
+    @Override
+    public List<BookingRequestResponse> getALlBookingRequestsByResourceId(String authorization, Integer resourceId) {
+        List<BookingRequestResponse> requestResponseList=new ArrayList<>();
+        int k=bookingRequestRepository.findAllByResourceId(resourceId).size();
+        List<BookingRequestEntity> list =bookingRequestRepository.findAllByResourceId(resourceId);
+        for (int i=0;i<k;i++){
+            BookingRequestResponse requestResponse=convertToBookingRequestResponse(list.get(i));
+            requestResponseList.add(requestResponse);
+        }
+        return requestResponseList;
+
     }
 }
