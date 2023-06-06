@@ -77,22 +77,22 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
     @Override
     public Integer createReleventResourceAllocation(Integer bookingRequestID) {
 
-        BookingRequestEntity releventBookingRequest = bookingRequestRepository.findById(bookingRequestID).orElse(null);
-        releventBookingRequest.setStatus("Accepted");
+        BookingRequestEntity relevantBookingRequest = bookingRequestRepository.findById(bookingRequestID).orElse(null);
+        relevantBookingRequest.setStatus("Accepted");
         ResourceAllocationEntity resourceAllocationEntity = new ResourceAllocationEntity();
-        resourceAllocationEntity.setResourceId(releventBookingRequest.getResourceId());
-        resourceAllocationEntity.setRequesterUserId(releventBookingRequest.getRequesterUserId());
-        resourceAllocationEntity.setRequestersManagersUserId(releventBookingRequest.getRequestersManagersUserId());
-        resourceAllocationEntity.setCompanyId(releventBookingRequest.getCompanyId());
-        resourceAllocationEntity.setRequiredDate(releventBookingRequest.getRequiredDate());
-        resourceAllocationEntity.setStartTime(releventBookingRequest.getStartTime());
-        resourceAllocationEntity.setEndTime(releventBookingRequest.getEndTime());
+        resourceAllocationEntity.setResourceId(relevantBookingRequest.getResourceId());
+        resourceAllocationEntity.setRequesterUserId(relevantBookingRequest.getRequesterUserId());
+        resourceAllocationEntity.setRequestersManagersUserId(relevantBookingRequest.getRequestersManagersUserId());
+        resourceAllocationEntity.setCompanyId(relevantBookingRequest.getCompanyId());
+        resourceAllocationEntity.setRequiredDate(relevantBookingRequest.getRequiredDate());
+        resourceAllocationEntity.setStartTime(relevantBookingRequest.getStartTime());
+        resourceAllocationEntity.setEndTime(relevantBookingRequest.getEndTime());
         resourceAllocationEntity.setActualEndTime(null);
-        resourceAllocationEntity.setBookingRequestEntity(releventBookingRequest);
+        resourceAllocationEntity.setBookingRequestEntity(relevantBookingRequest);
 
         conditionService.setConditionFkInResourceAllocationTable(resourceAllocationEntity);
 
-        resourceAllocatedCostService.createResourceAllocatedCost(resourceAllocationEntity, releventBookingRequest.getResourceId());
+        resourceAllocatedCostService.createResourceAllocatedCost(resourceAllocationEntity, relevantBookingRequest.getResourceId());
 
         return resourceAllocationRepository.save(resourceAllocationEntity).getId();
     }
@@ -141,50 +141,6 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
     }
 
 
-//    @Override
-//    public void sendEmail() {
-//        createEmail("anishath12@gmail.com","Notification","accepted");//email 1
-//        createEmail("anishath12@gmail.com","Notification","rejected");//email 2
-//
-//    }
-//
-//    @Override
-//    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status) {
-//        String userEmail=userRepository.findEmailByUserId(userId);
-//        String resourceManagerEmail=userRepository.findEmailByUserId(resourceManagerId);
-//
-//        //status==1 means accepted
-//        if(status==1){
-//            createEmail(userEmail,"subject","body");
-//            createEmail(resourceManagerEmail,"subject","body");
-//        }
-//        //status==-1 means rejected
-//        else if(status==-1){
-//            createEmail(userEmail,"subject","body");
-//            createEmail(resourceManagerEmail,"subject","body");
-//        }
-//
-//        return 1;
-//    }
-//
-//    @Override
-//    public Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime) {
-//        String userEmail=userRepository.findEmailByUserId(userId);
-//        String resourceManagerEmail=userRepository.findEmailByUserId(resourceManagerId);
-//
-//        //status==1 means accepted
-//        if(status==1){
-//            createEmail(userEmail,"subject","body");
-//            createEmail(resourceManagerEmail,"subject","body");
-//        }
-//        //status==-1 means rejected
-//        else if(status==-1){
-//            createEmail(userEmail,"subject","body");
-//            createEmail(resourceManagerEmail,"subject","body");
-//        }
-//
-//        return 1;
-//    }
 
 
     @Override
@@ -249,6 +205,13 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
             );
         }
 
+        return 1;
+    }
+
+    @Override
+    public Integer rejectRelevantBookingRequest(Integer bookingRequestID) {
+        BookingRequestEntity relevantBookingRequest = bookingRequestRepository.findById(bookingRequestID).orElse(null);
+        relevantBookingRequest.setStatus("Rejected");
         return 1;
     }
 }

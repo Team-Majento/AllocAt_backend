@@ -11,21 +11,7 @@ import java.time.LocalTime;
 public class SendEmailNotificationLogic {
     @Autowired
     private ResourceAllocationService resourceAllocationService;
-//    public void sendEmail() {
-//        resourceAllocationService.sendEmail();
-//    }
-//
-//
-//
-//    public Integer sendNotificationEmail(String authorization, Integer userId, Integer resourceManagerId, Integer status){
-//
-//        return resourceAllocationService.sendNotificationEmail(userId,resourceManagerId,status);
-//    }
-//
-//    public Integer sendNotificationEmail(String authorization, Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime) {
-//        return resourceAllocationService.sendNotificationEmail(userId,resourceManagerId,status,requiredDate,startTime,endTime);
-//
-//    }
+
 
     public Integer sendNotificationEmail(String authorization, Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId) {
          return  resourceAllocationService.sendNotificationEmail(userId,resourceManagerId,status,requiredDate,startTime,endTime,resourceId);

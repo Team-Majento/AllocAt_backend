@@ -170,6 +170,27 @@ public class ResourceAllocationController {
     }
 
 
+    @CrossOrigin
+    @PostMapping("reject/{bookingRequestID}")
+    public ResponseEntity<Integer> rejectBookingRequest(
+            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
+            @PathVariable("bookingRequestID") Integer bookingRequestID, UriComponentsBuilder builder) {
+
+        ResponseEntity<Integer> responseEntity = null;
+        /*logger.info("Create resourceAllocation request is received.");
+        logger.debug("Create resourceAllocation request" + resourceAllocation.toString());*/
+
+        Integer resourceAllocationId = resourceAllocationApi.rejectRelevantBookingRequest(AccessTokenUtil.getBearerToken("authorization"),
+                bookingRequestID);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(builder.path("resourceAllocation/{resourceAllocationId}").buildAndExpand(resourceAllocationId).toUri());
+
+        responseEntity = new ResponseEntity<Integer>(resourceAllocationId, headers, HttpStatus.CREATED);
+        return responseEntity;
+    }
+
 
 
 

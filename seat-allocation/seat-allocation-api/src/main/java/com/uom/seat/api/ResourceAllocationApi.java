@@ -16,13 +16,8 @@ public interface ResourceAllocationApi {
     Page<ResourceAllocationResponse> getAllResourceAllocationsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId);
 
 
-    //////////////////////////////////
-//    void sendEmail();
-//
-//    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status);
-//
-//
-//    Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status, Integer requiredDate, Integer startTime, Integer endTime);
 
     Integer sendNotificationEmails(String authorization, Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId);
+
+    Integer rejectRelevantBookingRequest(String authorization, Integer bookingRequestID);
 }
