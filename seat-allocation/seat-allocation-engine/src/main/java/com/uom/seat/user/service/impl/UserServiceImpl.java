@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
 
             UserEntity testUser3 = new UserEntity();
             testUser3.setFirstName("Nishath");
-            testUser3.setXid("bdvjbdgjsbhksnks");
+            testUser3.setXid("bdvjbdgjsbhksnk");
             testUser3.setMiddleName("ahamed");
             testUser3.setLastName("Magdalène");
             testUser3.setGender('M');
@@ -185,7 +185,7 @@ public class UserServiceImpl implements UserService {
             testUser3.setPassword(getEncodedPassword("def"));
             testUser3.setUserId(3);
             testUser3.setUserName("Nishath");
-            testUser3.setUserType(2);
+            testUser3.setUserType(3);
             testUser3.setActiveStatus(true);
             testUser3.setAddress("231 Thackeray Circle");
             testUser3.setContactNo("+94 74 092 6044");

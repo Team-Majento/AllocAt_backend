@@ -13,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -39,7 +40,9 @@ public class ResourceAllocationController {
             @ApiResponse(code = 400, message = "Invalid API argument.")
             // @formatter:on
     })
+
     @PostMapping()
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Integer> registerResourceAllocation(
            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
@@ -63,6 +66,7 @@ public class ResourceAllocationController {
 
     @CrossOrigin
     @PostMapping("accept/{bookingRequestID}")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Integer> acceptResourceAllocation(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
@@ -115,39 +119,10 @@ public class ResourceAllocationController {
     }
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    @GetMapping("/send-email")
-//    public void sendEmail(){
-//           resourceAllocationApi.sendEmail();
-//    }
-//
-//
-//    @ApiOperation(value="Send notification email to employee and relevant manager",response = ResourceAllocationResponse.class,produces = "application/json")
-//    @CrossOrigin
-//    @GetMapping("/send-notification-email/{userId}/{resourceManagerId}/{status}")
-//    public ResponseEntity<Integer> sendNotificationEmails(
-//            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
-//            //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
-//            @PathVariable("userId") Integer userId,@PathVariable("resourceManagerId") Integer resourceManagerId,@PathVariable("status") Integer status, UriComponentsBuilder builder) {
-//
-//        ResponseEntity<Integer> responseEntity = null;
-//        /*logger.info("Create resourceAllocation request is received.");
-//        logger.debug("Create resourceAllocation request" + resourceAllocation.toString());*/
-//
-//        Integer resourceAllocationId = resourceAllocationApi.sendNotificationEmails(AccessTokenUtil.getBearerToken("authorization"),
-//                userId,resourceManagerId,status);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setLocation(builder.path("resourceAllocation/{resourceAllocationId}").buildAndExpand(resourceAllocationId).toUri());
-//
-//        responseEntity = new ResponseEntity<Integer>(resourceAllocationId, headers, HttpStatus.CREATED);
-//        return responseEntity;
-//    }
-
     @ApiOperation(value="Send notification email to employee and relevant manager",response = ResourceAllocationResponse.class,produces = "application/json")
     @CrossOrigin
     @GetMapping("/send-notification-email/{userId}/{resourceManagerId}/{status}/{requiredDate}/{startTime}/{endTime}/{resourceId}")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Integer> sendNotificationEmails(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
@@ -172,6 +147,7 @@ public class ResourceAllocationController {
 
     @CrossOrigin
     @PostMapping("reject/{bookingRequestID}")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Integer> rejectBookingRequest(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,

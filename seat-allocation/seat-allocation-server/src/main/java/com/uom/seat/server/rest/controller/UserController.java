@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -49,6 +50,7 @@ public class UserController {
             // @formatter:on
     })
     @PostMapping()
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Integer> registerUser(
          //   @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @ApiParam(value = "JSON format of the user request.", required = true) @RequestBody final UserRequest user,
@@ -73,7 +75,7 @@ public class UserController {
     @ApiOperation(value = "get user by id.", response = UserResponse.class, produces = "application/json")
     @CrossOrigin
     @GetMapping("/get/{userId}")
-    public ResponseEntity<UserResponse> getCompany(
+    public ResponseEntity<UserResponse> getUser(
            // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userId") final Integer userId) {
 
@@ -89,7 +91,7 @@ public class UserController {
     @ApiOperation(value = "Update user by userId.", response = UserResponse.class, produces = "application/json")
     @CrossOrigin
     @PutMapping("/update/{userId}")
-    public ResponseEntity<UserResponse> getUser(
+    public ResponseEntity<UserResponse> updateUser(
             //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("userId") final Integer userId, @RequestBody final UserRequest userRequest) {
 
@@ -120,6 +122,7 @@ public class UserController {
 
 
     @ApiOperation(value="Delete user by ID",response = ResourceResponse.class,produces = "application/json")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     @DeleteMapping("{userId}")
     public ResponseEntity<Boolean> deleteUser(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,

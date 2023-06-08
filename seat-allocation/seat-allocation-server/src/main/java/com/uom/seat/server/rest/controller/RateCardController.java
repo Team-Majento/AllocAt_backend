@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -32,6 +33,7 @@ public class RateCardController {
             // @formatter:on
     })
     @PostMapping("{resourceId}/rateCard")
+    @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
     public ResponseEntity<Integer> registerRateCard(
             //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
             @ApiParam(value = "JSON format of the rate card request.", required = true) @RequestBody final RateCardRequest rateCard,
@@ -70,6 +72,7 @@ public class RateCardController {
 
     @ApiOperation(value = "Update rateCard by id.", response = RateCardResponse.class, produces = "application/json")
     @PutMapping("{rateCardId}")
+    @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
     public ResponseEntity<RateCardResponse> updateRateCard(   // ***  update??
                                                               //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
                                                               @PathVariable("rateCardId") final Integer rateCardId, @RequestBody final RateCardRequest rateCard) {
@@ -84,6 +87,7 @@ public class RateCardController {
 
     @ApiOperation(value = "Delete RateCard by ID", response = RateCardResponse.class, produces = "application/json")
     @DeleteMapping("{rateCardId}")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Boolean> deleteResource(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("rateCardId") final Integer rateCardId) {

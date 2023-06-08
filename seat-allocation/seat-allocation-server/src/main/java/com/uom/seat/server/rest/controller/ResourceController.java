@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -38,6 +39,7 @@ public class ResourceController {
             // @formatter:on
     })
     @PostMapping("{companyId}/resource")
+    @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
     public ResponseEntity<Integer> registerResource(
             //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
             @ApiParam(value = "JSON format of the resource request.", required = true) @RequestBody final ResourceRequest resource,
@@ -89,7 +91,8 @@ public class ResourceController {
 
     @ApiOperation(value = "Update resource by id.", response = ResourceResponse.class, produces = "application/json")
     @PutMapping("/resources/{resourceId}")
-    public ResponseEntity<ResourceResponse> getResource(   // ***  update??
+    @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
+    public ResponseEntity<ResourceResponse> updateResource(   // ***  update??
                                                            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
                                                            @PathVariable("resourceId") final Integer resourceId, @RequestBody final ResourceRequest resource) {
 
@@ -121,6 +124,7 @@ public class ResourceController {
 
     @ApiOperation(value = "Delete Resource by ID", response = ResourceResponse.class, produces = "application/json")
     @DeleteMapping("{resourceId}")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Boolean> deleteResource(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("resourceId") final Integer resourceId) {

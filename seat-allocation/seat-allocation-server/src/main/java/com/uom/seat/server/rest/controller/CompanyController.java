@@ -42,6 +42,7 @@ public class CompanyController {
 			// @formatter:on
 	})
 	@PostMapping()
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	public ResponseEntity<String> registerOrganization(
 //			@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
 			@ApiParam(value = "JSON format of the company request.", required = true) @RequestBody final CompanyRequest company,
@@ -68,7 +69,6 @@ public class CompanyController {
 
 
 	@GetMapping("{companyId}")
-	@PreAuthorize("hasAuthority('ROLE_admin')")
 	public ResponseEntity<CompanyResponse> getCompany(
 		@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
 			@PathVariable("companyId") final Integer companyId) {
@@ -83,8 +83,9 @@ public class CompanyController {
 	}
 	
 	@ApiOperation(value = "Update organization by id.", response = CompanyResponse.class, produces = "application/json")
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@PutMapping("{companyId}")
-	public ResponseEntity<CompanyResponse> getCompany(
+	public ResponseEntity<CompanyResponse> updateCompany(
 			//@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
 			@PathVariable("companyId") final Integer companyId, @RequestBody final CompanyRequest company) {
 
@@ -97,6 +98,7 @@ public class CompanyController {
 	}
 
 	@ApiOperation(value="Delete Company by ID",response = ResourceResponse.class,produces = "application/json")
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@DeleteMapping("{companyId}")
 	public ResponseEntity<Boolean> deleteCompany(
 			//  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
