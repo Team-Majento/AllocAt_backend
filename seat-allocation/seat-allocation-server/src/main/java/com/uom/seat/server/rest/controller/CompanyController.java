@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -64,9 +65,12 @@ public class CompanyController {
 	}
 	
 	@ApiOperation(value = "Get organization by id.", response = CompanyResponse.class, produces = "application/json")
+
+
 	@GetMapping("{companyId}")
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	public ResponseEntity<CompanyResponse> getCompany(
-		//	@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+		@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
 			@PathVariable("companyId") final Integer companyId) {
 
 		ResponseEntity<CompanyResponse> responseEntity = null;

@@ -5,6 +5,7 @@ import com.uom.seat.api.UserApi;
 import com.uom.seat.resource.dto.ResourceResponse;
 import com.uom.seat.user.dto.UserRequest;
 import com.uom.seat.user.dto.UserResponse;
+import com.uom.seat.user.service.UserService;
 import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
@@ -15,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.annotation.PostConstruct;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,6 +30,16 @@ public class UserController {
 
     @Autowired
     private UserApi userApi;
+
+    @Autowired
+    private UserService userService;
+
+    @PostConstruct
+    public void initRolesAndUsers(){
+        userService.initRolesAndUser();
+    }
+
+
 
     @ApiOperation(value = "Register user.", response = Integer.class, consumes = "application/json")
     @ApiResponses(value = {

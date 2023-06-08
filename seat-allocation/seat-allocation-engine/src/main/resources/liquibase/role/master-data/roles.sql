@@ -1,0 +1,4 @@
+-- INSERT INTO roles(role_name,description)
+-- VALUES ('admin','admin role for application'),
+-- ('resourceManager','resourceManager role for application'),
+-- ('employee','employee role for application')

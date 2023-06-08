@@ -19,10 +19,14 @@
 	<include file="review/schema/review-v1.0.0.xml" relativeToChangelogFile="true"/>
 	<include file="condition/schema/condition-v1.0.0.xml" relativeToChangelogFile="true"/>
 	<include file="resourceAllocatedCost/schema/resourceAllocatedCost-v1.0.0.xml" relativeToChangelogFile="true"/>
+	<include file="role/schema/roles-v1.0.0.xml" relativeToChangelogFile="true"/>
+	<include file="user_role/schema/user_role-v1.0.0.xml" relativeToChangelogFile="true"/>
+
 
 	<include file="report/schema/companyWiseReportSchema-v1.0.0.xml" relativeToChangelogFile="true"/>
 
 	<include file="report/schema/generalReportSchema-v1.0.0.xml" relativeToChangelogFile="true"/>
+
 
 
 

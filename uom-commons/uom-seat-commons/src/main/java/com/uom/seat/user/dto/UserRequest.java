@@ -1,6 +1,7 @@
 package com.uom.seat.user.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public class UserRequest implements Serializable {
 

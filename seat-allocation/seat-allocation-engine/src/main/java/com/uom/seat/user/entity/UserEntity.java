@@ -1,9 +1,12 @@
 package com.uom.seat.user.entity;
 
 
+import com.uom.seat.Role.entity.RoleEntity;
 import org.hibernate.annotations.NaturalId;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -121,7 +124,9 @@ public class UserEntity {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
+
     }
 
     public String getEmail() {

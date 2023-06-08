@@ -18,4 +18,6 @@ public interface UserService {
     Boolean userLogin(String userName, String password);
 
     UserResponse getUserByUserName(String username);
+
+    void initRolesAndUser();
 }
