@@ -27,4 +27,7 @@ public interface UserRepository  extends JpaRepository<UserEntity,Integer> {
 
     @Query("select u.userName from UserEntity u where u.userId= ?1")
     String findUserNameByUserId(Integer userId);
+
+    @Query("select count(u) from UserEntity u where u.managersEID= ?1")
+    Integer getAllSubordinatesCount(Integer managerEid);
 }

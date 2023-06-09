@@ -169,6 +169,37 @@ public class UserController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "get number of users", response = UserResponse.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getUsersCount")
+    public ResponseEntity<Integer> getAllUsersCount()
+            //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+       {
+
+        ResponseEntity<Integer> responseEntity = null;
+        logger.info("getAllUsersCount request is received.");
+
+        Integer count = userApi.getAllUsersCount();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+
+    @ApiOperation(value = "etAllSubordinatesCount", response = UserResponse.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getAllSubordinatesCount/{managerEid}")
+    public ResponseEntity<Integer> getAllSubordinatesCount( @PathVariable("managerEid")  Integer managerEid)
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+        logger.info("getAllSubordinatesCount request is received.");
+
+        Integer subCount = userApi.getAllSubordinatesCount(managerEid);
+        responseEntity = new ResponseEntity<Integer>(subCount, HttpStatus.OK);
+        return responseEntity;
+    }
+
+
 
 
 

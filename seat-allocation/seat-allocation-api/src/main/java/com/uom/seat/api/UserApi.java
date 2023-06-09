@@ -18,4 +18,8 @@ public interface UserApi {
     Boolean userLogin(String userName, String password);
 
     UserResponse getUserByUserName(String authorization, String username);
+
+    Integer getAllUsersCount();
+
+    Integer getAllSubordinatesCount(Integer managerEid);
 }

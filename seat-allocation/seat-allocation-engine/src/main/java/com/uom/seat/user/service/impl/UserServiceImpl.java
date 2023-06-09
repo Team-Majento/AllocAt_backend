@@ -197,6 +197,16 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Integer getAllUsersCount() {
+        return Math.toIntExact(userRepository.count());
+
+    }
+
+    @Override
+    public Integer getAllSubordinatesCount(Integer managerEid) {
+        return userRepository.getAllSubordinatesCount(managerEid);
+    }
 
 
     public String getEncodedPassword(String password){

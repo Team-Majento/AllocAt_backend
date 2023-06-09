@@ -20,4 +20,8 @@ public interface UserService {
     UserResponse getUserByUserName(String username);
 
     void initRolesAndUser();
+
+    Integer getAllUsersCount();
+
+    Integer getAllSubordinatesCount(Integer managerEid);
 }

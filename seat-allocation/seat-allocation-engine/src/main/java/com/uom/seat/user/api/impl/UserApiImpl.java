@@ -7,6 +7,7 @@ import com.uom.seat.user.logic.UserCreationLogic;
 import com.uom.seat.user.logic.UserDeletionLogic;
 import com.uom.seat.user.logic.UserRetrievalLogic;
 import com.uom.seat.user.logic.UserUpdateLogic;
+import com.uom.seat.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class UserApiImpl implements UserApi {
 
     @Autowired
     private UserDeletionLogic userDeletionLogic;
+
+    @Autowired
+    private UserService userService;
 
 
 
@@ -67,5 +71,15 @@ public class UserApiImpl implements UserApi {
     public UserResponse getUserByUserName(String authorization, String username) {
         return userRetrievalLogic.getUserByUserName(username);
 
+    }
+
+    @Override
+    public Integer getAllUsersCount() {
+        return userService.getAllUsersCount();
+    }
+
+    @Override
+    public Integer getAllSubordinatesCount(Integer managerEid) {
+        return userService.getAllSubordinatesCount(managerEid);
     }
 }
