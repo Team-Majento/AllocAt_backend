@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("Companies/resources")
 @Api(description = "The rateCard API for rate card management tasks")
 public class RateCardController {
