@@ -14,4 +14,6 @@ public interface CompanyService {
     Boolean deleteCompany(Integer companyId);
 
     List<CompanyResponse> getAllCompanies();
+
+    Integer getAllCompanyCount();
 }

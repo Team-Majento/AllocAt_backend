@@ -127,4 +127,20 @@ public class CompanyController {
 	}
 
 
+	@ApiOperation(value = "get number of Companies", response =Integer.class, produces = "application/json")
+	@CrossOrigin
+	@GetMapping("/getCompanyCount")
+	public ResponseEntity<Integer> getAllCompanyCount()
+	//@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+	{
+
+		ResponseEntity<Integer> responseEntity = null;
+		logger.info("getAllCompanyCount request is received.");
+
+		Integer count = companyApi.getAllCompanyCount();
+		responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+		return responseEntity;
+	}
+
+
 }

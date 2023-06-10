@@ -31,4 +31,6 @@ public interface ResourceApi {
     List<ReviewResponse> getReviews(String authorization, Integer resourceId);
 
     Page<ResourceResponse> getAllFilteredResources(String authorization, Integer page, Integer size, Integer companyId);
+
+    Integer getAllResourceCount();
 }

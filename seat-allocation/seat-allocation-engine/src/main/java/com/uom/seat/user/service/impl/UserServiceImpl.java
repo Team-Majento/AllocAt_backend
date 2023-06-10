@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService {
             testUser1.setMiddleName("Yeates");
             testUser1.setLastName("Cléopatre");
             testUser1.setGender('M');
-            testUser1.setImageURL("imageURL_zerk");
+            testUser1.setImageURL("https://dms.uom.lk/s/Kdg5KNMTwwGBJi9/preview");
             testUser1.setManagersEID(1);
             testUser1.setPassword(getEncodedPassword("abcd"));
             testUser1.setUserId(1);
@@ -159,7 +159,7 @@ public class UserServiceImpl implements UserService {
             testUser2.setMiddleName("Heakey");
             testUser2.setLastName("Magdalène");
             testUser2.setGender('f');
-            testUser2.setImageURL("imageURL_garret");
+            testUser2.setImageURL("https://dms.uom.lk/s/x5TzoN9JHRLnbCc/preview");
             testUser2.setManagersEID(1);
             testUser2.setPassword(getEncodedPassword("xyz"));
             testUser2.setUserId(2);
@@ -180,7 +180,7 @@ public class UserServiceImpl implements UserService {
             testUser3.setMiddleName("ahamed");
             testUser3.setLastName("Magdalène");
             testUser3.setGender('M');
-            testUser3.setImageURL("imageURL_nishahth");
+            testUser3.setImageURL("https://dms.uom.lk/s/iMWzByYHpYNdZGB/preview");
             testUser3.setManagersEID(1);
             testUser3.setPassword(getEncodedPassword("def"));
             testUser3.setUserId(3);

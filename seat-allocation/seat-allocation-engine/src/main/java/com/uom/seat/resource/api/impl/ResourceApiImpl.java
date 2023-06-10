@@ -7,6 +7,7 @@ import com.uom.seat.resource.logic.ResourceCreationLogic;
 import com.uom.seat.resource.logic.ResourceDeletionLogic;
 import com.uom.seat.resource.logic.ResourceRetrievalLogic;
 import com.uom.seat.resource.logic.ResourceUpdateLogic;
+import com.uom.seat.resource.service.ResourceService;
 import com.uom.seat.review.dto.ReviewResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,10 @@ public class ResourceApiImpl implements ResourceApi {
 
     @Autowired
     private ResourceDeletionLogic resourceDeletionLogic;
+
+    @Autowired
+    private ResourceService resourceService;
+
 
     @Override
     public Integer createResource(String accessToken, ResourceRequest resource,Integer companyId) {
@@ -71,5 +76,10 @@ public class ResourceApiImpl implements ResourceApi {
     @Override
     public Page<ResourceResponse> getAllFilteredResources(String authorization, Integer page, Integer size, Integer companyId) {
         return resourceRetrievalLogic.getAllFilteredResources(page,size,companyId);
+    }
+
+    @Override
+    public Integer getAllResourceCount() {
+        return resourceService.getAllResourceCount();
     }
 }

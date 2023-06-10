@@ -54,4 +54,5 @@ public interface CompanyApi {
 
 	public List<CompanyResponse> getAllCompanis(String accessToken);
 
+    Integer getAllCompanyCount();
 }

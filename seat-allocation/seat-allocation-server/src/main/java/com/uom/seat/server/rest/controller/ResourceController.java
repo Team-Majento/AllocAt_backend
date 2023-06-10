@@ -5,6 +5,7 @@ import com.uom.seat.api.ResourceApi;
 import com.uom.seat.resource.dto.ResourceRequest;
 import com.uom.seat.resource.dto.ResourceResponse;
 import com.uom.seat.review.dto.ReviewResponse;
+import com.uom.seat.user.dto.UserResponse;
 import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
@@ -154,6 +155,23 @@ public class ResourceController {
 
         Page<ResourceResponse> pageDtos = resourceApi.getAllFilteredResources(AccessTokenUtil.getBearerToken("authorization"), page, size,companyId);
         responseEntity = new ResponseEntity<Page<ResourceResponse>>(pageDtos, HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount")
+    public ResponseEntity<Integer> getAllResourcesCount()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+        logger.info("getAllResourceCount request is received.");
+
+        Integer count = resourceApi.getAllResourceCount();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
         return responseEntity;
     }
 

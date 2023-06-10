@@ -97,4 +97,9 @@ public class CompanyServiceImpl implements CompanyService {
 		}
 		return companyResponseList;
 	}
+
+	@Override
+	public Integer getAllCompanyCount() {
+		return Math.toIntExact(companyRepository.count());
+	}
 }

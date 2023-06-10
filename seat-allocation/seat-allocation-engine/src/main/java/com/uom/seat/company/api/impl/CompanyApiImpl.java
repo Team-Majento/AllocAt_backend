@@ -1,6 +1,7 @@
 package com.uom.seat.company.api.impl;
 
 import com.uom.seat.company.logic.CompanyDeletionLogic;
+import com.uom.seat.company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -31,6 +32,11 @@ public class CompanyApiImpl implements CompanyApi {
 
 	@Autowired
 	private CompanyDeletionLogic companyDeletionLogic;
+
+
+	@Autowired
+	private CompanyService companyService;
+
 
 	@Override
 	public Integer createCompany(String accessToken, CompanyRequest company) {
@@ -72,5 +78,10 @@ public class CompanyApiImpl implements CompanyApi {
 	@Override
 	public List<CompanyResponse> getAllCompanis(String accessToken) {
 		return companyRetrivalLogic.getAllCompanies(accessToken);
+	}
+
+	@Override
+	public Integer getAllCompanyCount() {
+		return companyService.getAllCompanyCount();
 	}
 }

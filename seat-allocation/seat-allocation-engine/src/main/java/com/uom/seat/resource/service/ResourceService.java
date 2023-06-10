@@ -21,4 +21,6 @@ public interface ResourceService {
     List<ReviewResponse> getAllReviews(Integer resourceId);
 
     Page<ResourceResponse> getAllFilteredResources(Integer page, Integer size, Integer companyId);
+
+    Integer getAllResourceCount();
 }

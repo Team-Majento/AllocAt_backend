@@ -78,7 +78,10 @@ public class ResourceServiceImpl implements ResourceService {
         return new PageImpl<ResourceResponse>(dtoList,pageable,pageEntities.getTotalElements());
     }
 
-
+    @Override
+    public Integer getAllResourceCount() {
+        return Math.toIntExact(resourceRepository.count());
+    }
 
 
     @Override
