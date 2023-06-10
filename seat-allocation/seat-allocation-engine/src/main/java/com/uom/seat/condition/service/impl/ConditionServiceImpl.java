@@ -43,25 +43,26 @@ public class ConditionServiceImpl implements ConditionService {
         return entity;
     }
 
+
     ///////////////////// SET UP CONDITION ///////////////////////////////
-    @Override
-    public void setConditionFkInResourceAllocationTable(ResourceAllocationEntity resourceAllocationEntity){
-        januaryFirst(resourceAllocationEntity);
-    }
-
-    public Boolean januaryFirst(ResourceAllocationEntity resourceAllocationEntity) {
-
-        Integer day = resourceAllocationEntity.getRequiredDate().getDayOfMonth();
-        String month = String.valueOf(resourceAllocationEntity.getRequiredDate().getMonth());
-        if (day == 1 && month == "JANUARY") {
-            ConditionEntity condition = conditionRepository.findById(1).get();
-            resourceAllocationEntity.setConditionEntity(condition);
-            return true;
-        }
-        else {
-            return  false;
-        }
-    }
+//    @Override
+//    public void setConditionFkInResourceAllocationTable(ResourceAllocationEntity resourceAllocationEntity){
+//        januaryFirst(resourceAllocationEntity);
+//    }
+//
+//    public Boolean januaryFirst(ResourceAllocationEntity resourceAllocationEntity) {
+//
+//        Integer day = resourceAllocationEntity.getRequiredDate().getDayOfMonth();
+//        String month = String.valueOf(resourceAllocationEntity.getRequiredDate().getMonth());
+//        if (day == 1 && month == "JANUARY") {
+//            ConditionEntity condition = conditionRepository.findById(1).get();
+//            resourceAllocationEntity.setConditionEntity(condition);
+//            return true;
+//        }
+//        else {
+//            return  false;
+//        }
+//    }
 
     ////////////////////////////////////////////////////////////////////////
 

@@ -4,6 +4,7 @@ package com.uom.seat.condition.entity;
 import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,11 +21,22 @@ public class ConditionEntity {
     @Column(name = "discount_rate")
     private Double discount_rate;
 
+    @Column(name = "date")
+    private LocalDate date;
+
+
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "conditionEntity")
     private List<ResourceAllocationEntity> resourceAllocationEntity;
 
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public List<ResourceAllocationEntity> getResourceAllocationEntity() {
         return resourceAllocationEntity;

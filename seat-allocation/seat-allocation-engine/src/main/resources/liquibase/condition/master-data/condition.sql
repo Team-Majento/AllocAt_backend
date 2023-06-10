@@ -1,1 +1,1 @@
-insert into condition_tbl(condition_name, discount_rate) values("january first",10)
+-- insert into condition_tbl(condition_name, discount_rate) values("january first",10)

@@ -1,8 +1,20 @@
 package com.uom.seat.condition.dto;
 
+import java.time.LocalDate;
+
 public class ConditionRequest {
     private String condition_name;
     private Double discount_rate;
+
+    private LocalDate date;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public String getCondition_name() {
         return condition_name;

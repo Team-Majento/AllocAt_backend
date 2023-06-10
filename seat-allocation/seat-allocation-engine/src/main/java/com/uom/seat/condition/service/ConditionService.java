@@ -7,7 +7,7 @@ import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
 public interface ConditionService {
     Integer createCondition(ConditionRequest conditionRequest);
 
-    void setConditionFkInResourceAllocationTable(ResourceAllocationEntity resourceAllocationEntity);
+//    void setConditionFkInResourceAllocationTable(ResourceAllocationEntity resourceAllocationEntity);
 
 
 }

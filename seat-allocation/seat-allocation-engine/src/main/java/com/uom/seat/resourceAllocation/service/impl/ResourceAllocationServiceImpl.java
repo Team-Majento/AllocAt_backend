@@ -90,7 +90,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
         resourceAllocationEntity.setActualEndTime(null);
         resourceAllocationEntity.setBookingRequestEntity(relevantBookingRequest);
 
-        conditionService.setConditionFkInResourceAllocationTable(resourceAllocationEntity);
+//        conditionService.setConditionFkInResourceAllocationTable(resourceAllocationEntity);
 
         resourceAllocatedCostService.createResourceAllocatedCost(resourceAllocationEntity, relevantBookingRequest.getResourceId());
 
