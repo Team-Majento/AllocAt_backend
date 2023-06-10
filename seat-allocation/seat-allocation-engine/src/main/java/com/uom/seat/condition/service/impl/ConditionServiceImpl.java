@@ -2,20 +2,17 @@ package com.uom.seat.condition.service.impl;
 
 
 import com.uom.seat.condition.dto.ConditionRequest;
+import com.uom.seat.condition.dto.ConditionResponse;
 import com.uom.seat.condition.entity.ConditionEntity;
 import com.uom.seat.condition.repository.ConditionRepository;
 import com.uom.seat.condition.service.ConditionService;
-import com.uom.seat.resource.dto.ResourceRequest;
-import com.uom.seat.resource.entity.ResourceEntity;
 import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
-import com.uom.seat.resourceAllocation.repository.ResourceAllocationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ConditionServiceImpl implements ConditionService {
@@ -35,21 +32,16 @@ public class ConditionServiceImpl implements ConditionService {
 
     }
 
-    private ConditionEntity convertToConditionEntity(ConditionRequest conditionRequest) {
 
-        ConditionEntity entity = null;
-        entity = modelMapper.map(conditionRequest, ConditionEntity.class);
-
-        return entity;
-    }
 
 
     ///////////////////// SET UP CONDITION ///////////////////////////////
-//    @Override
-//    public void setConditionFkInResourceAllocationTable(ResourceAllocationEntity resourceAllocationEntity){
-//        januaryFirst(resourceAllocationEntity);
-//    }
-//
+    @Override
+    public void setConditionFkInResourceAllocationTable(ResourceAllocationEntity resourceAllocationEntity, String conditionName){
+           ConditionEntity condition = conditionRepository.findConditionByName(conditionName);
+           resourceAllocationEntity.setConditionEntity(condition);
+    }
+
 //    public Boolean januaryFirst(ResourceAllocationEntity resourceAllocationEntity) {
 //
 //        Integer day = resourceAllocationEntity.getRequiredDate().getDayOfMonth();
@@ -67,6 +59,27 @@ public class ConditionServiceImpl implements ConditionService {
     ////////////////////////////////////////////////////////////////////////
 
 
+    @Override
+    public List<ConditionResponse> getAllConditions() {
+        List<ConditionResponse> dtoList = new ArrayList<ConditionResponse>();
+       List<ConditionEntity> conditionEntities= conditionRepository.findAll();
+        conditionEntities.forEach(entity -> dtoList.add(convertToConditionResponse(entity)));
+        return dtoList;
+    }
 
+    private ConditionEntity convertToConditionEntity(ConditionRequest conditionRequest) {
+
+        ConditionEntity entity = null;
+        entity = modelMapper.map(conditionRequest, ConditionEntity.class);
+
+        return entity;
+    }
+    private ConditionResponse convertToConditionResponse(ConditionEntity conditionEntity) {
+
+        ConditionResponse dto = null;
+        dto = modelMapper.map(conditionEntity, ConditionResponse.class);
+        return dto;
+
+    }
 
 }

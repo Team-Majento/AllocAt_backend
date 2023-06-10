@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -75,7 +74,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 
     // ACCEPT RESOURCE BOOKING REQUEST
     @Override
-    public Integer createReleventResourceAllocation(Integer bookingRequestID) {
+    public Integer createRelevantResourceAllocation(Integer bookingRequestID, String conditionName) {
 
         BookingRequestEntity relevantBookingRequest = bookingRequestRepository.findById(bookingRequestID).orElse(null);
         relevantBookingRequest.setStatus("Accepted");
@@ -90,7 +89,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
         resourceAllocationEntity.setActualEndTime(null);
         resourceAllocationEntity.setBookingRequestEntity(relevantBookingRequest);
 
-//        conditionService.setConditionFkInResourceAllocationTable(resourceAllocationEntity);
+        conditionService.setConditionFkInResourceAllocationTable(resourceAllocationEntity,conditionName);
 
         resourceAllocatedCostService.createResourceAllocatedCost(resourceAllocationEntity, relevantBookingRequest.getResourceId());
 

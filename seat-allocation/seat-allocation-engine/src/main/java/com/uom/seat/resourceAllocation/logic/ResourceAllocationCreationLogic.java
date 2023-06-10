@@ -34,9 +34,9 @@ public class ResourceAllocationCreationLogic {
 
     }
 
-    public Integer createReleventResourceAllocation(String authorization, Integer bookingRequestID) {
+    public Integer createRelevantResourceAllocation(String authorization, Integer bookingRequestID, String conditionName) {
 
-        Integer id = resourceAllocationService.createReleventResourceAllocation(bookingRequestID);
+        Integer id = resourceAllocationService.createRelevantResourceAllocation(bookingRequestID,conditionName);
         logger.info("The resourceAllocation is created.");
 
         return id;

@@ -7,11 +7,10 @@ import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 public interface ResourceAllocationApi {
     Integer createResourceAllocation(String bearerToken, ResourceAllocationRequest  resourceAllocation);
-    Integer createReleventResourceAllocation(String authorization, Integer bookingRequestID);
+    Integer createRelevantResourceAllocation(String authorization, Integer bookingRequestID, String conditionName);
     Page<ResourceAllocationResponse> getAllResourceAllocations(String bearerToken, Integer page, Integer size);
     Page<ResourceAllocationResponse> getAllResourceAllocationsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId);
 

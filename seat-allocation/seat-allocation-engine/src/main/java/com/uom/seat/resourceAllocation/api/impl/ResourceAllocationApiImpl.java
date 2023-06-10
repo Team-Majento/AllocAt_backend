@@ -50,8 +50,8 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
 
 
     @Override
-    public Integer createReleventResourceAllocation(String authorization, Integer bookingRequestID) {
-        return resourceAllocationCreationLogic.createReleventResourceAllocation(authorization,bookingRequestID);
+    public Integer createRelevantResourceAllocation(String authorization, Integer bookingRequestID, String conditionName) {
+        return resourceAllocationCreationLogic.createRelevantResourceAllocation(authorization,bookingRequestID,conditionName);
     }
 
 
