@@ -31,7 +31,8 @@ public class ConditionController {
     @Autowired
     private ConditionApi conditionApi;
 
-    @PostMapping()
+    @CrossOrigin
+    @PostMapping("/add-condition")
     public ResponseEntity<Integer> registerCondition(
             //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
             @ApiParam(value = "JSON format of the resource request.", required = true) @RequestBody final ConditionRequest conditionRequest,
