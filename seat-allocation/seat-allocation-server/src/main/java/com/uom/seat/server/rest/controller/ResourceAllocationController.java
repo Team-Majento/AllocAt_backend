@@ -22,6 +22,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/resourceAllocaion")
 @Api(description = "The resourceAllocation API for resourceAllocation management tasks")
 
