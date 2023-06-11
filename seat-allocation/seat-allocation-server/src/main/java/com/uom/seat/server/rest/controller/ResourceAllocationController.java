@@ -189,6 +189,24 @@ public class ResourceAllocationController {
     }
 
 
+    @ApiOperation(value = "get all the resource allocations by resource Id ", response = ResourceAllocationResponse.class, produces = "application/json")
+    @GetMapping("allocations/{resourceId}")
+    public ResponseEntity<List<ResourceAllocationResponse>> getAllResourceAllocationsByResourceId(
+            @PathVariable("resourceId") final Integer resourceId
+            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+           // @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+          //  @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+    ){
+
+        ResponseEntity<List<ResourceAllocationResponse>> responseEntity = null;
+        logger.info("get all the resource allocations ByResourceId request is received.");
+        List<ResourceAllocationResponse> listOfResourceAllocations = resourceAllocationApi.getAllResourceAllocationsByResourceId(AccessTokenUtil.getBearerToken("authorization"),resourceId);
+
+        responseEntity = new ResponseEntity<List<ResourceAllocationResponse>>(listOfResourceAllocations, HttpStatus.OK);
+        return responseEntity;
+    }
+
+
 
 
 

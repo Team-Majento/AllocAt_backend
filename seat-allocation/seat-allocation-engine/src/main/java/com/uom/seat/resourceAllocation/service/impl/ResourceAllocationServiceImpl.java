@@ -213,4 +213,13 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
         relevantBookingRequest.setStatus("Rejected");
         return 1;
     }
+
+    @Override
+    public List<ResourceAllocationResponse> getAllResourceAllocationsByResourceId(Integer resourceId) {
+
+        List<ResourceAllocationEntity> entityList = resourceAllocationRepository. getAllResourceAllocationsByResourceId(resourceId);
+        List<ResourceAllocationResponse> dtoList = new ArrayList<ResourceAllocationResponse>();
+        entityList.forEach(entity -> dtoList.add(convertToResourceAllocationResponse(entity)));
+        return  dtoList;
+    }
 }

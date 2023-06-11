@@ -7,6 +7,7 @@ import com.uom.seat.resourceAllocation.logic.RejectRelevantBookingRequestLogic;
 import com.uom.seat.resourceAllocation.logic.ResourceAllocationCreationLogic;
 import com.uom.seat.resourceAllocation.logic.ResourceAllocationRetrievalLogic;
 import com.uom.seat.resourceAllocation.logic.SendEmailNotificationLogic;
+import com.uom.seat.resourceAllocation.service.ResourceAllocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 @Transactional(isolation = Isolation.REPEATABLE_READ)
@@ -30,6 +32,9 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
 
     @Autowired
     private ResourceAllocationRetrievalLogic resourceAllocationRetrievalLogic;
+
+    @Autowired
+    private ResourceAllocationService resourceAllocationService;
 
     @Override
     public Page<ResourceAllocationResponse> getAllResourceAllocations(String bearerToken, Integer page, Integer size) {
@@ -63,5 +68,10 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
     @Override
     public Integer rejectRelevantBookingRequest(String authorization, Integer bookingRequestID) {
         return rejectRelevantBookingRequestLogic.rejectRelevantBookingRequest(bookingRequestID);
+    }
+
+    @Override
+    public List<ResourceAllocationResponse> getAllResourceAllocationsByResourceId(String authorization, Integer resourceId) {
+        return resourceAllocationService.getAllResourceAllocationsByResourceId(resourceId);
     }
 }

@@ -1,5 +1,6 @@
 package com.uom.seat.resourceAllocation.repository;
 
+import com.uom.seat.resourceAllocation.dto.ResourceAllocationResponse;
 import com.uom.seat.resourceAllocation.entity.ResourceAllocationEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,4 +20,7 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
 
     @Query("select u from ResourceAllocationEntity u where u.requiredDate BETWEEN ?1 AND ?2 order by  u.companyId")
     List<ResourceAllocationEntity> findAllResourceAllocationsByDatesPlusSortByCompantID(LocalDate from_date, LocalDate to_date);
+
+    @Query("select u from ResourceAllocationEntity u where u.resourceId =?1  ")
+    List<ResourceAllocationEntity> getAllResourceAllocationsByResourceId(Integer resourceId);
 }

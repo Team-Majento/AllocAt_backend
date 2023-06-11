@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public interface ResourceAllocationService {
     Integer createResourceAllocation(ResourceAllocationRequest resourceAllocation);
@@ -21,4 +22,6 @@ public interface ResourceAllocationService {
     Integer sendNotificationEmail(Integer userId, Integer resourceManagerId, Integer status, LocalDate requiredDate, LocalTime startTime, LocalTime endTime, Integer resourceId);
 
     Integer rejectRelevantBookingRequest(Integer bookingRequestID);
+
+    List<ResourceAllocationResponse> getAllResourceAllocationsByResourceId(Integer resourceId);
 }
