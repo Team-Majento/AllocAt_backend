@@ -14,8 +14,8 @@ public interface ResourceRepository extends JpaRepository<ResourceEntity,Integer
 
     public ResourceEntity findByXid(String xid);
 
-    @Query(
-            value = "SELECT * FROM Resource u WHERE u.company_id= ?1",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM Resource u WHERE u.company_id= ?1", nativeQuery = true)
     Page<ResourceEntity> findByCompany(Integer company, PageRequest pageable);
+    @Query(value = "SELECT * FROM Resource u WHERE u.is_active=true", nativeQuery = true)
+    Page<ResourceEntity> findAllActiveResource(PageRequest pageable);
 }

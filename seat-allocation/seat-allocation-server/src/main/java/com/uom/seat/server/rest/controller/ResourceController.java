@@ -124,8 +124,8 @@ public class ResourceController {
     }
 
     @ApiOperation(value = "Delete Resource by ID", response = ResourceResponse.class, produces = "application/json")
-    @DeleteMapping("{resourceId}")
-    @PreAuthorize("hasAuthority('ROLE_admin')")
+    @DeleteMapping("delete/{resourceId}")
+   // @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Boolean> deleteResource(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             @PathVariable("resourceId") final Integer resourceId) {

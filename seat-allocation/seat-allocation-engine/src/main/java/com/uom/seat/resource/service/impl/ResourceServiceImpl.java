@@ -54,7 +54,8 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public Page<ResourceResponse> getAllResources(Integer page, Integer size) {
         PageRequest pageable= PageRequest.of(page,size);
-        Page<ResourceEntity> pageEntities=resourceRepository.findAll(pageable);
+       // Page<ResourceEntity> pageEntities=resourceRepository.findAll(pageable);
+        Page<ResourceEntity> pageEntities=resourceRepository.findAllActiveResource(pageable);
 
         List<ResourceEntity> entityList= pageEntities.getContent();
         List<ResourceResponse> dtoList = new ArrayList<ResourceResponse>();
