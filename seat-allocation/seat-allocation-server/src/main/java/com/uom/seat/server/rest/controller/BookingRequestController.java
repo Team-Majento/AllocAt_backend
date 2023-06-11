@@ -135,6 +135,39 @@ public class BookingRequestController {
         return responseEntity;
     }
 
+    @ApiOperation(value="Get number of rejected booking request",response = Integer.class,produces = "application/json")
+    @GetMapping("resource-booking-request/num-of-rejected-booking-request")
+    public ResponseEntity<Integer> getNumberOfRejectedBookingRequestAsNow(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<Integer> responseEntity = null;
+        Integer requests = bookingRequestApi.getNumberOfRejectedBookingRequestAsNow( AccessTokenUtil.getBearerToken("authorization"));
+        responseEntity=new ResponseEntity<Integer>(requests,HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+    @ApiOperation(value="Get number of  pending booking requests as now",response =Integer.class,produces = "application/json")
+    @GetMapping("resource-booking-request/num-of-pending-booking-request")
+    public ResponseEntity<Integer> getAllNumberOfPendingBookingRequest(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            //@PathVariable("resourceId") final Integer resourceId
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<Integer> responseEntity = null;
+       Integer numOfPendingRequest = bookingRequestApi.getAllNumberOfPendingBookingRequest( AccessTokenUtil.getBearerToken("authorization"));
+        responseEntity=new ResponseEntity<Integer>(numOfPendingRequest,HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
+
+
+
 
 
 }

@@ -19,4 +19,8 @@ public interface BookingRequestService {
 
 
     List<BookingRequestResponse> getALlBookingRequestsByResourceId(String authorization, Integer resourceId);
+
+    Integer getNumberOfRejectedBookingRequestAsNow();
+
+    Integer getAllNumberOfPendingBookingRequest();
 }

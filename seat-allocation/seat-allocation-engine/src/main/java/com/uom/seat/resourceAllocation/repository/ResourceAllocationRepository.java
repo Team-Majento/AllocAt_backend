@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -23,4 +24,13 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
 
     @Query("select u from ResourceAllocationEntity u where u.resourceId =?1  ")
     List<ResourceAllocationEntity> getAllResourceAllocationsByResourceId(Integer resourceId);
+
+    @Query("SELECT COUNT(u) FROM ResourceAllocationEntity u WHERE MONTH(u.requiredDate) = MONTH(CURRENT_DATE())")
+    Integer getAllResourceAllocationsByCurrentMonth();
+
+    @Query("SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(u.endTime, u.startTime)))) FROM ResourceAllocationEntity u WHERE u.requesterUserId = ?1")
+    LocalTime getTotalAllocationHoursUserWise(Integer userId);
+
+    @Query("SELECT u FROM ResourceAllocationEntity u WHERE u.requiredDate=CURRENT_DATE AND ( HOUR(CURRENT_TIMESTAMP) BETWEEN u.startTime AND u.endTime)")
+    List<ResourceAllocationEntity> getAllCurrentOngoingAllocations();
 }

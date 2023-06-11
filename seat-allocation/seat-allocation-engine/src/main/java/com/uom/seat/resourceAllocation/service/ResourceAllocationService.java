@@ -24,4 +24,10 @@ public interface ResourceAllocationService {
     Integer rejectRelevantBookingRequest(Integer bookingRequestID);
 
     List<ResourceAllocationResponse> getAllResourceAllocationsByResourceId(Integer resourceId);
+
+    Integer getAllResourceAllocationsByCurrentMonth();
+
+    LocalTime getTotalAllocationHoursUserWise(Integer userId);
+
+    List<ResourceAllocationResponse> getAllCurrentOngoingAllocations();
 }

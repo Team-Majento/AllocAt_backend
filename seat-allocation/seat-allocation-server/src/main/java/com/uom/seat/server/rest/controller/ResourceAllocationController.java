@@ -243,7 +243,22 @@ public class ResourceAllocationController {
 //    }
 
 
+    @ApiOperation(value = "get total allocation hours of a specific user", response = Integer.class, produces = "application/json")
+    @GetMapping("allocations/get-total-usage/{userId}")
+    public ResponseEntity<LocalTime> getTotalAllocationHoursUserWise(
+            @PathVariable("userId") final Integer userId
+            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+            // @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            //  @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+    ){
 
+        ResponseEntity<LocalTime> responseEntity = null;
+        logger.info("get total meeting hours of a specific user");
+        LocalTime totalUsage = resourceAllocationApi.getTotalAllocationHoursUserWise(AccessTokenUtil.getBearerToken("authorization"),userId);
+
+        responseEntity = new ResponseEntity<LocalTime>(totalUsage, HttpStatus.OK);
+        return responseEntity;
+    }
 
 
 }

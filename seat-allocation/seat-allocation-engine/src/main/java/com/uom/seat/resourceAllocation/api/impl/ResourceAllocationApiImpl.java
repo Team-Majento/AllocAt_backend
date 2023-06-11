@@ -74,4 +74,19 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
     public List<ResourceAllocationResponse> getAllResourceAllocationsByResourceId(String authorization, Integer resourceId) {
         return resourceAllocationService.getAllResourceAllocationsByResourceId(resourceId);
     }
+
+    @Override
+    public Integer getAllResourceAllocationsByCurrentMonth(String authorization) {
+        return resourceAllocationService.getAllResourceAllocationsByCurrentMonth();
+    }
+
+    @Override
+    public LocalTime getTotalAllocationHoursUserWise(String authorization, Integer userId) {
+        return resourceAllocationService.getTotalAllocationHoursUserWise(userId);
+    }
+
+    @Override
+    public List<ResourceAllocationResponse> getAllCurrentOngoingAllocations(String authorization) {
+        return resourceAllocationService.getAllCurrentOngoingAllocations();
+    }
 }

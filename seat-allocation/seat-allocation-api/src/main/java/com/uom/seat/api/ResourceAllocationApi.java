@@ -22,4 +22,10 @@ public interface ResourceAllocationApi {
     Integer rejectRelevantBookingRequest(String authorization, Integer bookingRequestID);
 
     List<ResourceAllocationResponse> getAllResourceAllocationsByResourceId(String authorization, Integer resourceId);
+
+    Integer getAllResourceAllocationsByCurrentMonth(String authorization);
+
+    LocalTime getTotalAllocationHoursUserWise(String authorization, Integer userId);
+
+    List<ResourceAllocationResponse> getAllCurrentOngoingAllocations(String authorization);
 }

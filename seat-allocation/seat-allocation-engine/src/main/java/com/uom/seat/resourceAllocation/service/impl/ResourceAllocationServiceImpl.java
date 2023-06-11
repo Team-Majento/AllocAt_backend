@@ -222,4 +222,28 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
         entityList.forEach(entity -> dtoList.add(convertToResourceAllocationResponse(entity)));
         return  dtoList;
     }
+
+    @Override
+    public Integer getAllResourceAllocationsByCurrentMonth() {
+        Integer count = resourceAllocationRepository.getAllResourceAllocationsByCurrentMonth();
+        return  count;
+    }
+
+    @Override
+    public LocalTime getTotalAllocationHoursUserWise(Integer userId) {
+        LocalTime count = resourceAllocationRepository.getTotalAllocationHoursUserWise(userId);
+        return count;
+    }
+
+    @Override
+    public List<ResourceAllocationResponse> getAllCurrentOngoingAllocations() {
+        System.out.println("****");
+        List<ResourceAllocationEntity> entityList = resourceAllocationRepository.getAllCurrentOngoingAllocations();
+
+        List<ResourceAllocationResponse> dtoList = new ArrayList<ResourceAllocationResponse>();
+        entityList.forEach(entity -> dtoList.add(convertToResourceAllocationResponse(entity))
+        );
+        System.out.println("****");
+        return dtoList;
+    }
 }

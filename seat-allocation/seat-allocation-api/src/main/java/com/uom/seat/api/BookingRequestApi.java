@@ -18,4 +18,8 @@ public interface BookingRequestApi {
     Page<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId);
 
     List<BookingRequestResponse> getAllResourceBookingRequestsByResourceId(String authorization, Integer resourceId);
+
+    Integer getNumberOfRejectedBookingRequestAsNow(String authorization);
+
+    Integer getAllNumberOfPendingBookingRequest(String authorization);
 }
