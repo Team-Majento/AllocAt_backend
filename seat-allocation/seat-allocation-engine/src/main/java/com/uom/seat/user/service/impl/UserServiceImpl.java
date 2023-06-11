@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
             testUser1.setUserName("denuwan");
             testUser1.setActiveStatus(true);
             testUser1.setAddress("938 Thackeray Circle");
-            testUser1.setContactNo("+94 71 413 1233");
+            testUser1.setContactNo("0714131233");
             testUser1.setEmail("denuwanAvi@gmail.com");
             userRepository.save(testUser1);
 
@@ -167,7 +167,7 @@ public class UserServiceImpl implements UserService {
             testUser2.setUserType(2);
             testUser2.setActiveStatus(true);
             testUser2.setAddress("231 Thackeray Circle");
-            testUser2.setContactNo("+94 74 092 6083");
+            testUser2.setContactNo("0740926083");
             testUser2.setEmail("husen2000nisath@gmail.com");
             userRepository.save(testUser2);
 
@@ -188,7 +188,7 @@ public class UserServiceImpl implements UserService {
             testUser3.setUserType(3);
             testUser3.setActiveStatus(true);
             testUser3.setAddress("231 Thackeray Circle");
-            testUser3.setContactNo("+94 74 092 6044");
+            testUser3.setContactNo("0740926044");
             testUser3.setEmail("nishathmnha2000@gmail.com");
             userRepository.save(testUser3);
 

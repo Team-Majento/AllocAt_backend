@@ -207,6 +207,41 @@ public class ResourceAllocationController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "get all the resource allocations for the current month", response = ResourceAllocationResponse.class, produces = "application/json")
+    @GetMapping("allocations/per-month")
+    public ResponseEntity<Integer> getAllResourceAllocationsByCurrentMonth(
+            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+           // @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+          //  @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+    ){
+
+        ResponseEntity<Integer> responseEntity = null;
+        logger.info("get all the resource allocations ByResourceId request is received.");
+        Integer listOfResourceAllocations = resourceAllocationApi.getAllResourceAllocationsByCurrentMonth(AccessTokenUtil.getBearerToken("authorization"));
+
+        responseEntity = new ResponseEntity<Integer>(listOfResourceAllocations, HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
+//    @ApiOperation(value = "get all current ongoing meeting at now", response = ResourceAllocationResponse.class, produces = "application/json")
+//    @GetMapping("allocations/ongoing-aalocations")
+//    public ResponseEntity<List<ResourceAllocationResponse>> getAllCurrentOngoingAllocations(
+//            //@PathVariable("resourceId") final Integer resourceId
+//            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+//            // @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+//            //  @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+//    ){
+//
+//        ResponseEntity<List<ResourceAllocationResponse>> responseEntity = null;
+//        logger.info("get all current ongoing meeting at now request is received.");
+//        List<ResourceAllocationResponse> currentAllocationList = resourceAllocationApi.getAllCurrentOngoingAllocations(AccessTokenUtil.getBearerToken("authorization"));
+//
+//        responseEntity = new ResponseEntity<List<ResourceAllocationResponse>>(currentAllocationList, HttpStatus.OK);
+//        return responseEntity;
+//    }
+
 
 
 
