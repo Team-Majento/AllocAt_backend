@@ -15,7 +15,7 @@ public interface BookingRequestService {
 
     List<BookingRequestResponse> getALlBookingRequests();
 
-    Page<BookingRequestResponse> getALlResourceBookingRequestsByRequstersUserId(Integer requesterUserId, Integer page, Integer size);
+    List<BookingRequestResponse> getALlResourceBookingRequestsByRequstersUserId(Integer requesterUserId);
 
 
     List<BookingRequestResponse> getALlBookingRequestsByResourceId(String authorization, Integer resourceId);

@@ -15,7 +15,7 @@ public interface BookingRequestApi {
 
     List<BookingRequestResponse> getAllBookingRequests(String bearerToken);
 
-    Page<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId);
+    List<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer requesterUserId);
 
     List<BookingRequestResponse> getAllResourceBookingRequestsByResourceId(String authorization, Integer resourceId);
 

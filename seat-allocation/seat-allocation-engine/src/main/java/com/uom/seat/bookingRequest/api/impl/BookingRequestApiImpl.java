@@ -56,8 +56,8 @@ public class BookingRequestApiImpl implements BookingRequestApi {
 
     }
     @Override
-    public Page<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer page, Integer size, Integer requesterUserId) {
-        return bookingRequestRetrievalLogic.getAllResourceBookingRequestsByRequesterUserId(requesterUserId,page,size);
+    public List<BookingRequestResponse> getAllResourceBookingRequestsByRequestersId(String authorization, Integer requesterUserId) {
+        return bookingRequestRetrievalLogic.getAllResourceBookingRequestsByRequesterUserId(requesterUserId);
 
     }
 

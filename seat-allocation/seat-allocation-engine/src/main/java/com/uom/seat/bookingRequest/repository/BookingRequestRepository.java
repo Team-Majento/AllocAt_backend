@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface BookingRequestRepository extends JpaRepository<BookingRequestEntity, Integer> {
-    Page<BookingRequestEntity> findAllByRequesterUserId(Integer requesterUserId, Pageable pageable);
+    List<BookingRequestEntity> findAllByRequesterUserId(Integer requesterUserId);
 
     List<BookingRequestEntity> findAllByResourceId(int i);
 

@@ -84,16 +84,16 @@ public class BookingRequestServiceImpl implements BookingRequestService {
         return dtoList;
     }
     @Override
-    public Page<BookingRequestResponse> getALlResourceBookingRequestsByRequstersUserId(Integer requesterUserId, Integer page, Integer size) {
-        PageRequest pageable= PageRequest.of(page,size);
-        Page<BookingRequestEntity> pageEntities=bookingRequestRepository.findAllByRequesterUserId(requesterUserId,pageable);
+    public List<BookingRequestResponse> getALlResourceBookingRequestsByRequstersUserId(Integer requesterUserId) {
+        //PageRequest pageable= PageRequest.of(page,size);
+        List<BookingRequestEntity> pageEntities=bookingRequestRepository.findAllByRequesterUserId(requesterUserId);
 
-        List<BookingRequestEntity> entityList= pageEntities.getContent();
+        List<BookingRequestEntity> entityList= pageEntities;
         List<BookingRequestResponse> dtoList = new ArrayList<BookingRequestResponse>();
 
         entityList.forEach(entity -> dtoList.add(convertToBookingRequestResponse(entity)));
 
-        return new PageImpl<BookingRequestResponse>(dtoList,pageable,pageEntities.getTotalElements());
+        return dtoList;
     }
 
     @Override

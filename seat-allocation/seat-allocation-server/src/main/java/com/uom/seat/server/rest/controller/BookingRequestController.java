@@ -103,18 +103,18 @@ public class BookingRequestController {
     }
 
     @ApiOperation(value="Get all resource booking requests by requesterUserId ",response = BookingRequestResponse.class,produces = "application/json")
-    @GetMapping("resource-booking-request-page/{requesterUserId}")
-    public ResponseEntity<Page<BookingRequestResponse>> getAllResourceBookingRequestsByRequesterId(
+    @GetMapping("resource-booking-request/all-booking-requests/{requesterUserId}")
+    public ResponseEntity<List<BookingRequestResponse>> getAllResourceBookingRequestsByRequesterId(
             //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
-            @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
-            @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size,
+         //   @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+         //   @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size,
             @PathVariable("requesterUserId") final Integer requesterUserId
             //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
             // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
     ){
-        ResponseEntity<Page<BookingRequestResponse>> responseEntity = null;
-        Page<BookingRequestResponse> pageDtos = bookingRequestApi.getAllResourceBookingRequestsByRequestersId( AccessTokenUtil.getBearerToken("authorization"),page,size,requesterUserId);
-        responseEntity=new ResponseEntity<Page<BookingRequestResponse>>(pageDtos,HttpStatus.OK);
+        ResponseEntity<List<BookingRequestResponse>> responseEntity = null;
+        List<BookingRequestResponse> reqList = bookingRequestApi.getAllResourceBookingRequestsByRequestersId( AccessTokenUtil.getBearerToken("authorization"),requesterUserId);
+        responseEntity=new ResponseEntity<List<BookingRequestResponse>>(reqList,HttpStatus.OK);
         return responseEntity;
     }
 
