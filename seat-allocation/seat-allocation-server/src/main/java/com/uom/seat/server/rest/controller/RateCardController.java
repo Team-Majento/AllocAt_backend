@@ -73,10 +73,11 @@ public class RateCardController {
 
 
     @ApiOperation(value = "Update rateCard by id.", response = RateCardResponse.class, produces = "application/json")
-    @PutMapping("{rateCardId}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("ratecard/{rateCardId}")
     @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
     public ResponseEntity<RateCardResponse> updateRateCard(   // ***  update??
-                                                              //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+                                                                @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
                                                               @PathVariable("rateCardId") final Integer rateCardId, @RequestBody final RateCardRequest rateCard) {
 
         ResponseEntity<RateCardResponse> responseEntity = null;
