@@ -94,7 +94,7 @@ public class ResourceController {
     @PutMapping("/resources/{resourceId}")
     @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
     public ResponseEntity<ResourceResponse> updateResource(   // ***  update??
-                                                           //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+                                                             @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
                                                            @PathVariable("resourceId") final Integer resourceId, @RequestBody final ResourceRequest resource) {
 
         ResponseEntity<ResourceResponse> responseEntity = null;

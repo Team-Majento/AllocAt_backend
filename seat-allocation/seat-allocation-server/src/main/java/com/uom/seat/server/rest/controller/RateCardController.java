@@ -34,6 +34,7 @@ public class RateCardController {
             // @formatter:on
     })
     @PostMapping("{resourceId}/rateCard")
+    @CrossOrigin(origins = "http://localhost:4200")
     @PreAuthorize("hasAuthority('ROLE_admin') or hasAuthority('ROLE_resourceManager')")
     public ResponseEntity<Integer> registerRateCard(
             //   @ApiParam(value = "Bearer access token", required = false) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization
