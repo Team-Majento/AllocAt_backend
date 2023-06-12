@@ -28,4 +28,6 @@ public interface ResourceAllocationApi {
     LocalTime getTotalAllocationHoursUserWise(String authorization, Integer userId);
 
     List<ResourceAllocationResponse> getAllCurrentOngoingAllocations(String authorization);
+
+    List<Integer> getAllCompanyIdOfTheResourceAllocation(String authorization);
 }

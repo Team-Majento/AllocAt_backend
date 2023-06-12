@@ -246,4 +246,9 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
         System.out.println("****");
         return dtoList;
     }
+
+    @Override
+    public List<Integer> getAllCompanyIdOfTheResourceAllocation() {
+        return resourceAllocationRepository.getAllCompanyIdOfTheResourceAllocation();
+    }
 }

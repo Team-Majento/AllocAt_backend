@@ -24,4 +24,5 @@ public interface UserService {
     Integer getAllUsersCount();
 
     Integer getAllSubordinatesCount(Integer managerEid);
+
 }

@@ -30,4 +30,6 @@ public interface ResourceAllocationService {
     LocalTime getTotalAllocationHoursUserWise(Integer userId);
 
     List<ResourceAllocationResponse> getAllCurrentOngoingAllocations();
+
+    List<Integer> getAllCompanyIdOfTheResourceAllocation();
 }

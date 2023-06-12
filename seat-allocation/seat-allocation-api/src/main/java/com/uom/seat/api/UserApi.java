@@ -22,4 +22,5 @@ public interface UserApi {
     Integer getAllUsersCount();
 
     Integer getAllSubordinatesCount(Integer managerEid);
+
 }

@@ -48,7 +48,7 @@ public class RsourceAllocatedCostController {
     private ResourceAllocatedCostApi resourceAllocatedCostApi;
 
     @PostMapping("generate-company-wise-report/{company_id}/{from_date}/{to_date}")
-    @PreAuthorize("hasAuthority('ROLE_admin')")
+//    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<Integer> generateReport(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,
@@ -70,7 +70,7 @@ public class RsourceAllocatedCostController {
     }
 
     @PostMapping("generate-general-report/{from_date}/{to_date}")
-    @PreAuthorize("hasAuthority('ROLE_admin') ")
+//    @PreAuthorize("hasAuthority('ROLE_admin') ")
     public ResponseEntity<Integer> generateReport(
             // @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
             //@ApiParam(value = "JSON format of the resource allocation request.", required = true) @RequestBody final ResourceAllocationRequest resourceAllocation,

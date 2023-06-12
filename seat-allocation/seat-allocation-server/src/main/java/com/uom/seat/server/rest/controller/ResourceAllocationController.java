@@ -6,6 +6,7 @@ import com.uom.seat.resourceAllocation.dto.ResourceAllocationRequest;
 import com.uom.seat.resourceAllocation.dto.ResourceAllocationResponse;
 import com.uom.seat.util.AccessTokenUtil;
 import io.swagger.annotations.*;
+import io.swagger.models.auth.In;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -258,6 +259,21 @@ public class ResourceAllocationController {
 
         responseEntity = new ResponseEntity<LocalTime>(totalUsage, HttpStatus.OK);
         return responseEntity;
+    }
+
+    @ApiOperation(value = "get all the company id's of the resource allocations", response = ResourceAllocationResponse.class, produces = "application/json")
+    @GetMapping("allocations/get-all-companyId")
+    public ResponseEntity<List<Integer>> getAllCompanyIdOfTheResourceAllocation(
+            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+            // @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            //  @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+    ){
+
+        ResponseEntity<List<Integer>> companyIdList = null;
+        List<Integer> listOfCompanyIds = resourceAllocationApi.getAllCompanyIdOfTheResourceAllocation(AccessTokenUtil.getBearerToken("authorization"));
+
+        companyIdList = new ResponseEntity<List<Integer>>(listOfCompanyIds, HttpStatus.OK);
+        return companyIdList;
     }
 
 

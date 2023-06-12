@@ -33,4 +33,6 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
 
     @Query("SELECT u FROM ResourceAllocationEntity u WHERE u.requiredDate=CURRENT_DATE AND ( HOUR(CURRENT_TIMESTAMP) BETWEEN u.startTime AND u.endTime)")
     List<ResourceAllocationEntity> getAllCurrentOngoingAllocations();
+    @Query("SELECT u.companyId FROM ResourceAllocationEntity u")
+    List<Integer> getAllCompanyIdOfTheResourceAllocation();
 }

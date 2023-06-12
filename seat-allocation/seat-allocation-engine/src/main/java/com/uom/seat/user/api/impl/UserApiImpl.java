@@ -82,4 +82,6 @@ public class UserApiImpl implements UserApi {
     public Integer getAllSubordinatesCount(Integer managerEid) {
         return userService.getAllSubordinatesCount(managerEid);
     }
+
+
 }

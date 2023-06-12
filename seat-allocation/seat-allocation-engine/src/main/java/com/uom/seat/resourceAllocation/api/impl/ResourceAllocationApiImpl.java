@@ -89,4 +89,9 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
     public List<ResourceAllocationResponse> getAllCurrentOngoingAllocations(String authorization) {
         return resourceAllocationService.getAllCurrentOngoingAllocations();
     }
+
+    @Override
+    public List<Integer> getAllCompanyIdOfTheResourceAllocation(String authorization) {
+        return resourceAllocationService.getAllCompanyIdOfTheResourceAllocation();
+    }
 }
