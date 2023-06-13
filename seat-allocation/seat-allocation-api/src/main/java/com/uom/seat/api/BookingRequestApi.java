@@ -28,4 +28,7 @@ public interface BookingRequestApi {
     Integer getNumberOfRejectedBookingRequestAsNowById(String authorization, Integer userId);
 
     Integer getAllNumberOfPendingBookingRequestById(String authorization, Integer userId);
+
+
+    Integer getAllResourceBookingRequestCountByRequesterId(String authorization, Integer requesterUserId);
 }

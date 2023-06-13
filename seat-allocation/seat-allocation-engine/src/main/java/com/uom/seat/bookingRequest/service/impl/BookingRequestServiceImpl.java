@@ -139,4 +139,9 @@ public class BookingRequestServiceImpl implements BookingRequestService {
 
         return dtoList;
     }
+
+    @Override
+    public Integer getAllResourceBookingRequestCountByRequesterId(Integer requesterUserId) {
+        return bookingRequestRepository.getAllResourceBookingRequestCountByRequesterId(requesterUserId);
+    }
 }

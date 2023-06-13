@@ -212,6 +212,22 @@ public class BookingRequestController {
         responseEntity=new ResponseEntity<List<BookingRequestResponse>>(reqList,HttpStatus.OK);
         return responseEntity;
     }
+    @ApiOperation(value="Get all resource booking request count by requesterUserId ",response = BookingRequestResponse.class,produces = "application/json")
+    @GetMapping("resource-booking-request/all-booking-request-count/{requesterUserId}")
+    public ResponseEntity<Integer> getAllResourceBookingRequestCountByRequesterId(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            //   @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            //   @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size,
+            @PathVariable("requesterUserId") final Integer requesterUserId
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<Integer> responseEntity = null;
+        Integer count = bookingRequestApi.getAllResourceBookingRequestCountByRequesterId( AccessTokenUtil.getBearerToken("authorization"),requesterUserId);
+        responseEntity=new ResponseEntity<Integer>(count,HttpStatus.OK);
+        return responseEntity;
+    }
+
 
 
 
