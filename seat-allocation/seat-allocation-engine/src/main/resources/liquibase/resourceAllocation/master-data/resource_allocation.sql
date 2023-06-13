@@ -1,4 +1,4 @@
-/*INSERT INTO resource_allocation(
+INSERT INTO resource_allocation(
     resource_id,
     requester_user_id,
     requester_manager_user_id,
@@ -9,13 +9,58 @@
     actual_end_time
       )
 VALUES (
-           4578,
-           2417,
-           8421,
-           3254,
-           DATE '2015-12-17',
-           '13:30',
-           '15:45',
-           '16:50'
+           1,
+           1,
+           2,
+           1,
+           DATE '2023-06-14',
+           '13:00',
+           '17:05',
+           null
+       ),
+ (
+           2,
+           1,
+           2,
+           1,
+           DATE '2023-06-14',
+           '13:00',
+           '17:05',
+           null
 
-       );*/
+       ),
+ (
+          3,
+          1,
+          2,
+          1,
+          DATE '2023-06-14',
+          '13:00',
+          '17:05',
+          null
+
+       ),
+ (
+
+           4,
+           2,
+           2,
+           1,
+           DATE '2023-06-14',
+           '13:00',
+           '17:05',
+           null
+
+       ),
+ (
+           5,
+           2,
+           2,
+           1,
+           DATE '2023-06-14',
+           '13:00',
+           '17:05',
+           null
+
+
+       )
