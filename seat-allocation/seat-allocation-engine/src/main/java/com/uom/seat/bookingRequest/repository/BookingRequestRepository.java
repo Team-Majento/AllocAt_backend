@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,4 +34,8 @@ public interface BookingRequestRepository extends JpaRepository<BookingRequestEn
 
     @Query("SELECT COUNT(u) FROM BookingRequestEntity u WHERE u.requesterUserId=?1")
     Integer getAllResourceBookingRequestCountByRequesterId(Integer requesterUserId);
+
+
+    @Query("SELECT u FROM BookingRequestEntity u WHERE u.resourceId=?1 AND u.requiredDate=?2")
+    List<BookingRequestEntity> findByResourceAndDate(Integer resourceId, LocalDate requiredDate);
 }

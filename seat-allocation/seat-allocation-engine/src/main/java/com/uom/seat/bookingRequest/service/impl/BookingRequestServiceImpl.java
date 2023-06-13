@@ -27,6 +27,65 @@ public class BookingRequestServiceImpl implements BookingRequestService {
     private ModelMapper modelMapper;
     @Override
     public Integer createBookingRequest(BookingRequestRequest bookingRequest) {
+        List<BookingRequestEntity> reqList =bookingRequestRepository.findByResourceAndDate(bookingRequest.getResourceId(),bookingRequest.getRequiredDate());
+      boolean isAvailable=true;
+        boolean isBookable = true;
+        for (BookingRequestEntity old : reqList) {
+            if ((bookingRequest.getEndTime().isBefore(old.getStartTime()) || bookingRequest.getEndTime().equals(old.getStartTime()))) {
+                continue;
+            }
+            if ((bookingRequest.getStartTime().isAfter(old.getEndTime()) || bookingRequest.getStartTime().equals(old.getEndTime()))) {
+                continue;
+            }
+            if ((old.getStartTime().isBefore(bookingRequest.getEndTime()) || old.getStartTime().equals(bookingRequest.getEndTime()))
+                    && (bookingRequest.getEndTime().isBefore(old.getEndTime()) || bookingRequest.getEndTime().equals(old.getEndTime()))) {
+                isBookable = false;
+                break;
+            }
+            if ((old.getStartTime().isBefore(bookingRequest.getStartTime()) || old.getStartTime().equals(bookingRequest.getStartTime()))
+                    && (bookingRequest.getStartTime().isBefore(old.getEndTime()) || bookingRequest.getStartTime().equals(old.getEndTime()))) {
+                isBookable = false;
+                break;
+            }
+            if ((bookingRequest.getStartTime().isBefore(old.getStartTime()) || bookingRequest.getStartTime().equals(old.getStartTime()))
+                    && (old.getEndTime().isBefore(bookingRequest.getEndTime()) || old.getEndTime().equals(bookingRequest.getEndTime()))) {
+                isBookable = false;
+                break;
+            }
+        }
+
+        if (!isBookable) {
+
+            return -1;
+        }
+
+//            boolean isBookable = true;
+//            for (int i = 0; i < reqList.size(); i++) {
+//                BookingRequestEntity old = reqList.get(i);
+//                if (bookingRequest.getEndTime().isBefore(old.getStartTime())) {
+//                    continue;
+//                }
+//                if (bookingRequest.getStartTime().isAfter(old.getEndTime())) {
+//                    continue;
+//                }
+//                if (old.getStartTime().isBefore(bookingRequest.getEndTime()) && bookingRequest.getEndTime().isBefore(old.getEndTime())) {
+//                    isBookable = false;
+//                }
+//                if (old.getStartTime().isBefore(bookingRequest.getStartTime()) && bookingRequest.getStartTime().isBefore(old.getEndTime())) {
+//                    isBookable = false;
+//                }
+//                if (bookingRequest.getStartTime().isBefore(old.getStartTime()) && old.getEndTime().isBefore(bookingRequest.getEndTime())) {
+//                    isBookable = false;
+//
+//                }
+//
+//                if (!isBookable) {
+//                    return -1;
+//                }
+
+//            }
+
+
         return bookingRequestRepository.save(convertToBookingRequestEntity(bookingRequest)).getId();
     }
 

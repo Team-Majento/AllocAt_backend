@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
             testUser2.setLastName("Vithanage");
             testUser2.setGender('M');
             testUser2.setImageURL("https://dms.uom.lk/s/63Y5fQYZYTiYLHm/preview");
-            testUser2.setManagersEID(1);
+            testUser2.setManagersEID(2);
             testUser2.setPassword(getEncodedPassword("xyz"));
             testUser2.setUserId(2);
             testUser2.setUserName("Ravindu");
