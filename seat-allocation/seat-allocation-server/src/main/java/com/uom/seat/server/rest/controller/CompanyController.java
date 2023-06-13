@@ -83,7 +83,7 @@ public class CompanyController {
 	}
 	
 	@ApiOperation(value = "Update organization by id.", response = CompanyResponse.class, produces = "application/json")
-	@PreAuthorize("hasAuthority('ROLE_admin')")
+//	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@PutMapping("{companyId}")
 	public ResponseEntity<CompanyResponse> updateCompany(
 			//@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
