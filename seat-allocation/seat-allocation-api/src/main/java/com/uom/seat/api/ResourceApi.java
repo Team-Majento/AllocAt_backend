@@ -33,4 +33,16 @@ public interface ResourceApi {
     Page<ResourceResponse> getAllFilteredResources(String authorization, Integer page, Integer size, Integer companyId);
 
     Integer getAllResourceCount();
+
+    Integer getAllResourcesBelongToCompanyId1();
+
+    Integer getAllResourcesBelongToCompanyId2();
+
+    Integer getAllResourcesBelongToCompanyId3();
+
+    Integer getAllResourcesBelongToCompanyId4();
+
+    Integer getAllResourcesBelongToCompanyId5();
+
+    Integer getAllResourcesBelongToCompanyId6();
 }

@@ -18,4 +18,20 @@ public interface ResourceRepository extends JpaRepository<ResourceEntity,Integer
     Page<ResourceEntity> findByCompany(Integer company, PageRequest pageable);
     @Query(value = "SELECT * FROM Resource u WHERE u.is_active=true", nativeQuery = true)
     Page<ResourceEntity> findAllActiveResource(PageRequest pageable);
+
+    @Query("SELECT COUNT(u) FROM ResourceEntity u WHERE u.company.id=?1 AND u.activeStatus=true")
+    Integer getAllResourcesBelongToCompanyId1(Integer companyId);
+
+    @Query("SELECT COUNT(u) FROM ResourceEntity u WHERE u.company.id=?1 AND u.activeStatus=true")
+    Integer getAllResourcesBelongToCompanyId2(int i);
+    @Query("SELECT COUNT(u) FROM ResourceEntity u WHERE u.company.id=?1 AND u.activeStatus=true")
+    Integer getAllResourcesBelongToCompanyId3(int i);
+
+    @Query("SELECT COUNT(u) FROM ResourceEntity u WHERE u.company.id=?1 AND u.activeStatus=true")
+    Integer getAllResourcesBelongToCompanyId4(int i);
+
+    @Query("SELECT COUNT(u) FROM ResourceEntity u WHERE u.company.id=?1 AND u.activeStatus=true")
+    Integer getAllResourcesBelongToCompanyId5(int i);
+    @Query("SELECT COUNT(u) FROM ResourceEntity u WHERE u.company.id=?1 AND u.activeStatus=true")
+    Integer getAllResourcesBelongToCompanyId6(int i);
 }

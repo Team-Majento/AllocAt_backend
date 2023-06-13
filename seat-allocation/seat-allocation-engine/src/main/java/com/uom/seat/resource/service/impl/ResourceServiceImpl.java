@@ -154,4 +154,34 @@ public class ResourceServiceImpl implements ResourceService {
         return dto;
     }
 
+    @Override
+    public Integer getAllResourcesBelongToCompanyId1() {
+        return resourceRepository.getAllResourcesBelongToCompanyId1(1);
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId2() {
+        return resourceRepository.getAllResourcesBelongToCompanyId2(2);
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId3() {
+        return resourceRepository.getAllResourcesBelongToCompanyId3(3);
+
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId4() {
+        return resourceRepository.getAllResourcesBelongToCompanyId4(4);
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId5() {
+        return resourceRepository.getAllResourcesBelongToCompanyId5(5);
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId6() {
+        return resourceRepository.getAllResourcesBelongToCompanyId6(6);
+    }
 }

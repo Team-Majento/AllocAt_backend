@@ -82,4 +82,35 @@ public class ResourceApiImpl implements ResourceApi {
     public Integer getAllResourceCount() {
         return resourceService.getAllResourceCount();
     }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId1() {
+        return resourceService.getAllResourcesBelongToCompanyId1();
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId2() {
+        return resourceService.getAllResourcesBelongToCompanyId2();
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId3() {
+        return resourceService.getAllResourcesBelongToCompanyId3();
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId4() {
+        return resourceService.getAllResourcesBelongToCompanyId4();
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId5() {
+        return resourceService.getAllResourcesBelongToCompanyId5();
+    }
+
+    @Override
+    public Integer getAllResourcesBelongToCompanyId6() {
+        return resourceService.getAllResourcesBelongToCompanyId6();
+    }
 }
+

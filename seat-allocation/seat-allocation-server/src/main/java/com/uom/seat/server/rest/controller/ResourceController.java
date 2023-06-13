@@ -174,6 +174,89 @@ public class ResourceController {
         responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
         return responseEntity;
     }
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount/getAllResourcesBelongToCompanyId1")
+    public ResponseEntity<Integer> getAllResourcesBelongToCompanyId1()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+
+        Integer count = resourceApi.getAllResourcesBelongToCompanyId1();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount/getAllResourcesBelongToCompanyId2")
+    public ResponseEntity<Integer> getAllResourcesBelongToCompanyId2()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+
+        Integer count = resourceApi.getAllResourcesBelongToCompanyId2();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount/getAllResourcesBelongToCompanyId3")
+    public ResponseEntity<Integer> getAllResourcesBelongToCompanyId3()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+
+        Integer count = resourceApi.getAllResourcesBelongToCompanyId3();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount/getAllResourcesBelongToCompanyId4")
+    public ResponseEntity<Integer> getAllResourcesBelongToCompanyId4()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+
+        Integer count = resourceApi.getAllResourcesBelongToCompanyId4();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount/getAllResourcesBelongToCompanyId5")
+    public ResponseEntity<Integer> getAllResourcesBelongToCompanyId5()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+
+        Integer count = resourceApi.getAllResourcesBelongToCompanyId5();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+    @ApiOperation(value = "get number of resources", response =Integer.class, produces = "application/json")
+    @CrossOrigin
+    @GetMapping("/getResourceCount/getAllResourcesBelongToCompanyId6")
+    public ResponseEntity<Integer> getAllResourcesBelongToCompanyId6()
+    //@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+    {
+
+        ResponseEntity<Integer> responseEntity = null;
+
+        Integer count = resourceApi.getAllResourcesBelongToCompanyId6();
+        responseEntity = new ResponseEntity<Integer>(count, HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
+
 
 
 
