@@ -32,4 +32,6 @@ public interface ResourceAllocationService {
     List<ResourceAllocationResponse> getAllCurrentOngoingAllocations();
 
     List<Integer> getAllCompanyIdOfTheResourceAllocation();
+
+    Integer getAllCurrentOngoingAllocationCount();
 }

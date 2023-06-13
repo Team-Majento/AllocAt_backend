@@ -35,4 +35,6 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
     List<ResourceAllocationEntity> getAllCurrentOngoingAllocations();
     @Query("SELECT u.companyId FROM ResourceAllocationEntity u")
     List<Integer> getAllCompanyIdOfTheResourceAllocation();
+    @Query("SELECT COUNT(u) FROM ResourceAllocationEntity u WHERE u.startTime <= :currentTime AND u.endTime >= :currentTime")
+    Integer getAllCurrentOngoingAllocationCount(LocalTime currentTime);
 }

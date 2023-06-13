@@ -22,4 +22,11 @@ public interface BookingRequestRepository extends JpaRepository<BookingRequestEn
 
     @Query("SELECT COUNT(u) FROM BookingRequestEntity u WHERE MONTH(u.requiredDate) = MONTH(CURRENT_DATE()) AND u.status='pending'")
     Integer getAllNumberOfPendingBookingRequest();
+
+    @Query("SELECT COUNT(u) FROM BookingRequestEntity u WHERE MONTH(u.requiredDate) = MONTH(CURRENT_DATE()) AND u.status='Rejected' AND u.requesterUserId=?1")
+    Integer getNumberOfRejectedBookingRequestAsNowById(Integer userId);
+
+    @Query("SELECT COUNT(u) FROM BookingRequestEntity u WHERE MONTH(u.requiredDate) = MONTH(CURRENT_DATE()) AND u.status='pending' AND u.requesterUserId=?1")
+    Integer getAllNumberOfPendingBookingRequestById(Integer userId);
+
 }

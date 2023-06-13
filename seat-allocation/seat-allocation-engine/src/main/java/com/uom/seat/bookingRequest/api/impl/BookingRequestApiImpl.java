@@ -77,5 +77,15 @@ public class BookingRequestApiImpl implements BookingRequestApi {
 
         return  bookingRequestService.getAllNumberOfPendingBookingRequest();
     }
+
+    @Override
+    public Integer getNumberOfRejectedBookingRequestAsNowById(String authorization, Integer userId) {
+        return bookingRequestService.getNumberOfRejectedBookingRequestAsNowById(userId);
+    }
+
+    @Override
+    public Integer getAllNumberOfPendingBookingRequestById(String authorization, Integer userId) {
+        return bookingRequestService.getAllNumberOfPendingBookingRequestById(userId);
+    }
 }
 

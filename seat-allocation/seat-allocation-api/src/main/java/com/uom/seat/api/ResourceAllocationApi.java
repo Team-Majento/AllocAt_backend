@@ -30,4 +30,6 @@ public interface ResourceAllocationApi {
     List<ResourceAllocationResponse> getAllCurrentOngoingAllocations(String authorization);
 
     List<Integer> getAllCompanyIdOfTheResourceAllocation(String authorization);
+
+    Integer getAllCurrentOngoingAllocationCount(String authorization);
 }

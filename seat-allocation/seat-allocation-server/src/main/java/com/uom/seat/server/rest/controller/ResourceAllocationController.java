@@ -277,4 +277,21 @@ public class ResourceAllocationController {
     }
 
 
+    @ApiOperation(value = "get all current ongoing meeting at now", response = ResourceAllocationResponse.class, produces = "application/json")
+    @GetMapping("allocations/ongoing-aalocation-count")
+    public ResponseEntity<Integer> getAllCurrentOngoingAllocationCount(
+            //@PathVariable("resourceId") final Integer resourceId
+            /*@ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization*/
+            // @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            //  @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size
+    ){
+
+        ResponseEntity<Integer> responseEntity = null;
+        logger.info("get all current ongoing meeting at now request is received.");
+        Integer getAllCurrentOngoingAllocationCount = resourceAllocationApi.getAllCurrentOngoingAllocationCount(AccessTokenUtil.getBearerToken("authorization"));
+
+        responseEntity = new ResponseEntity<Integer>(getAllCurrentOngoingAllocationCount, HttpStatus.OK);
+        return responseEntity;
+    }
+
 }

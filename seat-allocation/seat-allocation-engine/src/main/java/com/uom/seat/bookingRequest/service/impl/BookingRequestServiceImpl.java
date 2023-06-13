@@ -118,4 +118,14 @@ public class BookingRequestServiceImpl implements BookingRequestService {
     public Integer getAllNumberOfPendingBookingRequest() {
         return bookingRequestRepository.getAllNumberOfPendingBookingRequest();
     }
+
+    @Override
+    public Integer getNumberOfRejectedBookingRequestAsNowById(Integer userId) {
+        return bookingRequestRepository.getNumberOfRejectedBookingRequestAsNowById(userId);
+    }
+
+    @Override
+    public Integer getAllNumberOfPendingBookingRequestById(Integer userId) {
+        return bookingRequestRepository.getAllNumberOfPendingBookingRequestById( userId);
+    }
 }

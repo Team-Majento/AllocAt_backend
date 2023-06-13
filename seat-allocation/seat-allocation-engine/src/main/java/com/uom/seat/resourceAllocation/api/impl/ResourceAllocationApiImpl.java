@@ -94,4 +94,9 @@ public class ResourceAllocationApiImpl implements ResourceAllocationApi {
     public List<Integer> getAllCompanyIdOfTheResourceAllocation(String authorization) {
         return resourceAllocationService.getAllCompanyIdOfTheResourceAllocation();
     }
+
+    @Override
+    public Integer getAllCurrentOngoingAllocationCount(String authorization) {
+        return resourceAllocationService.getAllCurrentOngoingAllocationCount();
+    }
 }

@@ -23,4 +23,8 @@ public interface BookingRequestService {
     Integer getNumberOfRejectedBookingRequestAsNow();
 
     Integer getAllNumberOfPendingBookingRequest();
+
+    Integer getNumberOfRejectedBookingRequestAsNowById(Integer userId);
+
+    Integer getAllNumberOfPendingBookingRequestById(Integer userId);
 }

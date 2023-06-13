@@ -251,4 +251,11 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
     public List<Integer> getAllCompanyIdOfTheResourceAllocation() {
         return resourceAllocationRepository.getAllCompanyIdOfTheResourceAllocation();
     }
+
+    @Override
+    public Integer getAllCurrentOngoingAllocationCount() {
+        LocalTime currentTime = LocalTime.now();
+
+        return resourceAllocationRepository.getAllCurrentOngoingAllocationCount(currentTime);
+    }
 }
