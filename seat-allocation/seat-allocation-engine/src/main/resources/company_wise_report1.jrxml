@@ -73,7 +73,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="10" isBold="true"/>
                 </textElement>
-                <text><![CDATA[DISCOUNT]]></text>
+                <text><![CDATA[DISCOUNT (LKR)]]></text>
             </staticText>
             <staticText>
                 <reportElement mode="Opaque" x="496" y="-11" width="66" height="31" forecolor="#006699" backcolor="#E6E6E6" uuid="5dd0270a-fee0-4adb-9a06-b3b3baf071aa">
@@ -82,7 +82,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="10" isBold="true"/>
                 </textElement>
-                <text><![CDATA[FINAL COST]]></text>
+                <text><![CDATA[FINAL COST(LKR)]]></text>
             </staticText>
             <staticText>
                 <reportElement mode="Opaque" x="306" y="-11" width="74" height="31" forecolor="#006699" backcolor="#E6E6E6" uuid="76fbbd43-6845-468f-b5db-1524239487a9">
@@ -91,7 +91,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="10" isBold="true"/>
                 </textElement>
-                <text><![CDATA[CALCULATED COST]]></text>
+                <text><![CDATA[CALCULATED COST(LKR)]]></text>
             </staticText>
             <staticText>
                 <reportElement mode="Opaque" x="132" y="-11" width="68" height="31" forecolor="#006699" backcolor="#E6E6E6" uuid="95eba072-c002-4d25-b802-dc40f6603f5a">
@@ -145,7 +145,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="10" isBold="true"/>
                 </textElement>
-                <text><![CDATA[DISCOUNT RATE]]></text>
+                <text><![CDATA[DISCOUNT RATE(%)]]></text>
             </staticText>
         </band>
     </columnHeader>

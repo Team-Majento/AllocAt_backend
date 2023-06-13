@@ -290,7 +290,7 @@ public String exportReport() throws FileNotFoundException, JRException {
 
     public String exportGeneralReport() throws FileNotFoundException, JRException {
         List<GeneralReport> reportEntities = generalReportRepository.findAll();
-        File file = ResourceUtils.getFile("classpath:general_report_2.jrxml");
+        File file = ResourceUtils.getFile("classpath:general_report_3.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
         Map<String, Object> parameters = new HashMap<>();
