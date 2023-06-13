@@ -229,37 +229,89 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
         return 200;
     }
 
-    public String exportReport() throws FileNotFoundException, JRException {
-        List<CompanyWiseReport> reportEntities = companyWiseReportRepository.findAll();
-        File file = ResourceUtils.getFile("classpath:company_wise_report1.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("createdBy", "Java Techie");
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-        String computerUserName = "";
-        computerUserName = System.getProperty("user.name");
+//    public String exportReport() throws FileNotFoundException, JRException {
+//        List<CompanyWiseReport> reportEntities = companyWiseReportRepository.findAll();
+//        File file = ResourceUtils.getFile("classpath:company_wise_report1.jrxml");
+//        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("createdBy", "Java Techie");
+//        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+//        String computerUserName = "";
+//        computerUserName = System.getProperty("user.name");
+//
+//        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\" + computerUserName + "\\Downloads\\company_wise_report.pdf");
+//
+//        return "Report Generated";
+//    }
+public String exportReport() throws FileNotFoundException, JRException {
+    List<CompanyWiseReport> reportEntities = companyWiseReportRepository.findAll();
+    File file = ResourceUtils.getFile("classpath:company_wise_report1.jrxml");
+    JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+    JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
+    Map<String, Object> parameters = new HashMap<>();
+    parameters.put("createdBy", "Java Techie");
+    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+    String computerUserName = System.getProperty("user.name");
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\" + computerUserName + "\\Downloads\\company_wise_report.pdf");
+    int reportNumber = 0;
+    String filename = "company_wise_report_"+reportEntities.get(0).getCompany_name()+".pdf";
+    String path = "C:\\Users\\" + computerUserName + "\\Downloads\\" + filename;
+    File reportFile = new File(path);
 
-        return "Report Generated";
+    while (reportFile.exists()) {
+        reportNumber++;
+        filename ="company_wise_report_"+reportEntities.get(0).getCompany_name()+"("+reportNumber+").pdf";;
+        path = "C:\\Users\\" + computerUserName + "\\Downloads\\" + filename;
+        reportFile = new File(path);
     }
 
-    public String exportGeneralReport() throws FileNotFoundException, JRException {
+    JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
+    return "Report Generated: " + filename;
+}
+
+//    public String exportGeneralReport() throws FileNotFoundException, JRException {
+//
+//        List<GeneralReport> reportEntities = generalReportRepository.findAll();
+//        File file = ResourceUtils.getFile("classpath:general_report_2.jrxml");
+//        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("generalReportDataset",dataSource);
+//        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+//        String computerUserName = "";
+//        computerUserName = System.getProperty("user.name");
+//
+//        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\" + computerUserName + "\\Downloads\\general_report.pdf");
+//
+//        return "Report Generated";
+//    }
+
+    public String exportGeneralReport() throws FileNotFoundException, JRException {
         List<GeneralReport> reportEntities = generalReportRepository.findAll();
         File file = ResourceUtils.getFile("classpath:general_report_2.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportEntities);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("generalReportDataset",dataSource);
+        parameters.put("generalReportDataset", dataSource);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-        String computerUserName = "";
-        computerUserName = System.getProperty("user.name");
+        String computerUserName = System.getProperty("user.name");
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\" + computerUserName + "\\Downloads\\general_report.pdf");
+        int reportNumber = 0;
+        String filename = "general_report.pdf";
+        String path = "C:\\Users\\" + computerUserName + "\\Downloads\\" + filename;
+        File reportFile = new File(path);
 
-        return "Report Generated";
+        while (reportFile.exists()) {
+            reportNumber++;
+            filename = "general_report(" + reportNumber + ").pdf";
+            path = "C:\\Users\\" + computerUserName + "\\Downloads\\" + filename;
+            reportFile = new File(path);
+        }
+
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+        return "Report Generated: " + filename;
     }
-
 }
