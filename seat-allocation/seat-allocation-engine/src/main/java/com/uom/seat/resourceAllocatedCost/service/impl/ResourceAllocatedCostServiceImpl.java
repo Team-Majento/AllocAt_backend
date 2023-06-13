@@ -85,7 +85,7 @@ public class ResourceAllocatedCostServiceImpl implements ResourceAllocatedCostSe
             final_cost = allocated_cost - discount;
 
             resourceAllocatedCostEntity.setFinal_cost(Math.round(final_cost * 100.0) / 100.0);
-            resourceAllocatedCostEntity.setDiscount(discount);
+            resourceAllocatedCostEntity.setDiscount(Math.round(discount * 100.0) / 100.0);
             resourceAllocatedCostEntity.setDiscount_rate(discount_rate);
 
         } else {
