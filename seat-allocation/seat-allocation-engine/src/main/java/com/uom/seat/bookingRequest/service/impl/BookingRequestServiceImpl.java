@@ -128,4 +128,15 @@ public class BookingRequestServiceImpl implements BookingRequestService {
     public Integer getAllNumberOfPendingBookingRequestById(Integer userId) {
         return bookingRequestRepository.getAllNumberOfPendingBookingRequestById( userId);
     }
+
+    @Override
+    public List<BookingRequestResponse> getAllSubordinateResourceBookingRequests(Integer rmId) {
+       // List<BookingRequestResponse> requestResponseList=new ArrayList<>();
+        List<BookingRequestEntity> entityList =  bookingRequestRepository.getAllSubordinateResourceBookingRequests(rmId);
+        List<BookingRequestResponse> dtoList = new ArrayList<BookingRequestResponse>();
+
+        entityList.forEach(entity -> dtoList.add(convertToBookingRequestResponse(entity)));
+
+        return dtoList;
+    }
 }

@@ -197,6 +197,25 @@ public class BookingRequestController {
 
 
 
+    @ApiOperation(value="Get all subordinate booking req ",response = BookingRequestResponse.class,produces = "application/json")
+    @GetMapping("resource-booking-request/all-sub-booking-requests/{rmId}")
+    public ResponseEntity<List<BookingRequestResponse>> getAllSubordinateResourceBookingRequests(
+            //  @ApiParam(value = "Bearer access token", required = true) @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorization,
+            //   @RequestParam(name = "page" ,defaultValue ="0" ,required = false)Integer page,
+            //   @RequestParam(name = "size" ,defaultValue ="10" ,required = false)Integer size,
+            @PathVariable("rmId") final Integer rmId
+            //@RequestParam(value = "sortBy" ,required = false) ResourceSortFiled sortBy,
+            // @RequestParam(name = "direction" ,required = false) Sort.Direction direction
+    ){
+        ResponseEntity<List<BookingRequestResponse>> responseEntity = null;
+        List<BookingRequestResponse> reqList = bookingRequestApi.getAllSubordinateResourceBookingRequests( AccessTokenUtil.getBearerToken("authorization"),rmId);
+        responseEntity=new ResponseEntity<List<BookingRequestResponse>>(reqList,HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
+
 
 
 
