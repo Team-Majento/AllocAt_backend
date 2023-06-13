@@ -133,42 +133,42 @@ public class UserServiceImpl implements UserService {
         if (userRepository.count() == 0) {
             UserEntity testUser1 = new UserEntity();
 
-            testUser1.setFirstName("Zerk");
+            testUser1.setFirstName("Denuwan");
             testUser1.setXid("bdvjbdgjsbh");
-            testUser1.setMiddleName("Yeates");
-            testUser1.setLastName("Cléopatre");
+            testUser1.setMiddleName("Avishka");
+            testUser1.setLastName("Weerasinghe");
             testUser1.setGender('M');
-            testUser1.setImageURL("https://dms.uom.lk/s/Kdg5KNMTwwGBJi9/preview");
+            testUser1.setImageURL("https://dms.uom.lk/s/FksjcHcQBbL7MJg/preview");
             testUser1.setManagersEID(1);
             testUser1.setPassword(getEncodedPassword("abcd"));
             testUser1.setUserId(1);
             testUser1.setUserType(1);
-            testUser1.setUserName("denuwan");
+            testUser1.setUserName("Denuwan");
             testUser1.setActiveStatus(true);
-            testUser1.setAddress("938 Thackeray Circle");
+            testUser1.setAddress("938 Batapola Ambalangoda");
             testUser1.setContactNo("0714131233");
-            testUser1.setEmail("denuwanAvi@gmail.com");
+            testUser1.setEmail("denu1avish@gmail.com");
             userRepository.save(testUser1);
 
 
 
 
             UserEntity testUser2 = new UserEntity();
-            testUser2.setFirstName("Garret");
+            testUser2.setFirstName("Ravindu");
             testUser2.setXid("bdvjbdgjsbhksnks");
-            testUser2.setMiddleName("Heakey");
-            testUser2.setLastName("Magdalène");
-            testUser2.setGender('f');
-            testUser2.setImageURL("https://dms.uom.lk/s/x5TzoN9JHRLnbCc/preview");
+            testUser2.setMiddleName("Thiunuwan");
+            testUser2.setLastName("Vithanage");
+            testUser2.setGender('M');
+            testUser2.setImageURL("https://dms.uom.lk/s/63Y5fQYZYTiYLHm/preview");
             testUser2.setManagersEID(1);
             testUser2.setPassword(getEncodedPassword("xyz"));
             testUser2.setUserId(2);
             testUser2.setUserName("Ravindu");
             testUser2.setUserType(2);
             testUser2.setActiveStatus(true);
-            testUser2.setAddress("231 Thackeray Circle");
+            testUser2.setAddress("231 Richmond hill Galle");
             testUser2.setContactNo("0740926083");
-            testUser2.setEmail("husen2000nisath@gmail.com");
+            testUser2.setEmail("ravinduthiunuwan@gmail.com");
             userRepository.save(testUser2);
 
 
@@ -177,21 +177,56 @@ public class UserServiceImpl implements UserService {
             UserEntity testUser3 = new UserEntity();
             testUser3.setFirstName("Nishath");
             testUser3.setXid("bdvjbdgjsbhksnk");
-            testUser3.setMiddleName("ahamed");
-            testUser3.setLastName("Magdalène");
+            testUser3.setMiddleName("Ahamed");
+            testUser3.setLastName("Hussein");
             testUser3.setGender('M');
-            testUser3.setImageURL("https://dms.uom.lk/s/iMWzByYHpYNdZGB/preview");
-            testUser3.setManagersEID(1);
+            testUser3.setImageURL("https://dms.uom.lk/s/o86NbHHGLKpBADz/preview");
+            testUser3.setManagersEID(2);
             testUser3.setPassword(getEncodedPassword("def"));
             testUser3.setUserId(3);
             testUser3.setUserName("Nishath");
             testUser3.setUserType(3);
             testUser3.setActiveStatus(true);
-            testUser3.setAddress("231 Thackeray Circle");
-            testUser3.setContactNo("0740926044");
+            testUser3.setAddress("235 Town road Matara");
+            testUser3.setContactNo("0770926334");
             testUser3.setEmail("nishathmnha2000@gmail.com");
             userRepository.save(testUser3);
 
+            UserEntity testUser4 = new UserEntity();
+            testUser4.setFirstName("Ashini");
+            testUser4.setXid("bdvjbdgjsbhksnkhj");
+            testUser4.setMiddleName("Emesha");
+            testUser4.setLastName("Pathinayake");
+            testUser4.setGender('F');
+            testUser4.setImageURL("https://dms.uom.lk/s/Z8bNM44QYt8tsMa/preview");
+            testUser4.setManagersEID(4);
+            testUser4.setPassword(getEncodedPassword("def"));
+            testUser4.setUserId(4);
+            testUser4.setUserName("Ashini");
+            testUser4.setUserType(2);
+            testUser4.setActiveStatus(true);
+            testUser4.setAddress("231 Ahangama Galle");
+            testUser4.setContactNo("0715567041");
+            testUser4.setEmail("ashinipathinayake@gmail.com");
+            userRepository.save(testUser4);
+
+            UserEntity testUser5 = new UserEntity();
+            testUser5.setFirstName("Tharushi");
+            testUser5.setXid("bdvjbdgjsbhksnkbvvf");
+            testUser5.setMiddleName("Nethmini");
+            testUser5.setLastName("Hemarathne");
+            testUser5.setGender('F');
+            testUser5.setImageURL("https://dms.uom.lk/s/F7QoHagB4TGsoZQ/preview");
+            testUser5.setManagersEID(4);
+            testUser5.setPassword(getEncodedPassword("def"));
+            testUser5.setUserId(5);
+            testUser5.setUserName("Tharushi");
+            testUser5.setUserType(3);
+            testUser5.setActiveStatus(true);
+            testUser5.setAddress("245 Makuluwa Galle");
+            testUser5.setContactNo("0770231054");
+            testUser5.setEmail("tnethmini66@gmail.com");
+            userRepository.save(testUser5);
         }
 
 
