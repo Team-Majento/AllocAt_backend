@@ -86,6 +86,7 @@ public class UserServiceImpl implements UserService {
         entity.setImageURL(userRequest.getImageURL());
         entity.setUserType(userRequest.getUserType());
         entity.setManagersEID(userRequest.getManagersEID());
+        entity.setCompanyId(userRequest.getCompanyId());
         return entity;
     }
     @Override
@@ -148,6 +149,7 @@ public class UserServiceImpl implements UserService {
             testUser1.setAddress("938 Batapola Ambalangoda");
             testUser1.setContactNo("0714131233");
             testUser1.setEmail("denu1avish@gmail.com");
+            testUser1.setCompanyId(3);
             userRepository.save(testUser1);
 
 
@@ -169,6 +171,7 @@ public class UserServiceImpl implements UserService {
             testUser2.setAddress("231 Richmond hill Galle");
             testUser2.setContactNo("0740926083");
             testUser2.setEmail("ravinduthiunuwan@gmail.com");
+            testUser2.setCompanyId(2);
             userRepository.save(testUser2);
 
 
@@ -190,6 +193,7 @@ public class UserServiceImpl implements UserService {
             testUser3.setAddress("235 Town road Matara");
             testUser3.setContactNo("0770926334");
             testUser3.setEmail("nishathmnha2000@gmail.com");
+            testUser3.setCompanyId(2);
             userRepository.save(testUser3);
 
             UserEntity testUser4 = new UserEntity();
@@ -208,6 +212,7 @@ public class UserServiceImpl implements UserService {
             testUser4.setAddress("231 Ahangama Galle");
             testUser4.setContactNo("0715567041");
             testUser4.setEmail("ashinipathinayake@gmail.com");
+            testUser4.setCompanyId(1);
             userRepository.save(testUser4);
 
             UserEntity testUser5 = new UserEntity();
@@ -226,6 +231,7 @@ public class UserServiceImpl implements UserService {
             testUser5.setAddress("245 Makuluwa Galle");
             testUser5.setContactNo("0770231054");
             testUser5.setEmail("tnethmini66@gmail.com");
+            testUser5.setCompanyId(1);
             userRepository.save(testUser5);
         }
 

@@ -23,6 +23,8 @@ public class UserEntity {
     @Column(name = "user_id", nullable = false,unique = true)
     private Integer userId;
 
+    @Column(name = "company_id", nullable = false,unique = false)
+    private Integer companyId;
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -191,5 +193,13 @@ public class UserEntity {
 
     public void setActiveStatus(Boolean activeStatus) {
         this.activeStatus = activeStatus;
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 }

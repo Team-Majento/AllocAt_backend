@@ -8,6 +8,9 @@ public class UserRequest implements Serializable {
 	private static final long serialVersionUID = 651550977567953017L;
 
 	private Integer userId;
+
+	private Integer companyId;
+
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -139,6 +142,7 @@ public class UserRequest implements Serializable {
 	public String toString() {
 		return "UserRequest{" +
 				"userId=" + userId +
+				", companyId=" + companyId +
 				", firstName='" + firstName + '\'' +
 				", middleName='" + middleName + '\'' +
 				", lastName='" + lastName + '\'' +
@@ -153,5 +157,13 @@ public class UserRequest implements Serializable {
 				", managersEID=" + managersEID +
 				", activeStatus=" + activeStatus +
 				'}';
+	}
+
+	public Integer getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
 	}
 }

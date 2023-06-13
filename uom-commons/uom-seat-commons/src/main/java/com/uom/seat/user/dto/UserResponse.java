@@ -24,6 +24,8 @@ public class UserResponse implements Serializable {
 
     private Boolean activeStatus;
 
+    private Integer companyId;
+
     public Integer getId() {
         return id;
     }
@@ -144,6 +146,7 @@ public class UserResponse implements Serializable {
         this.activeStatus = activeStatus;
     }
 
+
     @Override
     public String toString() {
         return "UserResponse{" +
@@ -162,6 +165,15 @@ public class UserResponse implements Serializable {
                 ", userType=" + userType +
                 ", managersEID=" + managersEID +
                 ", activeStatus=" + activeStatus +
+                ", companyId=" + companyId +
                 '}';
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 }
