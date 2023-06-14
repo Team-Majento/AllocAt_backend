@@ -98,6 +98,7 @@ public class CompanyController {
 	}
 
 	@ApiOperation(value="Delete Company by ID",response = ResourceResponse.class,produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@DeleteMapping("{companyId}")
 	public ResponseEntity<Boolean> deleteCompany(
